@@ -18,14 +18,6 @@ states/Idle/position = Vector2( 87.8, 117.4 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
-TARGET_FPS = null
-ACCELERATION = null
-MAX_SPEED = null
-FRICTION = null
-AIR_RESISTANCE = null
-GRAVITY = null
-JUMP_FORCE = null
-PUSH = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -1 )
