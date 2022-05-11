@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://src/characters/player/Player.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 34, 32 )
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+
+[sub_resource type="AnimationNodeStateMachine" id=3]
+states/Idle/node = SubResource( 2 )
+states/Idle/position = Vector2( 87.8, 117.4 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+TARGET_FPS = null
+ACCELERATION = null
+MAX_SPEED = null
+FRICTION = null
+AIR_RESISTANCE = null
+GRAVITY = null
+JUMP_FORCE = null
+PUSH = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_smoothed = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 6.0
+offset_h = 0.53
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 3 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 4 )
+parameters/Idle/playback = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Rotator" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Rotator"]
+texture = ExtResource( 1 )
