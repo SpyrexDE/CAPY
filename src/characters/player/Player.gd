@@ -95,7 +95,7 @@ func handleMovement(delta: float) -> void:
 	
 	# Make jump shorter when no longer pressed
 	if !should_jump && !is_on_floor():
-		motion.y += lerp(0, GRAVITY * delta * TARGET_FPS, 0.8)
+		motion.y += GRAVITY * delta * TARGET_FPS
 
 	# Apply motion and rotation
 	motion = move_and_slide(motion, Vector2.UP, false, 4, PI/4, false)
