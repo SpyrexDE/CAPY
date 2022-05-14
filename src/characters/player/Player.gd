@@ -5,31 +5,37 @@ extends KinematicBody2D
 #############
 
 # Constants
-export (int, 1, 120) var TARGET_FPS = 60
-export (int, 10, 50) var ACCELERATION = 30
-export (int, 50, 800) var MAX_SPEED = 400
-export (int, 0, 30) var FRICTION = 15
-export (int, 0, 5) var AIR_RESISTANCE = 1
-export (int, 0, 100) var GRAVITY = 20
-export (int, 0, 1000) var JUMP_FORCE = 500
-export (int, 0, 200) var PUSH = 100
+export (int, 1, 120) var TARGET_FPS := 60
+export (int, 10, 50) var ACCELERATION := 50
+export (int, 50, 800) var MAX_SPEED := 400
+export (int, 0, 30) var FRICTION := 15
+export (int, 0, 5) var AIR_RESISTANCE := 1
+export (int, 0, 100) var GRAVITY := 20
+export (int, 0, 1000) var JUMP_FORCE := 500
+export (int, 0, 200) var PUSH := 100
+export (float, 0, 1) var FORGIVE_TIME := 0.2
+export (int, 0, 10) var MAX_AIR_JUMPS := 2
 
 # Physics
 var motion := Vector2.ZERO
+onready var aimed_scale = self.scale 
 
 # Input
 var x_input : float = 0.0
 var y_input : float = 0.0
 
 # Logic
-var max_air_jumps := 1
-var air_jumps := 0
+onready var air_jumps := MAX_AIR_JUMPS
 var can_jump := true
 var jump_pressed := false
 var should_jump := false
+var jumptimer_active := false
 
-# Node References
-onready var animationPlayer := $AnimationPlayer
+# Child node references
+onready var cJumpTimer = $JumpTimer
+onready var cAnimationTree = $AnimationTree
+onready var cTween = $Tween
+onready var cCamera2D = $Camera2D
 
 #############
 # Functions #
@@ -62,7 +68,10 @@ func handleCollsision() -> void:
 	
 	if is_on_floor():
 		can_jump = true
-		air_jumps = max_air_jumps
+		air_jumps = MAX_AIR_JUMPS
+	elif !jumptimer_active:
+		jumptimer_active = true
+		cJumpTimer.start(FORGIVE_TIME)
 
 func handleMovement(delta: float) -> void:
 	# X-Acceleration
@@ -80,10 +89,10 @@ func handleMovement(delta: float) -> void:
 		# air
 		if !is_moving() && !is_on_floor():
 			motion.x = lerp(motion.x, 0, AIR_RESISTANCE * delta)
-
+	
 	# Jumping
 	if jump_pressed:
-		if is_on_floor() && can_jump:
+		if can_jump:
 			motion.y = -JUMP_FORCE
 			can_jump = false
 		
@@ -99,29 +108,29 @@ func handleMovement(delta: float) -> void:
 
 	# Apply motion and rotation
 	motion = move_and_slide(motion, Vector2.UP, false, 4, PI/4, false)
-	setRot(Utils.completeInt(x_input))
+	
+	if x_input != 0:
+		flipH(true if x_input < 0 else false)
 
-func handleAnimation():
+func handleAnimation() -> void:
 	if is_moving():
 		if is_on_floor():
 			pass
 			# run
 	else:
 		if is_on_floor():
-			# idle anim
-			pass
+			cAnimationTree.set("parameters/State/current", 0)
 	
 	if !is_on_floor() && !is_on_wall():
-		# jump anim
-		pass
+		cAnimationTree.set("parameters/State/current", 1)
 
-func setRot(rot):
-	if rot == 0:
-		return
-	$Tween.interpolate_property($Rotator, "scale", $Rotator.scale, Vector2(rot,1), 0.05, Tween.TRANS_CUBIC, Tween.EASE_OUT)
-	$Tween.start()
-	
-func checkPush():
+func flipH(flip:bool):
+	# Workaround function for Godot issue #12335
+	for child in get_children():
+		if child.get("scale") != null:
+			child.scale.x = (-1 if flip else 1) * abs(child.scale.x)
+
+func checkPush() -> void:
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		if !collision.collider:
@@ -147,3 +156,10 @@ func is_jumping() -> bool:
 		return false
 
 
+###########
+# Signals #
+###########
+
+func _on_JumpTimer_timeout() -> void:
+	jumptimer_active = false
+	can_jump = false

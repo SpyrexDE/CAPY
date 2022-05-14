@@ -9,7 +9,8 @@ script/source = "extends Node2D
 func _on_Area2D_body_entered(body):
 	if body.name == \"Player\":
 		var b = body as KinematicBody2D
-		b.rotation_degrees = 90
+		b.get_node(\"AnimationTree\").set(\"parameters/OneShot/active\", true)
+		b.motion.y = -1000
 "
 
 [sub_resource type="RectangleShape2D" id=1]
