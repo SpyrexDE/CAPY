@@ -1,28 +1,100 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhh1kqclqlqxi"]
+[gd_scene load_steps=13 format=3 uid="uid://dhh1kqclqlqxi"]
 
-[ext_resource type="Texture2D" uid="uid://ct4ni2r4xican" path="res://icon.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dg6sedgc7grdc" path="res://src/items/melon_seed/melon_seed.png" id="1_olses"]
 [ext_resource type="Animation" uid="uid://kdgsg20tn1eq" path="res://src/items/melon_seed/seed_idle.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://drur1dx555slk" path="res://addons/kenney_particle_pack/star_01.png" id="3_36itm"]
 
-[sub_resource type="GDScript" id="6"]
+[sub_resource type="GDScript" id="GDScript_w2yl2"]
 script/source = "extends Node2D
 
-func _ready():
-	$AnimationPlayer.play(\"idle\")
+@onready var animationPlayer = $AnimationPlayer
 
-func _on_Area2D_body_entered(body):
+func _ready():
+	animationPlayer.play(\"idle\")
+	print(animationPlayer.current_animation)
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == \"Player\":
-		self.queue_free()
+		animationPlayer.play(\"collected\")
 "
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 17.0294
 
-[sub_resource type="Animation" id="5"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_ji2rh"]
+resource_local_to_scene = true
+resource_name = "collected"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MelonSeed:rotation")
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(0.140591, 0.140591), Vector2(0.3, 0.3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="5"]
+length = 0.001
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,20 +103,77 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.140591, 0.140591)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rdgyx"]
 _data = {
 "RESET": SubResource( "5" ),
+"collected": SubResource( "Animation_ji2rh" ),
 "idle": ExtResource( "2" )
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_osjec"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_8sow0"]
+min_value = -500.0
+max_value = 500.0
+_data = [Vector2(0, 23.4657), 0.0, -142.245, 0, 0, Vector2(0.993359, -12.6354), 67.9474, 0.0, 0, 0]
+
+[sub_resource type="Curve" id="Curve_0fdti"]
+min_value = -200.0
+max_value = 200.0
+_data = [Vector2(0, 20.9386), 0.0, 0.0, 0, 0, Vector2(0.296964, 64.2599), 0.0, 0.0, 0, 0, Vector2(0.981973, -5.05414), 761.012, 0.0, 0, 0]
+
+[sub_resource type="Gradient" id="Gradient_nmh65"]
+offsets = PackedFloat32Array(0, 0.134538, 0.771084, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="MelonSeed" type="Node2D"]
-rotation = -0.0147246
-script = SubResource( "6" )
+script = SubResource( "GDScript_w2yl2" )
 
 [node name="Sprite" type="Sprite2D" parent="."]
-scale = Vector2(0.4, 0.4)
-texture = ExtResource( "1" )
+rotation = 0.0183323
+scale = Vector2(0.140591, 0.140591)
+texture = ExtResource( "1_olses" )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -52,9 +181,44 @@ texture = ExtResource( "1" )
 shape = SubResource( "1" )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../..")
 libraries = {
 "": SubResource( "AnimationLibrary_rdgyx" )
 }
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+material = SubResource( "CanvasItemMaterial_osjec" )
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.5
+lifetime_randomness = 0.12
+texture = ExtResource( "3_36itm" )
+emission_shape = 1
+emission_sphere_radius = 4.0
+direction = Vector2(0, 5000)
+spread = 180.0
+gravity = Vector2(0, 30)
+initial_velocity_min = 9.78
+initial_velocity_max = 30.21
+angular_velocity_min = -5.0
+angular_velocity_max = 5.0
+orbit_velocity_min = -0.1
+orbit_velocity_max = 0.1
+orbit_velocity_curve = SubResource( "Curve_8sow0" )
+linear_accel_min = 10.0
+linear_accel_max = 12.0
+linear_accel_curve = SubResource( "Curve_0fdti" )
+radial_accel_min = -20.0
+radial_accel_max = 20.0
+tangential_accel_min = -20.0
+tangential_accel_max = 20.0
+damping_min = 10.0
+damping_max = 30.0
+scale_amount_min = 0.01
+scale_amount_max = 0.05
+color = Color(2.4, 2.6, 0.3, 1)
+color_ramp = SubResource( "Gradient_nmh65" )
+anim_speed_max = 15.04
+anim_offset_max = 1.0
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

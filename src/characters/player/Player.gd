@@ -40,7 +40,7 @@ var jumptimer_active := false
 #############
 
 func _ready() -> void:
-	pass
+	cAnimationTree.active = true
 
 #Movement
 func _physics_process(delta) -> void:
@@ -51,7 +51,7 @@ func _physics_process(delta) -> void:
 	
 
 func handleInput() -> void:
-	x_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	x_input = Input.get_vector("move_left", "move_right", "face_up", "face_down").x
 	y_input = Input.get_action_strength("jump")
 
 	jump_pressed = Input.is_action_just_pressed("jump")
@@ -113,8 +113,7 @@ func handleMovement(delta: float) -> void:
 func handleAnimation() -> void:
 	if is_moving():
 		if is_on_floor():
-			pass
-			# run
+			cAnimationTree.set("parameters/State/current", 2)
 	else:
 		if is_on_floor():
 			cAnimationTree.set("parameters/State/current", 0)
@@ -122,7 +121,7 @@ func handleAnimation() -> void:
 	if !is_on_floor() && !is_on_wall():
 		cAnimationTree.set("parameters/State/current", 1)
 
-func flipH(flip:bool):
+func flipH(flip: bool):
 	# Workaround function for Godot issue #12335
 	for child in get_children():
 		if child.get("scale") != null:

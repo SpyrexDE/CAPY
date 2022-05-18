@@ -1,10 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://k2yepueoprnw"]
 
-[ext_resource type="PackedScene" path="res://src/props/moving_platform/MovingPlatform.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c0rirpw4k72fu" path="res://src/props/moving_platform/MovingPlatform.tscn" id="1"]
 
 [sub_resource type="GDScript" id="1"]
 script/source = "extends Node2D
 
+@onready var move_time = 1 * get_node(\"Position2D\").global_position.distance_to(global_position) / 100
 
 var toggle = false
 
@@ -15,10 +16,10 @@ func move():
 	var tween = create_tween()
 	if toggle:
 		toggle = false 
-		tween.tween_property($SDPlatform, \"global_position\", get_node(\"Position2D\").global_position, 1)
+		tween.tween_property($SDPlatform, \"global_position\", get_node(\"Position2D\").global_position, move_time).set_trans(Tween.TRANS_CUBIC)
 	else:
 		toggle = true
-		tween.tween_property($SDPlatform, \"global_position\", self.global_position, 1)
+		tween.tween_property($SDPlatform, \"global_position\", self.global_position, move_time).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(move)
 "
 
