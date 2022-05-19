@@ -18,8 +18,9 @@ config/features=PackedStringArray("4.0")
 
 [autoload]
 
-Game="*res://src/public/Game.gd"
-Utils="*res://src/public/Utils.gd"
+Game="*res://src/public/game.gd"
+Utils="*res://src/public/utils.gd"
+LevelLoader="*res://src/public/level_loader.gd"
 
 [debug]
 
@@ -34,7 +35,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/interactive_scene_changer/plugin.cfg")
 
 [input]
 

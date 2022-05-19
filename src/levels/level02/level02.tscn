@@ -1,16 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://cqn312cnuup6d"]
+[gd_scene load_steps=11 format=3 uid="uid://cqn312cnuup6d"]
 
-[ext_resource type="PackedScene" uid="uid://x60fmft43isp" path="res://src/characters/player/Player.tscn" id="1"]
-[ext_resource type="PackedScene" uid="uid://dv7itpsiu72vg" path="res://src/props/sd_platform/SDPlatform.tscn" id="3"]
-[ext_resource type="PackedScene" uid="uid://k2yepueoprnw" path="res://src/props/moving_platform/PlatformMover.tscn" id="4"]
-[ext_resource type="PackedScene" uid="uid://dhh1kqclqlqxi" path="res://src/items/melon_seed/MelonSeed.tscn" id="5"]
-[ext_resource type="PackedScene" uid="uid://7reym7j4d8vh" path="res://src/props/spike/spike.tscn" id="5_mc1tl"]
-[ext_resource type="Texture2D" uid="uid://bwhiq2f4ga74d" path="res://src/tilesets/area01/GroundGrass.png" id="8_kcrji"]
+[ext_resource type="PackedScene" uid="uid://dv7itpsiu72vg" path="res://src/props/sd_platform/SDPlatform.tscn" id="1_ovhdu"]
+[ext_resource type="PackedScene" uid="uid://k2yepueoprnw" path="res://src/props/moving_platform/PlatformMover.tscn" id="2_dk1cg"]
+[ext_resource type="Texture2D" uid="uid://bwhiq2f4ga74d" path="res://src/tilesets/area01/GroundGrass.png" id="3_o51t5"]
+[ext_resource type="PackedScene" uid="uid://7reym7j4d8vh" path="res://src/props/spike/spike.tscn" id="4_f6qbk"]
+[ext_resource type="PackedScene" uid="uid://dhh1kqclqlqxi" path="res://src/items/melon_seed/MelonSeed.tscn" id="5_miao2"]
+[ext_resource type="PackedScene" uid="uid://x60fmft43isp" path="res://src/characters/player/Player.tscn" id="6_2nmsx"]
 
 [sub_resource type="GDScript" id="GDScript_lleje"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ycmyg"]
-texture = ExtResource( "8_kcrji" )
+texture = ExtResource( "3_o51t5" )
 texture_region_size = Vector2i(100, 100)
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -276,7 +276,7 @@ texture_region_size = Vector2i(100, 100)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_vcjwg"]
 resource_name = "obstacles"
-scenes/1/scene = ExtResource( "5_mc1tl" )
+scenes/1/scene = ExtResource( "4_f6qbk" )
 
 [sub_resource type="TileSet" id="TileSet_8f40p"]
 tile_size = Vector2i(100, 100)
@@ -285,37 +285,21 @@ sources/0 = SubResource( "TileSetAtlasSource_ycmyg" )
 sources/1 = SubResource( "TileSetScenesCollectionSource_vcjwg" )
 script = SubResource( "GDScript_lleje" )
 
-[sub_resource type="GDScript" id="GDScript_qb1cc"]
-script/source = "extends Area2D
-
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	LevelLoader.start_load(\"res://src/levels/level02/level02.tscn\")
-	await LevelLoader.load_done
-	print(\"loaded\")
-	await get_tree().create_timer(2).timeout
-	LevelLoader.change_scene()
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_viwps"]
-size = Vector2(169.5, 81.5)
-
 [node name="Main" type="Node2D"]
 
-[node name="SDPlatform2" parent="." instance=ExtResource( "3" )]
+[node name="SDPlatform2" parent="." instance=ExtResource( "1_ovhdu" )]
 position = Vector2(1248, 242)
 
-[node name="SDPlatform3" parent="." instance=ExtResource( "3" )]
+[node name="SDPlatform3" parent="." instance=ExtResource( "1_ovhdu" )]
 position = Vector2(1573, 138)
 
-[node name="SDPlatform4" parent="." instance=ExtResource( "3" )]
+[node name="SDPlatform4" parent="." instance=ExtResource( "1_ovhdu" )]
 position = Vector2(1898, 476)
 
-[node name="SDPlatform5" parent="." instance=ExtResource( "3" )]
+[node name="SDPlatform5" parent="." instance=ExtResource( "1_ovhdu" )]
 position = Vector2(2045, 322)
 
-[node name="PlatformMover" parent="." instance=ExtResource( "4" )]
+[node name="PlatformMover" parent="." instance=ExtResource( "2_dk1cg" )]
 position = Vector2(-154, 91)
 
 [node name="Position2D" type="Position2D" parent="PlatformMover"]
@@ -327,23 +311,14 @@ tile_set = SubResource( "TileSet_8f40p" )
 format = 2
 layer_0/tile_data = PackedInt32Array(131072, 0, 0, 196608, 0, 2, 131073, 131072, 0, 196609, 131072, 2, 524290, 0, 0, 589826, 0, 2, 458755, 1, 65536, 524291, 65536, 0, 589827, 65536, 2, 4, 0, 0, 65540, 0, 2, 458756, 1, 65536, 524292, 65536, 0, 589828, 65536, 2, 5, 65536, 0, 65541, 65536, 2, 458757, 1, 65536, 524293, 65536, 0, 589829, 65536, 2, 6, 131072, 0, 65542, 131072, 2, 524294, 131072, 0, 589830, 131072, 2, 458761, 0, 0, 524297, 0, 2, 458762, 65536, 0, 524298, 65536, 2, 11, 0, 0, 65547, 0, 2, 458763, 65536, 0, 524299, 65536, 2, 12, 65536, 0, 65548, 65536, 2, 458764, 131072, 0, 524300, 131072, 2, 13, 65536, 0, 65549, 65536, 2, 14, 131072, 0, 65550, 131072, 2, 262158, 0, 0, 327694, 0, 1, 393230, 0, 2, 262159, 65536, 0, 327695, 65536, 1, 393231, 65536, 2, 262160, 65536, 0, 327696, 65536, 1, 393232, 65536, 2, 262161, 65536, 0, 327697, 65536, 1, 393233, 65536, 2, 262162, 131072, 0, 327698, 131072, 1, 393234, 131072, 2)
 
-[node name="MelonSeed" parent="." instance=ExtResource( "5" )]
+[node name="MelonSeed" parent="." instance=ExtResource( "5_miao2" )]
 position = Vector2(761, 170)
 
-[node name="MelonSeed2" parent="." instance=ExtResource( "5" )]
+[node name="MelonSeed2" parent="." instance=ExtResource( "5_miao2" )]
 position = Vector2(825, 170)
 
-[node name="MelonSeed3" parent="." instance=ExtResource( "5" )]
+[node name="MelonSeed3" parent="." instance=ExtResource( "5_miao2" )]
 position = Vector2(888, 171)
 
-[node name="Player" parent="." instance=ExtResource( "1" )]
+[node name="Player" parent="." instance=ExtResource( "6_2nmsx" )]
 position = Vector2(542, 324)
-
-[node name="Area2D" type="Area2D" parent="."]
-script = SubResource( "GDScript_qb1cc" )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1240, 152)
-shape = SubResource( "RectangleShape2D_viwps" )
-
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_area_2d_body_entered"]
