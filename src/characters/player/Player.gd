@@ -17,7 +17,7 @@ extends CharacterBody2D
 @export var MAX_AIR_JUMPS := 2
 
 # Physics
-@onready var aimed_scale = self.scale 
+@onready var aimed_scale = self.scale
 
 # Input
 var x_input : float = 0.0

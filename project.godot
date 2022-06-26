@@ -8,6 +8,22 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node",
+"class": &"LevelLoader",
+"language": &"GDScript",
+"path": "res://src/public/classes/level_loading/level_loader.gd"
+}, {
+"base": "Node",
+"class": &"LevelSwitcher",
+"language": &"GDScript",
+"path": "res://src/public/classes/level_loading/level_switcher.gd"
+}]
+_global_script_class_icons={
+"LevelLoader": "",
+"LevelSwitcher": ""
+}
+
 [application]
 
 config/name="CAPY"
@@ -18,9 +34,8 @@ config/features=PackedStringArray("4.0")
 
 [autoload]
 
-Game="*res://src/public/game.gd"
-Utils="*res://src/public/utils.gd"
-LevelLoader="*res://src/public/level_loader.gd"
+Game="*res://src/public/autoload/game.gd"
+Utils="*res://src/public/autoload/utils.gd"
 
 [debug]
 
@@ -35,7 +50,7 @@ window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/interactive_scene_changer/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg")
 
 [input]
 
