@@ -12,6 +12,7 @@ var loaded = false
 
 # Starts loading of the given scene 
 func start_load(scene_path: String) -> void:
+	print(scene_path)
 	_scene_path = scene_path
 	var state = ResourceLoader.load_threaded_request(_scene_path, "", true)
 	if state == OK:

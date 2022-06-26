@@ -288,16 +288,16 @@ script = SubResource( "GDScript_lleje" )
 [node name="Main" type="Node2D"]
 
 [node name="SDPlatform2" parent="." instance=ExtResource( "1_ovhdu" )]
-position = Vector2(1248, 242)
+position = Vector2(1246, 128)
 
 [node name="SDPlatform3" parent="." instance=ExtResource( "1_ovhdu" )]
-position = Vector2(1573, 138)
+position = Vector2(1074, 299)
 
 [node name="SDPlatform4" parent="." instance=ExtResource( "1_ovhdu" )]
-position = Vector2(1898, 476)
+position = Vector2(1325, 343)
 
 [node name="SDPlatform5" parent="." instance=ExtResource( "1_ovhdu" )]
-position = Vector2(2045, 322)
+position = Vector2(1587, 305)
 
 [node name="PlatformMover" parent="." instance=ExtResource( "2_dk1cg" )]
 position = Vector2(-154, 91)
