@@ -96,9 +96,9 @@ func handleMovement(delta: float) -> void:
 		
 		# Air jumping
 		if !is_on_floor() and air_jumps > 0:
-				velocity.y = -JUMP_FORCE
-				can_jump = false
-				air_jumps -= 1
+			velocity.y = -JUMP_FORCE
+			can_jump = false
+			air_jumps -= 1
 	
 	# Make jump shorter when no longer pressed
 	if !should_jump && !is_on_floor():
