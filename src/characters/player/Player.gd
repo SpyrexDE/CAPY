@@ -9,19 +9,21 @@ extends CharacterBody2D
 @export var ACCELERATION := 50
 @export var MAX_SPEED := 400
 @export var FRICTION := 15
-@export var AIR_RESISTANCE := 1
+@export var AIR_RESISTANCE := 0.1
 @export var GRAVITY := 20
 @export var JUMP_FORCE := 500
 @export var PUSH := 100
 @export var FORGIVE_TIME := 0.2
 @export var MAX_AIR_JUMPS := 2
+@export var AIR_JUMP_X_SPEED := 20
+@export var AIR_FRICTION := 4
 
 # Physics
 @onready var aimed_scale = self.scale
 
 # Input
-var x_input : float = 0.0
-var y_input : float = 0.0
+var x_input := 0.0
+var y_input := 0.0
 
 # Logic
 @onready var air_jumps := MAX_AIR_JUMPS
@@ -29,6 +31,8 @@ var can_jump := true
 var jump_pressed := false
 var should_jump := false
 var jumptimer_active := false
+var air_jumping := false
+
 
 # Child node references
 @onready var cJumpTimer = $JumpTimer
@@ -74,13 +78,18 @@ func handleCollsision() -> void:
 func handleMovement(delta: float) -> void:
 	# X-Acceleration
 	velocity.x += x_input * ACCELERATION * delta * TARGET_FPS
-	velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
+	if air_jumping:
+		velocity.x = lerp(velocity.x, 0, AIR_FRICTION * delta)
+	else:
+		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
+	
 	# Gravity
 	velocity.y += GRAVITY * delta * TARGET_FPS
 	
 	# X-Friction
 	if is_on_floor():
 		# floor
+		air_jumping = false
 		if !is_moving() && is_on_floor():
 			velocity.x = lerp(velocity.x, 0, FRICTION * delta)
 	else:
@@ -99,6 +108,9 @@ func handleMovement(delta: float) -> void:
 			velocity.y = -JUMP_FORCE
 			can_jump = false
 			air_jumps -= 1
+			if x_input:
+				air_jumping = true
+				velocity.x += x_input * AIR_JUMP_X_SPEED
 	
 	# Make jump shorter when no longer pressed
 	if !should_jump && !is_on_floor():
