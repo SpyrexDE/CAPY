@@ -302,6 +302,9 @@ size = Vector2(169.5, 81.5)
 
 [node name="Main" type="Node2D"]
 
+[node name="Player" parent="." instance=ExtResource( "1" )]
+position = Vector2(542, 324)
+
 [node name="SDPlatform" parent="." instance=ExtResource( "3" )]
 position = Vector2(1239, 242.943)
 
@@ -325,9 +328,6 @@ position = Vector2(825, 170)
 
 [node name="MelonSeed3" parent="." instance=ExtResource( "5" )]
 position = Vector2(888, 171)
-
-[node name="Player" parent="." instance=ExtResource( "1" )]
-position = Vector2(542, 324)
 
 [node name="Area2D" type="Area2D" parent="."]
 script = SubResource( "GDScript_qb1cc" )

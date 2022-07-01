@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://6s68hpgxhnxt" path="res://src/characters/player/animations/run/run.png" id="5_n57sj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1lbb"]
-radius = 29.34
-height = 84.52
+radius = 29.73
+height = 66.84
 
 [sub_resource type="GDScript" id="6"]
 script/source = "extends Camera2D

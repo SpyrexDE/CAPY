@@ -15,7 +15,8 @@ extends CharacterBody2D
 @export var PUSH := 100
 @export var FORGIVE_TIME := 0.2
 @export var MAX_AIR_JUMPS := 2
-@export var AIR_JUMP_X_SPEED := 20
+@export var AIR_DASH_SPEED := 1000
+@export var AIR_DASH_OFFSET := 0.4
 @export var AIR_FRICTION := 4
 
 # Physics
@@ -31,7 +32,7 @@ var can_jump := true
 var jump_pressed := false
 var should_jump := false
 var jumptimer_active := false
-var air_jumping := false
+var air_dashing := false
 
 
 # Child node references
@@ -78,7 +79,7 @@ func handleCollsision() -> void:
 func handleMovement(delta: float) -> void:
 	# X-Acceleration
 	velocity.x += x_input * ACCELERATION * delta * TARGET_FPS
-	if air_jumping:
+	if air_dashing:
 		velocity.x = lerp(velocity.x, 0, AIR_FRICTION * delta)
 	else:
 		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
@@ -89,7 +90,7 @@ func handleMovement(delta: float) -> void:
 	# X-Friction
 	if is_on_floor():
 		# floor
-		air_jumping = false
+		air_dashing = false
 		if !is_moving() && is_on_floor():
 			velocity.x = lerp(velocity.x, 0, FRICTION * delta)
 	else:
@@ -108,14 +109,17 @@ func handleMovement(delta: float) -> void:
 			velocity.y = -JUMP_FORCE
 			can_jump = false
 			air_jumps -= 1
-			if x_input:
-				air_jumping = true
-				velocity.x += x_input * AIR_JUMP_X_SPEED
 	
 	# Make jump shorter when no longer pressed
 	if !should_jump && !is_on_floor():
 		velocity.y += GRAVITY * delta * TARGET_FPS
-
+	
+	# Air dash
+	if !is_on_floor() && Input.is_action_just_pressed("roll") && !air_dashing:
+		air_dashing = true
+		var y_strength = Input.get_action_strength("face_down") - Input.get_action_strength("face_up")
+		velocity = Vector2(x_input, y_strength - AIR_DASH_OFFSET * abs(x_input) + GRAVITY * 0.01) * AIR_DASH_SPEED
+		
 	# Apply velocity and rotation
 	move_and_slide()
 	
