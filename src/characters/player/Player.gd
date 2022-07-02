@@ -36,9 +36,12 @@ var air_dashing := false
 
 
 # Child node references
-@onready var cJumpTimer = $JumpTimer
-@onready var cAnimationTree = $AnimationTree
-@onready var cCamera2D = $Camera2D
+@export
+var cJumpTimer : Timer
+@export
+var cAnimationTree : AnimationTree
+@export
+var cCamera2D : Camera2D
 
 #############
 # Functions #
@@ -53,7 +56,6 @@ func _physics_process(delta) -> void:
 	handleInput()
 	handleMovement(delta)
 	handleAnimation()
-	
 
 func handleInput() -> void:
 	x_input = Input.get_vector("move_left", "move_right", "face_up", "face_down").x

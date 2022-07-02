@@ -1,0 +1,9 @@
+[gd_resource type="Font" load_steps=2 format=3 uid="uid://docpr0cxc6nh4"]
+
+[ext_resource type="FontData" uid="uid://clns6k5r25hc8" path="res://src/fonts/ttf/Signika.ttf" id="1_fnfdu"]
+
+[resource]
+variation_coordinates = {
+"weight": 300
+}
+data/0 = ExtResource( "1_fnfdu" )
