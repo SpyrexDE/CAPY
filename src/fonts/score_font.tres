@@ -6,4 +6,4 @@
 variation_coordinates = {
 "weight": 300
 }
-data/0 = ExtResource( "1_fnfdu" )
+data/0 = ExtResource("1_fnfdu")
