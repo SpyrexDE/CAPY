@@ -1,0 +1,66 @@
+[gd_scene load_steps=6 format=3 uid="uid://uqef35fllmhr"]
+
+[ext_resource type="Texture2D" uid="uid://cmy6hnlvjjqua" path="res://src/shaders/ChromaticAbberationOffset.png" id="1_vbihq"]
+
+[sub_resource type="Shader" id="Shader_tvs1s"]
+code = "shader_type canvas_item;
+
+uniform sampler2D offset_image;
+uniform float strength = 1.0;
+
+void fragment() {
+	vec4 output = texture(SCREEN_TEXTURE, SCREEN_UV);
+	
+	float shift = strength * texture(offset_image, SCREEN_UV).r / 100.0;
+	output.r = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x + shift, SCREEN_UV.y)).r;
+	output.g = texture(SCREEN_TEXTURE, SCREEN_UV).g;
+	output.b = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x - shift, SCREEN_UV.y)).b;
+	
+	COLOR = output;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1p8r6"]
+shader = SubResource("Shader_tvs1s")
+shader_param/offset_image = ExtResource("1_vbihq")
+shader_param/strength = 0.05
+
+[sub_resource type="Shader" id="Shader_gq6ep"]
+code = "shader_type canvas_item;
+
+uniform float vignette_intensity = 0.4;
+uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
+uniform vec4 vignette_rgb = vec4(0.0, 0.0, 0.0, 1.0);
+
+float vignette(vec2 uv){
+	uv *= 1.0 - uv.xy;
+	float vignette = uv.x * uv.y * 15.0;
+	return pow(vignette, vignette_intensity * vignette_opacity);
+}
+
+void fragment(){
+	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
+	vec4 text = texture(TEXTURE, UV);
+	
+	text.rgba *= (vignette_rgb.rgba);
+	text.rgba *= (1.0 - vignette(UV));
+	
+	COLOR = vec4((text.rgb)*color.rgb,text.a);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h4m4r"]
+shader = SubResource("Shader_gq6ep")
+shader_param/vignette_intensity = 0.4
+shader_param/vignette_opacity = 0.2
+shader_param/vignette_rgb = null
+
+[node name="PostProcessing" type="CanvasLayer"]
+
+[node name="ChromaticAberration" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_1p8r6")
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Vignette" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_h4m4r")
+anchor_right = 1.0
+anchor_bottom = 1.0

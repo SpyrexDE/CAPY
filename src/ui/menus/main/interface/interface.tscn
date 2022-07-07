@@ -1,0 +1,388 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2n8fcyxcqjj2"]
+
+[ext_resource type="Texture2D" uid="uid://l35aepe18wls" path="res://src/ui/menus/main/interface/TitleGraficafdesign.png" id="1_indfa"]
+[ext_resource type="Theme" uid="uid://bs85cwolbg10c" path="res://src/ui/theme.tres" id="2_do6ft"]
+[ext_resource type="Texture2D" uid="uid://cpc530rwfaj2k" path="res://src/ui/menus/main/icons/reddit-logo.svg" id="3_mipbg"]
+[ext_resource type="Texture2D" uid="uid://c8dgbgb8ru5ma" path="res://src/ui/menus/main/icons/discord-logo.svg" id="4_n45el"]
+[ext_resource type="PackedScene" uid="uid://chtpd163v6lii" path="res://src/ui/menus/save_select/save_select.tscn" id="5_awtbf"]
+
+[sub_resource type="GDScript" id="GDScript_83pib"]
+script/source = "extends Control
+
+func _ready() -> void:
+	var t = create_tween()
+	t.set_parallel(true)
+	$Button.grab_focus()
+	
+	var counter = 0
+	for child in get_children():
+		if not child is Control:
+			return
+		counter += 1
+		child.scale = Vector2.ZERO
+		t.tween_property(child, \"scale\", Vector2.ONE, 0.5).from(Vector2(0.5, 0.5)).set_trans(Tween.TRANS_EXPO).set_delay(0.05 * counter).set_ease(Tween.EASE_OUT)
+		t.tween_property(child, \"modulate\", Color.WHITE, 0.5).from(Color.TRANSPARENT).set_trans(Tween.TRANS_EXPO).set_delay(0.05 * counter).set_ease(Tween.EASE_OUT)
+
+
+func _on_button_pressed() -> void:
+	$AnimationPlayer.play(\"play_pressed\")
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed(\"ui_cancel\"):
+		$AnimationPlayer.play_backwards(\"play_pressed\")
+"
+
+[sub_resource type="Animation" id="Animation_gll0l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1709, 983)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(211, 687)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(211, 864)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Button4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1821, 982)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TextureRect:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(107, 33)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureRect:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("save_select:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(661, 239)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("save_select:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vqvfc"]
+resource_name = "play_pressed"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.61),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1709, 983), Vector2(1709, 1087)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Button2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.81),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(211, 687), Vector2(-442, 687)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Button3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.81),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(211, 864), Vector2(-446, 864)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Button:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.51),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Button:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.51),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Button4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.00545217, 0.61),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1821, 982), Vector2(1821, 1086)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TextureRect:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(107, 33), Vector2(550, -12)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("TextureRect:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 0.8)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("save_select:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(700, 1087), Vector2(700, 365)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("save_select:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_feeql"]
+_data = {
+"RESET": SubResource("Animation_gll0l"),
+"play_pressed": SubResource("Animation_vqvfc")
+}
+
+[node name="interface" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource("GDScript_83pib")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 107.0
+offset_top = 33.0
+offset_right = -1002.0
+offset_bottom = -539.999
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(420, 213)
+texture = ExtResource("1_indfa")
+ignore_texture_size = true
+metadata/_edit_layout_mode = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 211.0
+offset_top = 506.0
+offset_right = 605.0
+offset_bottom = 649.0
+pivot_offset = Vector2(201, 70)
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_do6ft")
+text = "PLAY"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 211.0
+offset_top = 687.0
+offset_right = 604.999
+offset_bottom = 830.0
+pivot_offset = Vector2(194, 69)
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_do6ft")
+text = "SETTINGS"
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 211.0
+offset_top = 864.0
+offset_right = 605.0
+offset_bottom = 1007.0
+pivot_offset = Vector2(194, 66)
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_do6ft")
+text = "EXIT"
+
+[node name="Button4" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -99.0
+offset_top = -98.0
+offset_right = -23.0
+offset_bottom = -22.0005
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(38, 39)
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_do6ft")
+icon = ExtResource("3_mipbg")
+icon_alignment = 1
+metadata/_edit_layout_mode = 1
+
+[node name="Button5" type="Button" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -211.0
+offset_top = -97.0
+offset_right = -135.0
+offset_bottom = -21.0007
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(37, 37)
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_do6ft")
+icon = ExtResource("4_n45el")
+icon_alignment = 1
+metadata/_edit_layout_mode = 1
+
+[node name="save_select" parent="." instance=ExtResource("5_awtbf")]
+visible = false
+offset_left = 661.0
+offset_top = 239.0
+offset_right = -707.0
+offset_bottom = -154.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_layout_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_feeql")
+}
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

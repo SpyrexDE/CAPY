@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://die5w0dltrb24"]
+
+[ext_resource type="PackedScene" uid="uid://dlp8t0pfxdpve" path="res://src/ui/menus/main/background/background.tscn" id="1_ha1ja"]
+[ext_resource type="PackedScene" uid="uid://c2n8fcyxcqjj2" path="res://src/ui/menus/main/interface/interface.tscn" id="2_2b1lw"]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" parent="." instance=ExtResource("1_ha1ja")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="interface" parent="CanvasLayer" instance=ExtResource("2_2b1lw")]
