@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2n8fcyxcqjj2"]
+[gd_scene load_steps=14 format=3 uid="uid://bqt0wlkbqlk8b"]
 
 [ext_resource type="Texture2D" uid="uid://l35aepe18wls" path="res://src/ui/menus/main/interface/TitleGraficafdesign.png" id="1_indfa"]
-[ext_resource type="Theme" uid="uid://bs85cwolbg10c" path="res://src/ui/theme.tres" id="2_do6ft"]
+[ext_resource type="Theme" uid="uid://cpyc8wefit0i6" path="res://src/ui/themes/theme.tres" id="2_do6ft"]
 [ext_resource type="Texture2D" uid="uid://cpc530rwfaj2k" path="res://src/ui/menus/main/icons/reddit-logo.svg" id="3_mipbg"]
 [ext_resource type="Texture2D" uid="uid://c8dgbgb8ru5ma" path="res://src/ui/menus/main/icons/discord-logo.svg" id="4_n45el"]
-[ext_resource type="PackedScene" uid="uid://chtpd163v6lii" path="res://src/ui/menus/save_select/save_select.tscn" id="5_awtbf"]
+[ext_resource type="PackedScene" uid="uid://btock2i8bih26" path="res://src/ui/menus/save_select/save_select.tscn" id="5_awtbf"]
+[ext_resource type="Texture2D" uid="uid://gwdsqqbkk82e" path="res://src/ui/menus/main/icons/arrow-back.svg" id="5_gjhy8"]
 
 [sub_resource type="GDScript" id="GDScript_83pib"]
 script/source = "extends Control
@@ -12,36 +13,63 @@ script/source = "extends Control
 func _ready() -> void:
 	var t = create_tween()
 	t.set_parallel(true)
-	$Button.grab_focus()
+	$bPlay.grab_focus()
 	
 	var counter = 0
 	for child in get_children():
 		if not child is Control:
-			return
+			continue
 		counter += 1
 		child.scale = Vector2.ZERO
 		t.tween_property(child, \"scale\", Vector2.ONE, 0.5).from(Vector2(0.5, 0.5)).set_trans(Tween.TRANS_EXPO).set_delay(0.05 * counter).set_ease(Tween.EASE_OUT)
 		t.tween_property(child, \"modulate\", Color.WHITE, 0.5).from(Color.TRANSPARENT).set_trans(Tween.TRANS_EXPO).set_delay(0.05 * counter).set_ease(Tween.EASE_OUT)
-
+	
+	# Add visibility notifiers to buttons
+	for child in get_children():
+		if child is Button:
+			var vn = VisibleOnScreenNotifier2D.new()
+			vn.name = \"VN\"
+			child.add_child(vn)
 
 func _on_button_pressed() -> void:
 	$AnimationPlayer.play(\"play_pressed\")
-
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed(\"ui_cancel\"):
-		$AnimationPlayer.play(\"play_pressed_back\")
+	$save_select/Panel/MarginContainer/VBoxContainer/Button.grab_focus()
 
 
 func _on_button_3_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_b_back_pressed() -> void:
+	$AnimationPlayer.play(\"play_pressed_back\")
+	$bPlay.focus_mode = FOCUS_ALL
+	$bPlay.grab_focus()
+
+func _process(delta: float) -> void:
+	for child in get_children():
+		if child is Button:
+			if !child.has_node(\"VN\"):
+				continue
+			var vn = child.get_node(\"VN\")
+			if !vn.is_on_screen():
+				child.focus_mode = FOCUS_NONE
+			else:
+				child.focus_mode = FOCUS_ALL
 "
+
+[sub_resource type="InputEventAction" id="InputEventAction_425kk"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_8n7pd"]
+events = [SubResource("InputEventAction_425kk")]
 
 [sub_resource type="Animation" id="Animation_gll0l"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button5:position")
+tracks/0/path = NodePath("bDiscord:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -53,7 +81,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Button2:position")
+tracks/1/path = NodePath("bSettings:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -65,7 +93,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Button3:position")
+tracks/2/path = NodePath("bExit:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -77,7 +105,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Button:scale")
+tracks/3/path = NodePath("bPlay:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -89,7 +117,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Button:modulate")
+tracks/4/path = NodePath("bPlay:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -101,7 +129,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Button4:position")
+tracks/5/path = NodePath("bReddit:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -161,7 +189,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Button:position")
+tracks/10/path = NodePath("bPlay:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -170,6 +198,18 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(211, 506)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("bBack:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-95, 23)]
+}
 
 [sub_resource type="Animation" id="Animation_vqvfc"]
 resource_name = "play_pressed"
@@ -177,19 +217,19 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button5:position")
+tracks/0/path = NodePath("bDiscord:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.61),
 "transitions": PackedFloat32Array(0.1, 0.1),
 "update": 0,
-"values": [Vector2(1709, 983), Vector2(1709, 1087)]
+"values": [Vector2(1709, 983), Vector2(1709, 1100)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Button2:position")
+tracks/1/path = NodePath("bSettings:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -201,7 +241,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Button3:position")
+tracks/2/path = NodePath("bExit:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -213,7 +253,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Button:scale")
+tracks/3/path = NodePath("bPlay:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -225,7 +265,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Button:modulate")
+tracks/4/path = NodePath("bPlay:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -237,14 +277,14 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Button4:position")
+tracks/5/path = NodePath("bReddit:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0.00545217, 0.61),
 "transitions": PackedFloat32Array(0.1, 0.1),
 "update": 0,
-"values": [Vector2(1821, 982), Vector2(1821, 1086)]
+"values": [Vector2(1821, 982), Vector2(1821, 1100)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -253,10 +293,10 @@ tracks/6/path = NodePath("TextureRect:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.99),
 "transitions": PackedFloat32Array(0.1, 0.1),
 "update": 0,
-"values": [Vector2(107, 33), Vector2(550, -12)]
+"values": [Vector2(107, 33), Vector2(610, -12)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -265,7 +305,7 @@ tracks/7/path = NodePath("TextureRect:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.99),
 "transitions": PackedFloat32Array(0.1, 0.1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.8, 0.8)]
@@ -297,7 +337,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Button:position")
+tracks/10/path = NodePath("bPlay:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -306,6 +346,18 @@ tracks/10/keys = {
 "update": 1,
 "values": [Vector2(211, 506), Vector2(-400, 506)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("bBack:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.71),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-100, 25), Vector2(20, 30)]
+}
 
 [sub_resource type="Animation" id="Animation_iyfjd"]
 resource_name = "play_pressed_back"
@@ -313,7 +365,7 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Button5:position")
+tracks/0/path = NodePath("bDiscord:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -325,7 +377,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Button2:position")
+tracks/1/path = NodePath("bSettings:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -337,7 +389,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Button3:position")
+tracks/2/path = NodePath("bExit:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -349,7 +401,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Button:scale")
+tracks/3/path = NodePath("bPlay:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -361,7 +413,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Button:modulate")
+tracks/4/path = NodePath("bPlay:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -373,7 +425,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Button4:position")
+tracks/5/path = NodePath("bReddit:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -433,7 +485,7 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("Button:position")
+tracks/10/path = NodePath("bPlay:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
@@ -441,6 +493,18 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(211, 506)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("bBack:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.84),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(20, 23), Vector2(-110, 23)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_feeql"]
@@ -456,50 +520,62 @@ anchor_bottom = 1.0
 script = SubResource("GDScript_83pib")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
 offset_left = 107.0
 offset_top = 33.0
-offset_right = -1002.0
-offset_bottom = -539.999
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(420, 213)
+offset_right = 839.0
+offset_bottom = 464.0
+grow_horizontal = 0
+grow_vertical = 0
+pivot_offset = Vector2(370, 210)
+mouse_filter = 0
 texture = ExtResource("1_indfa")
 ignore_texture_size = true
 metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
 
-[node name="Button" type="Button" parent="."]
+[node name="bPlay" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 211.0
-offset_top = 506.0
+offset_top = -574.0
 offset_right = 605.0
-offset_bottom = 649.0
+offset_bottom = -431.0
+grow_vertical = 0
 pivot_offset = Vector2(201, 70)
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_do6ft")
 text = "PLAY"
+metadata/_edit_layout_mode = 1
 
-[node name="Button2" type="Button" parent="."]
+[node name="bSettings" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 211.0
-offset_top = 687.0
+offset_top = -393.0
 offset_right = 604.999
-offset_bottom = 830.0
+offset_bottom = -250.0
+grow_vertical = 0
 pivot_offset = Vector2(194, 69)
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_do6ft")
 text = "SETTINGS"
+metadata/_edit_layout_mode = 1
 
-[node name="Button3" type="Button" parent="."]
+[node name="bExit" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
 offset_left = 211.0
-offset_top = 864.0
+offset_top = -216.0
 offset_right = 605.0
-offset_bottom = 1007.0
+offset_bottom = -73.0
+grow_vertical = 0
 pivot_offset = Vector2(194, 66)
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_do6ft")
 text = "EXIT"
+metadata/_edit_layout_mode = 1
 
-[node name="Button4" type="Button" parent="."]
+[node name="bReddit" type="Button" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -507,7 +583,7 @@ anchor_bottom = 1.0
 offset_left = -99.0
 offset_top = -98.0
 offset_right = -23.0
-offset_bottom = -22.001
+offset_bottom = -22.0001
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(38, 39)
@@ -517,7 +593,7 @@ icon = ExtResource("3_mipbg")
 icon_alignment = 1
 metadata/_edit_layout_mode = 1
 
-[node name="Button5" type="Button" parent="."]
+[node name="bDiscord" type="Button" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -525,7 +601,7 @@ anchor_bottom = 1.0
 offset_left = -211.0
 offset_top = -97.0
 offset_right = -135.0
-offset_bottom = -21.0009
+offset_bottom = -20.9999
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(37, 37)
@@ -535,20 +611,44 @@ icon = ExtResource("4_n45el")
 icon_alignment = 1
 metadata/_edit_layout_mode = 1
 
+[node name="bBack" type="Button" parent="."]
+offset_left = -95.0
+offset_top = 23.0
+offset_right = -11.0
+offset_bottom = 107.0
+pivot_offset = Vector2(36, 38)
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_do6ft")
+shortcut_in_tooltip = false
+shortcut = SubResource("Shortcut_8n7pd")
+icon = ExtResource("5_gjhy8")
+icon_alignment = 1
+metadata/_edit_layout_mode = 1
+
 [node name="save_select" parent="." instance=ExtResource("5_awtbf")]
 visible = false
 offset_left = 661.0
 offset_top = 239.0
-offset_right = -707.0
-offset_bottom = -154.001
+offset_right = -710.0
+offset_bottom = -187.001
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_layout_mode = 1
+
+[node name="VBoxContainer" parent="save_select/Panel/MarginContainer" index="0"]
+offset_right = 509.0
+offset_bottom = 613.0
+
+[node name="Button" parent="save_select/Panel/MarginContainer/VBoxContainer" index="0"]
+offset_right = 469.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_feeql")
 }
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="bPlay" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="bExit" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="bBack" to="." method="_on_b_back_pressed"]
+
+[editable path="save_select"]

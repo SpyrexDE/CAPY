@@ -42,6 +42,7 @@ config/icon="res://icon.png"
 
 Game="*res://src/public/autoload/game.gd"
 Utils="*res://src/public/autoload/utils.gd"
+InputHandler="*res://src/public/autoload/inputhandler.gd"
 
 [debug]
 
@@ -52,7 +53,7 @@ settings/stdout/print_fps=true
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/stretch/aspect="keep_height"
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

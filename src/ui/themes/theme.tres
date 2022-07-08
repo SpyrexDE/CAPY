@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bs85cwolbg10c"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cpyc8wefit0i6"]
 
 [ext_resource type="FontData" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="1_rhxsm"]
 
@@ -70,4 +70,9 @@ Button/styles/focus = SubResource("StyleBoxFlat_uyda8")
 Button/styles/hover = SubResource("StyleBoxFlat_04f2k")
 Button/styles/normal = SubResource("StyleBoxFlat_gqbra")
 Button/styles/pressed = SubResource("StyleBoxFlat_c3d7r")
+MarginContainer/constants/margin_bottom = 40
+MarginContainer/constants/margin_left = 40
+MarginContainer/constants/margin_right = 40
+MarginContainer/constants/margin_top = 40
 Panel/styles/panel = SubResource("StyleBoxFlat_u1if0")
+VBoxContainer/constants/separation = 22

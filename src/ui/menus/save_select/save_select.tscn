@@ -1,6 +1,86 @@
-[gd_scene load_steps=2 format=3 uid="uid://chtpd163v6lii"]
+[gd_scene load_steps=11 format=3 uid="uid://btock2i8bih26"]
 
-[ext_resource type="Theme" uid="uid://bs85cwolbg10c" path="res://src/ui/theme.tres" id="1_keook"]
+[ext_resource type="FontData" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="1_bvirm"]
+[ext_resource type="Theme" uid="uid://y5ev1fhfqnbu" path="res://src/ui/themes/gamesave_button.tres" id="2_prm7t"]
+[ext_resource type="Theme" uid="uid://cpyc8wefit0i6" path="res://src/ui/themes/theme.tres" id="3_2irrg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyda8"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.482353, 0.345098, 0.196078, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04f2k"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.482353, 0.345098, 0.196078, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqbra"]
+bg_color = Color(0.980392, 0.980392, 0.980392, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3d7r"]
+bg_color = Color(0.282353, 0.282353, 0.282353, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.482353, 0.345098, 0.196078, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1if0"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="Font" id="Font_82kjr"]
+data/0 = ExtResource("1_bvirm")
+
+[sub_resource type="Theme" id="Theme_4ecqr"]
+default_font = SubResource("Font_82kjr")
+default_font_size = 64
+Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
+Button/colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/font_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_uyda8")
+Button/styles/hover = SubResource("StyleBoxFlat_04f2k")
+Button/styles/normal = SubResource("StyleBoxFlat_gqbra")
+Button/styles/pressed = SubResource("StyleBoxFlat_c3d7r")
+MarginContainer/constants/margin_bottom = 40
+MarginContainer/constants/margin_left = 40
+MarginContainer/constants/margin_right = 40
+MarginContainer/constants/margin_top = 40
+Panel/styles/panel = SubResource("StyleBoxFlat_u1if0")
 
 [node name="save_select" type="Control"]
 anchor_right = 1.0
@@ -9,4 +89,29 @@ anchor_bottom = 1.0
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource("1_keook")
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(968, 522)
+theme = SubResource("Theme_4ecqr")
+metadata/_edit_layout_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource("Theme_4ecqr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 1880.0
+offset_bottom = 1040.0
+theme = ExtResource("3_2irrg")
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+offset_right = 1840.0
+offset_bottom = 150.0
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 2
+theme = ExtResource("2_prm7t")
+text = "+ New Game"
