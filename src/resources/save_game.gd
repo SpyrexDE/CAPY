@@ -9,3 +9,5 @@ signal player_score_changed
 	set(value):
 		player_score = value
 		emit_signal("player_score_changed")
+
+@export var current_level : String

@@ -12,7 +12,6 @@ var loaded = false
 
 # Starts loading of the given scene 
 func start_load(scene_path: String) -> void:
-	print(scene_path)
 	_scene_path = scene_path
 	var state = ResourceLoader.load_threaded_request(_scene_path, "", true)
 	if state == OK:
@@ -39,6 +38,7 @@ func change_scene() -> void:
 	if !loaded:
 		printerr("Level not loaded yet: " + str(_progress[0]))
 	assert(get_tree().change_scene_to(_load_scene_resource) == OK)
+	get_tree().change_scene(get_resource().new())
 
 # @return Last loaded resource
 func get_resource() -> Resource:

@@ -22,4 +22,5 @@ func write_savegame():
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("save_game"):
+		save_game.current_level = "res://src/levels/level01/level01.tscn"
 		write_savegame()

@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://btock2i8bih26"]
+[gd_scene load_steps=12 format=3 uid="uid://btock2i8bih26"]
 
+[ext_resource type="Script" path="res://src/ui/menus/save_select/save_select.gd" id="1_4s36d"]
 [ext_resource type="FontData" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="1_bvirm"]
 [ext_resource type="Theme" uid="uid://y5ev1fhfqnbu" path="res://src/ui/themes/gamesave_button.tres" id="2_prm7t"]
 [ext_resource type="Theme" uid="uid://cpyc8wefit0i6" path="res://src/ui/themes/theme.tres" id="3_2irrg"]
@@ -85,6 +86,8 @@ Panel/styles/panel = SubResource("StyleBoxFlat_u1if0")
 [node name="save_select" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+pivot_offset = Vector2(963, 529)
+script = ExtResource("1_4s36d")
 
 [node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
@@ -115,3 +118,5 @@ size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("2_prm7t")
 text = "+ New Game"
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

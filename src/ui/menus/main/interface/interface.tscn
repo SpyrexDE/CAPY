@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqt0wlkbqlk8b"]
+[gd_scene load_steps=15 format=3 uid="uid://bqt0wlkbqlk8b"]
 
 [ext_resource type="Texture2D" uid="uid://l35aepe18wls" path="res://src/ui/menus/main/interface/TitleGraficafdesign.png" id="1_indfa"]
 [ext_resource type="Theme" uid="uid://cpyc8wefit0i6" path="res://src/ui/themes/theme.tres" id="2_do6ft"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c8dgbgb8ru5ma" path="res://src/ui/menus/main/icons/discord-logo.svg" id="4_n45el"]
 [ext_resource type="PackedScene" uid="uid://btock2i8bih26" path="res://src/ui/menus/save_select/save_select.tscn" id="5_awtbf"]
 [ext_resource type="Texture2D" uid="uid://gwdsqqbkk82e" path="res://src/ui/menus/main/icons/arrow-back.svg" id="5_gjhy8"]
+[ext_resource type="PackedScene" uid="uid://bj8q8cubxs5yf" path="res://src/ui/menus/loading_screen/loading_screen.tscn" id="7_j4pde"]
 
 [sub_resource type="GDScript" id="GDScript_83pib"]
 script/source = "extends Control
@@ -44,6 +45,19 @@ func _on_b_back_pressed() -> void:
 	$AnimationPlayer.play(\"play_pressed_back\")
 	$bPlay.focus_mode = FOCUS_ALL
 	$bPlay.grab_focus()
+
+func fade_out():
+	var t = create_tween()
+	t.set_parallel(true)
+	
+	for child in get_children():
+		if not child is Control or child.name == \"loading_screen\":
+			continue
+		t.tween_property(child, \"scale\", Vector2(0.8, 0.8), 0.4).from(child.scale).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+		t.tween_property(child, \"modulate\", Color.TRANSPARENT, 0.8).from(child.modulate).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
+	
+	$loading_screen.visible = true
+	t.tween_property($loading_screen, \"modulate\", Color.WHITE, 0.5).from(Color.TRANSPARENT).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 
 func _process(delta: float) -> void:
 	for child in get_children():
@@ -517,6 +531,7 @@ _data = {
 [node name="interface" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+pivot_offset = Vector2(943, 572)
 script = SubResource("GDScript_83pib")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -583,7 +598,7 @@ anchor_bottom = 1.0
 offset_left = -99.0
 offset_top = -98.0
 offset_right = -23.0
-offset_bottom = -22.0001
+offset_bottom = -22.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(38, 39)
@@ -601,7 +616,7 @@ anchor_bottom = 1.0
 offset_left = -211.0
 offset_top = -97.0
 offset_right = -135.0
-offset_bottom = -20.9999
+offset_bottom = -21.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(37, 37)
@@ -629,26 +644,21 @@ metadata/_edit_layout_mode = 1
 visible = false
 offset_left = 661.0
 offset_top = 239.0
-offset_right = -710.0
-offset_bottom = -187.001
+offset_right = -691.0
+offset_bottom = -169.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(286, 355)
 metadata/_edit_layout_mode = 1
-
-[node name="VBoxContainer" parent="save_select/Panel/MarginContainer" index="0"]
-offset_right = 509.0
-offset_bottom = 613.0
-
-[node name="Button" parent="save_select/Panel/MarginContainer/VBoxContainer" index="0"]
-offset_right = 469.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_feeql")
 }
 
+[node name="loading_screen" parent="." instance=ExtResource("7_j4pde")]
+visible = false
+
 [connection signal="pressed" from="bPlay" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="bExit" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="bBack" to="." method="_on_b_back_pressed"]
-
-[editable path="save_select"]
