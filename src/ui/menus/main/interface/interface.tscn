@@ -14,7 +14,8 @@ script/source = "extends Control
 func _ready() -> void:
 	var t = create_tween()
 	t.set_parallel(true)
-	$bPlay.grab_focus()
+	
+	InputHandler.last_focused_element = $bPlay
 	
 	var counter = 0
 	for child in get_children():
@@ -34,7 +35,7 @@ func _ready() -> void:
 
 func _on_button_pressed() -> void:
 	$AnimationPlayer.play(\"play_pressed\")
-	$save_select/Panel/MarginContainer/VBoxContainer/Button.grab_focus()
+	$save_select.get_focus()
 
 
 func _on_button_3_pressed() -> void:
@@ -534,6 +535,9 @@ anchor_bottom = 1.0
 pivot_offset = Vector2(943, 572)
 script = SubResource("GDScript_83pib")
 
+[node name="loading_screen" parent="." instance=ExtResource("7_j4pde")]
+visible = false
+
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_left = 107.0
 offset_top = 33.0
@@ -644,8 +648,8 @@ metadata/_edit_layout_mode = 1
 visible = false
 offset_left = 661.0
 offset_top = 239.0
-offset_right = -691.0
-offset_bottom = -169.0
+offset_right = -702.0
+offset_bottom = -174.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(286, 355)
@@ -655,9 +659,6 @@ metadata/_edit_layout_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_feeql")
 }
-
-[node name="loading_screen" parent="." instance=ExtResource("7_j4pde")]
-visible = false
 
 [connection signal="pressed" from="bPlay" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="bExit" to="." method="_on_button_3_pressed"]

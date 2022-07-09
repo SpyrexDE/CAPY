@@ -317,12 +317,12 @@ script = SubResource("GDScript_lleje")
 [sub_resource type="GDScript" id="GDScript_qb1cc"]
 script/source = "extends Area2D
 
-@export_node_path(Resource)
-var level_switcher: NodePath
+@export
+var level_switcher : Node
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	get_node(level_switcher).change_scene()
+	level_switcher.call_deferred(\"change_scene\")
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_viwps"]
@@ -357,7 +357,7 @@ position = Vector2(825, 170)
 [node name="MelonSeed3" parent="." instance=ExtResource("5")]
 position = Vector2(888, 171)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("level_switcher")]
 script = SubResource("GDScript_qb1cc")
 level_switcher = NodePath("LevelSwitcher")
 
