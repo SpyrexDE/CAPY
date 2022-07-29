@@ -108,12 +108,24 @@ func handleMovement(delta: float) -> void:
 		if can_jump:
 			velocity.y = -JUMP_FORCE
 			can_jump = false
+			# Animate squash
+			var t = create_tween()
+			t.set_parallel(false)
+			t.tween_property($Sprite, "scale:y", 0.25, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+			t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+			
 		
 		# Air jumping
 		if !is_on_floor() and air_jumps > 0 and not early_jumptimer_active:
 			velocity.y = -JUMP_FORCE
 			can_jump = false
 			air_jumps -= 1
+			# Animate squash
+			var t = create_tween()
+			t.set_parallel(false)
+			t.tween_property($Sprite, "scale:y", 0.25, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+			t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+			
 		elif jump_pressed:
 			early_jumptimer_active = true
 			cEarlyJumpTimer.start(FORGIVE_TIME)
