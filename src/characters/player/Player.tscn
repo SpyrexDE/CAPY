@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://biawh4lhkh4bs"]
+[gd_scene load_steps=39 format=3 uid="uid://biawh4lhkh4bs"]
 
 [ext_resource type="Script" path="res://src/characters/player/Player.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bt1rjr1xcnwi6" path="res://src/hud/HUD.tscn" id="2_wo5ic"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://uqef35fllmhr" path="res://src/postprocessing/PostProcessing.tscn" id="3_2v01d"]
 [ext_resource type="Texture2D" uid="uid://o05eaongwf6q" path="res://src/characters/player/animations/jump/jump.png" id="3_tvo4g"]
 [ext_resource type="Texture2D" uid="uid://6s68hpgxhnxt" path="res://src/characters/player/animations/run/run.png" id="5_n57sj"]
+[ext_resource type="Script" path="res://src/public/classes/state_machine/StateMachine.gd" id="8_rpgas"]
+[ext_resource type="Script" path="res://src/characters/player/states/idle.gd" id="9_67db5"]
+[ext_resource type="Script" path="res://src/characters/player/states/move.gd" id="9_ij5jq"]
+[ext_resource type="Script" path="res://src/characters/player/states/run.gd" id="11_onmvt"]
+[ext_resource type="Script" path="res://src/characters/player/states/air.gd" id="12_q4fuo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1lbb"]
 radius = 29.73
@@ -243,7 +248,7 @@ animation = &"jump"
 animation = &"run"
 
 [sub_resource type="AnimationNodeBlendTree" id="10"]
-graph_offset = Vector2(-998.915, 249.504)
+graph_offset = Vector2(-832.9, 71.5501)
 nodes/OneShot/node = SubResource("12")
 nodes/OneShot/position = Vector2(288, 144)
 nodes/State/node = SubResource("17")
@@ -254,10 +259,10 @@ nodes/idle/node = SubResource("9")
 nodes/idle/position = Vector2(-528, 128)
 nodes/jump/node = SubResource("16")
 nodes/jump/position = Vector2(-528, 240)
-nodes/null/node = SubResource("AnimationNodeAnimation_lcy3m")
-nodes/null/position = Vector2(-528, 368)
 nodes/output/position = Vector2(512, 144)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"State", &"OneShot", 1, &"hit", &"State", 0, &"idle", &"State", 1, &"jump", &"State", 2, &"null"]
+nodes/run/node = SubResource("AnimationNodeAnimation_lcy3m")
+nodes/run/position = Vector2(-528, 368)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"State", &"OneShot", 1, &"hit", &"State", 0, &"idle", &"State", 1, &"jump", &"State", 2, &"run"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5lfs"]
 atlas = ExtResource("2_yhrxj")
@@ -317,10 +322,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cJumpTimer", "cAnimationTree", "cCamera2D")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cJumpTimer", "cAnimationTree", "cStateMachine", "cCamera2D")]
 script = ExtResource("2")
 cJumpTimer = NodePath("JumpTimer")
 cAnimationTree = NodePath("AnimationTree")
+cStateMachine = NodePath("StateMachine")
 cCamera2D = NodePath("Camera2D")
 
 [node name="JumpTimer" type="Timer" parent="."]
@@ -366,5 +372,21 @@ parameters/State/current = 0
 scale = Vector2(0.2, 0.2)
 frames = SubResource("SpriteFrames_82q65")
 animation = &"run"
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("8_rpgas")
+initial_state = NodePath("Move/Idle")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("9_ij5jq")
+
+[node name="Idle" type="Node" parent="StateMachine/Move"]
+script = ExtResource("9_67db5")
+
+[node name="Run" type="Node" parent="StateMachine/Move"]
+script = ExtResource("11_onmvt")
+
+[node name="Air" type="Node" parent="StateMachine/Move"]
+script = ExtResource("12_q4fuo")
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]

@@ -23,11 +23,23 @@ _global_script_classes=[{
 "class": &"SaveGame",
 "language": &"GDScript",
 "path": "res://src/resources/save_game.gd"
+}, {
+"base": "Node",
+"class": &"State",
+"language": &"GDScript",
+"path": "res://src/public/classes/state_machine/State.gd"
+}, {
+"base": "Node",
+"class": &"StateMachine",
+"language": &"GDScript",
+"path": "res://src/public/classes/state_machine/StateMachine.gd"
 }]
 _global_script_class_icons={
 "LevelLoader": "",
 "LevelSwitcher": "",
-"SaveGame": ""
+"SaveGame": "",
+"State": "res://src/public/classes/state_machine/icons/state.svg",
+"StateMachine": "res://src/public/classes/state_machine/icons/state_machine.svg"
 }
 
 [application]
@@ -43,6 +55,7 @@ config/icon="res://icon.png"
 Game="*res://src/public/autoload/game.gd"
 Utils="*res://src/public/autoload/utils.gd"
 InputHandler="*res://src/public/autoload/inputhandler.gd"
+Events="*res://src/public/autoload/events.gd"
 
 [debug]
 
