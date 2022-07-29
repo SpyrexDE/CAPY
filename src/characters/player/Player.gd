@@ -32,12 +32,15 @@ var can_jump := true
 var jump_pressed := false
 var should_jump := false
 var jumptimer_active := false
+var early_jumptimer_active := false
 var air_dashing := false
 
 
 # Child node references
 @export
 var cJumpTimer : Timer
+@export
+var cEarlyJumpTimer : Timer
 @export
 var cAnimationTree : AnimationTree
 @export
@@ -97,20 +100,23 @@ func handleMovement(delta: float) -> void:
 			velocity.x = lerp(velocity.x, 0, FRICTION * delta)
 	else:
 		# air
-		if !is_moving() && !is_on_floor():
+		if !is_moving():
 			velocity.x = lerp(velocity.x, 0, AIR_RESISTANCE * delta)
 	
 	# Jumping
-	if jump_pressed:
+	if jump_pressed or early_jumptimer_active:
 		if can_jump:
 			velocity.y = -JUMP_FORCE
 			can_jump = false
 		
 		# Air jumping
-		if !is_on_floor() and air_jumps > 0:
+		if !is_on_floor() and air_jumps > 0 and not early_jumptimer_active:
 			velocity.y = -JUMP_FORCE
 			can_jump = false
 			air_jumps -= 1
+		elif jump_pressed:
+			early_jumptimer_active = true
+			cEarlyJumpTimer.start(FORGIVE_TIME)
 	
 	# Make jump shorter when no longer pressed
 	if !should_jump && !is_on_floor():
@@ -178,3 +184,7 @@ func is_jumping() -> bool:
 func _on_JumpTimer_timeout() -> void:
 	jumptimer_active = false
 	can_jump = false
+
+
+func _on_early_jump_timer_timeout() -> void:
+	early_jumptimer_active = false

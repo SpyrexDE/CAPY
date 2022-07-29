@@ -317,13 +317,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cJumpTimer", "cAnimationTree", "cCamera2D")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cJumpTimer", "cEarlyJumpTimer", "cAnimationTree", "cCamera2D")]
 script = ExtResource("2")
 cJumpTimer = NodePath("JumpTimer")
+cEarlyJumpTimer = NodePath("EarlyJumpTimer")
 cAnimationTree = NodePath("AnimationTree")
 cCamera2D = NodePath("Camera2D")
 
 [node name="JumpTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="EarlyJumpTimer" type="Timer" parent="."]
 one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -368,3 +372,4 @@ frames = SubResource("SpriteFrames_82q65")
 animation = &"run"
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
+[connection signal="timeout" from="EarlyJumpTimer" to="." method="_on_early_jump_timer_timeout"]
