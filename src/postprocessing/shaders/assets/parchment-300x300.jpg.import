@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct4ni2r4xican"
-path.s3tc="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.ctex"
-path.etc2="res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.etc2.ctex"
+uid="uid://cum7lnskkfgmw"
+path.s3tc="res://.godot/imported/parchment-300x300.jpg-1fdc479527725b2772928e3001101ff9.s3tc.ctex"
+path.etc2="res://.godot/imported/parchment-300x300.jpg-1fdc479527725b2772928e3001101ff9.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=["res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.s3tc.ctex", "res://.godot/imported/icon.png-487276ed1e3a0c39cad0279d744ee560.etc2.ctex"]
+source_file="res://src/postprocessing/shaders/assets/parchment-300x300.jpg"
+dest_files=["res://.godot/imported/parchment-300x300.jpg-1fdc479527725b2772928e3001101ff9.s3tc.ctex", "res://.godot/imported/parchment-300x300.jpg-1fdc479527725b2772928e3001101ff9.etc2.ctex"]
 
 [params]
 

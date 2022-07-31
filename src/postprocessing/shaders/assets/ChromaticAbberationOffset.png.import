@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmy6hnlvjjqua"
-path.s3tc="res://.godot/imported/ChromaticAbberationOffset.png-7bb72f7a2d446722f52bb11ce5d9bb15.s3tc.ctex"
-path.etc2="res://.godot/imported/ChromaticAbberationOffset.png-7bb72f7a2d446722f52bb11ce5d9bb15.etc2.ctex"
+path.s3tc="res://.godot/imported/ChromaticAbberationOffset.png-347b3c1c17ed94241ccf27d88e586813.s3tc.ctex"
+path.etc2="res://.godot/imported/ChromaticAbberationOffset.png-347b3c1c17ed94241ccf27d88e586813.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc", "etc2"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://src/postprocessing/shaders/ChromaticAbberationOffset.png"
-dest_files=["res://.godot/imported/ChromaticAbberationOffset.png-7bb72f7a2d446722f52bb11ce5d9bb15.s3tc.ctex", "res://.godot/imported/ChromaticAbberationOffset.png-7bb72f7a2d446722f52bb11ce5d9bb15.etc2.ctex"]
+source_file="res://src/postprocessing/shaders/assets/ChromaticAbberationOffset.png"
+dest_files=["res://.godot/imported/ChromaticAbberationOffset.png-347b3c1c17ed94241ccf27d88e586813.s3tc.ctex", "res://.godot/imported/ChromaticAbberationOffset.png-347b3c1c17ed94241ccf27d88e586813.etc2.ctex"]
 
 [params]
 

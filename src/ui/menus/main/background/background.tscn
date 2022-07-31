@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dlp8t0pfxdpve"]
 
 [ext_resource type="PackedScene" uid="uid://dyj8e0epnhe8h" path="res://src/levels/level01/background/ParallaxBackground.tscn" id="1_2ebcd"]
-[ext_resource type="PackedScene" uid="uid://cl2uuvwh4awgd" path="res://src/postprocessing/PostProcessing.tscn" id="2_4r0xu"]
+[ext_resource type="PackedScene" uid="uid://caqqv8bshnn6k" path="res://src/postprocessing/PostProcessing.tscn" id="2_4r0xu"]
 
 [sub_resource type="GDScript" id="GDScript_j22wn"]
 script/source = "extends Camera2D
