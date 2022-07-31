@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bqt0wlkbqlk8b"]
+[gd_scene load_steps=16 format=3 uid="uid://bqt0wlkbqlk8b"]
 
 [ext_resource type="Texture2D" uid="uid://l35aepe18wls" path="res://src/ui/menus/main/interface/TitleGraficafdesign.png" id="1_indfa"]
 [ext_resource type="Theme" uid="uid://cpyc8wefit0i6" path="res://src/ui/themes/theme.tres" id="2_do6ft"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://btock2i8bih26" path="res://src/ui/menus/save_select/save_select.tscn" id="5_awtbf"]
 [ext_resource type="Texture2D" uid="uid://gwdsqqbkk82e" path="res://src/ui/menus/main/icons/arrow-back.svg" id="5_gjhy8"]
 [ext_resource type="PackedScene" uid="uid://bj8q8cubxs5yf" path="res://src/ui/menus/loading_screen/loading_screen.tscn" id="7_j4pde"]
+[ext_resource type="PackedScene" uid="uid://ckehtsn10s7h4" path="res://src/ui/components/button/button.tscn" id="8_da0ks"]
 
 [sub_resource type="GDScript" id="GDScript_83pib"]
 script/source = "extends Control
@@ -552,6 +553,14 @@ ignore_texture_size = true
 metadata/_edit_layout_mode = 1
 metadata/_edit_use_custom_anchors = true
 
+[node name="Button" parent="." instance=ExtResource("8_da0ks")]
+offset_left = 1035.0
+offset_top = 461.0
+offset_right = 1780.0
+offset_bottom = 582.0
+pivot_offset = Vector2(118, 204)
+theme_override_constants/outline_size = 0
+
 [node name="bPlay" type="Button" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -648,8 +657,8 @@ metadata/_edit_layout_mode = 1
 visible = false
 offset_left = 661.0
 offset_top = 239.0
-offset_right = -702.0
-offset_bottom = -174.0
+offset_right = -683.0
+offset_bottom = -199.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(286, 355)

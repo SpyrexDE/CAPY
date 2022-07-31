@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://uqef35fllmhr"]
+[gd_scene load_steps=8 format=3 uid="uid://cl2uuvwh4awgd"]
 
-[ext_resource type="Texture2D" uid="uid://cmy6hnlvjjqua" path="res://src/shaders/ChromaticAbberationOffset.png" id="1_vbihq"]
+[ext_resource type="Shader" path="res://src/postprocessing/shaders/VibrantGradients.gdshader" id="1_2w72p"]
+[ext_resource type="Texture2D" uid="uid://cmy6hnlvjjqua" path="res://src/postprocessing/shaders/ChromaticAbberationOffset.png" id="2_ux4tv"]
 
-[sub_resource type="Shader" id="Shader_tvs1s"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kaxe8"]
+shader = ExtResource("1_2w72p")
+shader_param/color = Quaternion(145.584, 190.413, 147, 1)
+shader_param/hide = true
+shader_param/strength = 8.82
+
+[sub_resource type="Shader" id="Shader_h8jon"]
 code = "shader_type canvas_item;
 
 uniform sampler2D offset_image;
@@ -20,8 +27,8 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p8r6"]
-shader = SubResource("Shader_tvs1s")
-shader_param/offset_image = ExtResource("1_vbihq")
+shader = SubResource("Shader_h8jon")
+shader_param/offset_image = ExtResource("2_ux4tv")
 shader_param/strength = 0.05
 
 [sub_resource type="Shader" id="Shader_gq6ep"]
@@ -54,6 +61,11 @@ shader_param/vignette_opacity = 0.2
 shader_param/vignette_rgb = null
 
 [node name="PostProcessing" type="CanvasLayer"]
+
+[node name="VibrantGradients" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_kaxe8")
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="ChromaticAberration" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_1p8r6")
