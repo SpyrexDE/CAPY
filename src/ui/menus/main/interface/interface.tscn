@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://btock2i8bih26" path="res://src/ui/menus/save_select/save_select.tscn" id="5_awtbf"]
 [ext_resource type="Texture2D" uid="uid://gwdsqqbkk82e" path="res://src/ui/menus/main/icons/arrow-back.svg" id="5_gjhy8"]
 [ext_resource type="PackedScene" uid="uid://bj8q8cubxs5yf" path="res://src/ui/menus/loading_screen/loading_screen.tscn" id="7_j4pde"]
-[ext_resource type="PackedScene" uid="uid://ckehtsn10s7h4" path="res://src/ui/components/button/button.tscn" id="8_da0ks"]
+[ext_resource type="PackedScene" uid="uid://ckehtsn10s7h4" path="res://src/ui/components/startmenu_button/startmenu_button.tscn" id="8_da0ks"]
 
 [sub_resource type="GDScript" id="GDScript_83pib"]
 script/source = "extends Control
@@ -553,15 +553,7 @@ ignore_texture_size = true
 metadata/_edit_layout_mode = 1
 metadata/_edit_use_custom_anchors = true
 
-[node name="Button" parent="." instance=ExtResource("8_da0ks")]
-offset_left = 1035.0
-offset_top = 461.0
-offset_right = 1780.0
-offset_bottom = 582.0
-pivot_offset = Vector2(118, 204)
-theme_override_constants/outline_size = 0
-
-[node name="bPlay" type="Button" parent="."]
+[node name="bPlay" parent="." instance=ExtResource("8_da0ks")]
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 211.0
@@ -571,11 +563,10 @@ offset_bottom = -431.0
 grow_vertical = 0
 pivot_offset = Vector2(201, 70)
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_do6ft")
 text = "PLAY"
 metadata/_edit_layout_mode = 1
 
-[node name="bSettings" type="Button" parent="."]
+[node name="bSettings" parent="." instance=ExtResource("8_da0ks")]
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 211.0
@@ -585,11 +576,10 @@ offset_bottom = -250.0
 grow_vertical = 0
 pivot_offset = Vector2(194, 69)
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_do6ft")
 text = "SETTINGS"
 metadata/_edit_layout_mode = 1
 
-[node name="bExit" type="Button" parent="."]
+[node name="bExit" parent="." instance=ExtResource("8_da0ks")]
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 211.0
@@ -599,7 +589,6 @@ offset_bottom = -73.0
 grow_vertical = 0
 pivot_offset = Vector2(194, 66)
 mouse_default_cursor_shape = 2
-theme = ExtResource("2_do6ft")
 text = "EXIT"
 metadata/_edit_layout_mode = 1
 
@@ -657,8 +646,8 @@ metadata/_edit_layout_mode = 1
 visible = false
 offset_left = 661.0
 offset_top = 239.0
-offset_right = -683.0
-offset_bottom = -199.0
+offset_right = 1237.0
+offset_bottom = 881.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(286, 355)

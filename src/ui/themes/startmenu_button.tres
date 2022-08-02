@@ -1,0 +1,78 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cucx5p70be63e"]
+
+[ext_resource type="FontData" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="1_rhxsm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egtuw"]
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.756863, 0.756863, 0.756863, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uunu3"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.756863, 0.756863, 0.756863, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m316b"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbk1b"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.756863, 0.756863, 0.756863, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8rib"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="Font" id="Font_8xbe4"]
+data/0 = ExtResource("1_rhxsm")
+
+[resource]
+default_font = SubResource("Font_8xbe4")
+default_font_size = 64
+Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
+Button/colors/font_focus_color = Color(0.176471, 0.176471, 0.176471, 1)
+Button/colors/font_hover_color = Color(0.176471, 0.176471, 0.176471, 1)
+Button/colors/font_pressed_color = Color(0.176471, 0.176471, 0.176471, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_egtuw")
+Button/styles/hover = SubResource("StyleBoxFlat_uunu3")
+Button/styles/normal = SubResource("StyleBoxFlat_m316b")
+Button/styles/pressed = SubResource("StyleBoxFlat_pbk1b")
+MarginContainer/constants/margin_bottom = 40
+MarginContainer/constants/margin_left = 40
+MarginContainer/constants/margin_right = 40
+MarginContainer/constants/margin_top = 40
+Panel/styles/panel = SubResource("StyleBoxFlat_v8rib")
+VBoxContainer/constants/separation = 22
