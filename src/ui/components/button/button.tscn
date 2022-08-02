@@ -43,7 +43,6 @@ offset_right = 142.0
 offset_bottom = 80.0
 pivot_offset = Vector2(71, 39)
 theme = ExtResource("1_droxc")
-text = "TEXT"
 script = SubResource("GDScript_bm3fb")
 
 [node name="Panel" type="Panel" parent="."]
