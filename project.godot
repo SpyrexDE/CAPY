@@ -19,15 +19,39 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/public/classes/level_loading/level_switcher.gd"
 }, {
+"base": "CharacterBody2D",
+"class": &"Player",
+"language": &"GDScript",
+"path": "res://src/characters/player/Player.gd"
+}, {
+"base": "State",
+"class": &"PlayerState",
+"language": &"GDScript",
+"path": "res://src/public/classes/state_machine/PlayerState.gd"
+}, {
 "base": "Resource",
 "class": &"SaveGame",
 "language": &"GDScript",
 "path": "res://src/resources/save_game.gd"
+}, {
+"base": "Node",
+"class": &"State",
+"language": &"GDScript",
+"path": "res://src/public/classes/state_machine/State.gd"
+}, {
+"base": "Node",
+"class": &"StateMachine",
+"language": &"GDScript",
+"path": "res://src/public/classes/state_machine/StateMachine.gd"
 }]
 _global_script_class_icons={
 "LevelLoader": "",
 "LevelSwitcher": "",
-"SaveGame": ""
+"Player": "",
+"PlayerState": "",
+"SaveGame": "",
+"State": "",
+"StateMachine": ""
 }
 
 [application]

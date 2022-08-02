@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 #############
@@ -37,27 +38,17 @@ var air_dashing := false
 
 
 # Child node references
-@export
-var cJumpTimer : Timer
-@export
-var cEarlyJumpTimer : Timer
-@export
-var cAnimationTree : AnimationTree
-@export
-var cCamera2D : Camera2D
-
-#############
-# Functions #
-#############
+@export var cJumpTimer : Timer
+@export var cEarlyJumpTimer : Timer
+@export var cAnimationTree : AnimationTree
+@export var cCamera2D : Camera2D
 
 func _ready() -> void:
 	cAnimationTree.active = true
 
-#Movement
-func _physics_process(delta) -> void:
-	handleCollsision()
+func _physics_process(_delta):
+	handleCollission()
 	handleInput()
-	handleMovement(delta)
 	handleAnimation()
 
 func handleInput() -> void:
@@ -71,80 +62,14 @@ func handleInput() -> void:
 		#attack anims
 		pass
 
-func handleCollsision() -> void:
+func handleCollission() -> void:
 	checkPush()
-	
 	if is_on_floor():
 		can_jump = true
 		air_jumps = MAX_AIR_JUMPS
 	elif !jumptimer_active:
 		jumptimer_active = true
 		cJumpTimer.start(FORGIVE_TIME)
-
-func handleMovement(delta: float) -> void:
-	# X-Acceleration
-	velocity.x += x_input * ACCELERATION * delta * TARGET_FPS
-	if air_dashing:
-		velocity.x = lerp(velocity.x, 0, AIR_FRICTION * delta)
-	else:
-		velocity.x = clamp(velocity.x, -MAX_SPEED, MAX_SPEED)
-	
-	# Gravity
-	velocity.y += GRAVITY * delta * TARGET_FPS
-	
-	# X-Friction
-	if is_on_floor():
-		# floor
-		air_dashing = false
-		if !is_moving() && is_on_floor():
-			velocity.x = lerp(velocity.x, 0, FRICTION * delta)
-	else:
-		# air
-		if !is_moving():
-			velocity.x = lerp(velocity.x, 0, AIR_RESISTANCE * delta)
-	
-	# Jumping
-	if jump_pressed or early_jumptimer_active:
-		if can_jump:
-			velocity.y = -JUMP_FORCE
-			can_jump = false
-			# Animate squash
-			var t = create_tween()
-			t.set_parallel(false)
-			t.tween_property($Sprite, "scale:y", 0.25, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-			t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-			
-		
-		# Air jumping
-		if !is_on_floor() and air_jumps > 0 and not early_jumptimer_active:
-			velocity.y = -JUMP_FORCE
-			can_jump = false
-			air_jumps -= 1
-			# Animate squash
-			var t = create_tween()
-			t.set_parallel(false)
-			t.tween_property($Sprite, "scale:y", 0.25, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-			t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-			
-		elif jump_pressed:
-			early_jumptimer_active = true
-			cEarlyJumpTimer.start(FORGIVE_TIME)
-	
-	# Make jump shorter when no longer pressed
-	if !should_jump && !is_on_floor():
-		velocity.y += GRAVITY * delta * TARGET_FPS
-	
-	# Air dash
-	if !is_on_floor() && Input.is_action_just_pressed("roll") && !air_dashing:
-		air_dashing = true
-		var y_strength = Input.get_action_strength("face_down") - Input.get_action_strength("face_up")
-		velocity = Vector2(x_input, y_strength - AIR_DASH_OFFSET * abs(x_input) + GRAVITY * 0.01) * AIR_DASH_SPEED
-		
-	# Apply velocity and rotation
-	move_and_slide()
-	
-	if x_input != 0:
-		flipH(true if x_input < 0 else false)
 
 func handleAnimation() -> void:
 	if is_moving():
@@ -171,23 +96,25 @@ func checkPush() -> void:
 		if collision.get_collider().is_in_group("bodies"):
 			collision.get_collider().apply_central_impulse(-collision.normal * PUSH)
 
+func jump() -> void:
+	var t = create_tween()
+	t.set_parallel(false)
+	t.tween_property($Sprite, "scale:y", 0.25, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 
 ###########
-# Getters #
+# GETTERS #
 ###########
 
-func is_moving() -> bool:
-	if x_input != 0:
-		return true
-	else:
+func is_moving()->bool:
+	if x_input == 0:
 		return false
+	return true
 
-func is_jumping() -> bool:
-	if y_input != 0:
-		return true
-	else:
+func is_jumping()->bool:
+	if y_input ==0:
 		return false
-
+	return true
 
 ###########
 # Signals #
