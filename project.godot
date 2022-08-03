@@ -60,7 +60,7 @@ config/name="CAPY"
 run/main_scene="res://src/scene_wrapper/scene_wrapper.tscn"
 config/features=PackedStringArray("4.0")
 boot_splash/bg_color=Color(0.027451, 0.0470588, 0.12549, 1)
-config/icon="res://icon.png"
+config/icon="res://src/items/melon_seed/melon_seed.png"
 
 [autoload]
 

@@ -3,6 +3,10 @@ extends Resource
 
 signal player_score_changed
 
+# Metadata
+@export var datetime : String
+
+# Game data
 @export var player_pos : Vector2
 
 @export var player_score : int:

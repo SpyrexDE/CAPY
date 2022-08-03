@@ -2,33 +2,46 @@ extends Node
 
 var scene_wrapper : Node
 
-signal save_game_loaded
+const first_level = "res://src/levels/level01/level01.tscn"
 
-const SAVE_GAME_PATH = "user://save.tres"
-
+const SAVE_GAME_DIR = "user://savegames/"
 var save_game : SaveGame
-
-var first_level = "res://src/levels/level01/level01.tscn"
+var save_game_file_name : String
 
 # Save game handling
-func _init() -> void:
-	load_savegame()
 
-func load_savegame():
-	var t = Thread.new()
-	t.start(_load_savegame)
+func apply_savegame(_save_game : SaveGame, file_name : String) -> void:
+	self.save_game = _save_game
+	self.save_game_file_name = file_name
 
-func _load_savegame():
-	if File.file_exists(SAVE_GAME_PATH):
-		save_game = ResourceLoader.load(SAVE_GAME_PATH)
-	else:
-		save_game = SaveGame.new()
-	emit_signal("save_game_loaded")
+func write_savegame() -> void:
+	# Prepare SaveGame resource
+	save_game.datetime = Time.get_date_string_from_system()
+	Game.save_game.current_level = first_level
+	
+	ensure_savegame_dir()
+	
+	ResourceSaver.save(SAVE_GAME_DIR + save_game_file_name, save_game)
 
-func write_savegame():
-	ResourceSaver.save(SAVE_GAME_PATH, save_game)
+# Returns a dictionary with file_name as key and SaveGame res as value
+func load_savegames() -> Dictionary:
+	var savegames = {}
+	for file in list_savegame_files():
+		savegames[file] = ResourceLoader.load(SAVE_GAME_DIR + file)
+	return savegames
+
+func list_savegame_files() -> PackedStringArray:
+	return Utils.list_files_in_directory(SAVE_GAME_DIR)
+
+func new_save_game() -> void:
+	self.save_game = SaveGame.new()
+	self.save_game_file_name = Utils.gen_unique_string(10) + ".tres"
+
+func ensure_savegame_dir() -> void:
+	var dir = Directory.new()
+	if not dir.dir_exists(SAVE_GAME_DIR):
+		dir.make_dir(SAVE_GAME_DIR)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("save_game"):
-		save_game.current_level = "res://src/levels/level01/level01.tscn"
 		write_savegame()

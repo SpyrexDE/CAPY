@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://byghbs7ym5qai"]
+[gd_scene load_steps=3 format=3 uid="uid://byghbs7ym5qai"]
 
 [ext_resource type="Theme" uid="uid://y5ev1fhfqnbu" path="res://src/ui/themes/gamesave_button.tres" id="1_d0m6k"]
+
+[sub_resource type="GDScript" id="GDScript_jy4cd"]
+script/source = "extends Button
+
+signal pressed_ref
+
+var params : Dictionary
+
+func _on_save_game_button_pressed() -> void:
+	emit_signal(\"pressed_ref\", self)
+"
 
 [node name="SaveGameButton" type="Button"]
 custom_minimum_size = Vector2(0, 150)
@@ -9,3 +20,6 @@ offset_bottom = 150.0
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_d0m6k")
+script = SubResource("GDScript_jy4cd")
+
+[connection signal="pressed" from="." to="." method="_on_save_game_button_pressed"]
