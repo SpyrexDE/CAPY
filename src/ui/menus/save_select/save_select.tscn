@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://btock2i8bih26"]
+[gd_scene load_steps=14 format=3 uid="uid://btock2i8bih26"]
 
 [ext_resource type="Script" path="res://src/ui/menus/save_select/save_select.gd" id="1_4s36d"]
-[ext_resource type="FontData" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="1_bvirm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyda8"]
 bg_color = Color(1, 1, 1, 0)
@@ -61,11 +60,7 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
-[sub_resource type="Font" id="Font_82kjr"]
-data/0 = ExtResource("1_bvirm")
-
 [sub_resource type="Theme" id="Theme_4ecqr"]
-default_font = SubResource("Font_82kjr")
 default_font_size = 64
 Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
 Button/colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
@@ -135,11 +130,7 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
-[sub_resource type="Font" id="Font_8xbe4"]
-data/0 = ExtResource("1_bvirm")
-
 [sub_resource type="Theme" id="Theme_8tmf6"]
-default_font = SubResource("Font_8xbe4")
 default_font_size = 64
 Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
 Button/colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)

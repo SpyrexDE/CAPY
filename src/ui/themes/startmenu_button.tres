@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://cucx5p70be63e"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cucx5p70be63e"]
 
-[ext_resource type="FontData" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="1_rhxsm"]
+[ext_resource type="FontFile" uid="uid://b1yh1xmlcicq0" path="res://src/fonts/ttf/Signika-SemiBold.ttf" id="1_7qs2a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egtuw"]
 bg_color = Color(1, 1, 1, 0)
@@ -56,11 +56,8 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
-[sub_resource type="Font" id="Font_8xbe4"]
-data/0 = ExtResource("1_rhxsm")
-
 [resource]
-default_font = SubResource("Font_8xbe4")
+default_font = ExtResource("1_7qs2a")
 default_font_size = 64
 Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
 Button/colors/font_focus_color = Color(0.176471, 0.176471, 0.176471, 1)

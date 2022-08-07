@@ -23,6 +23,10 @@ func add_node(node : Node) -> Node:
 	vpc.add_child(vp)
 	vp.add_child(node)
 	
+	# Workaround for weird Godot 4.0-alpha behavior where viewports dont get drawn, remove in beta
+	vpc.hide()
+	vpc.show()
+	
 	# Workaround for signals not working
 	InputHandler._on_scene_added()
 	

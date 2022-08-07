@@ -24,6 +24,6 @@ func move():
 "
 
 [node name="PlatformMover" type="Node2D"]
-script = SubResource( "1" )
+script = SubResource("1")
 
-[node name="SDPlatform" parent="." instance=ExtResource( "1" )]
+[node name="SDPlatform" parent="." instance=ExtResource("1")]

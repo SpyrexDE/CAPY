@@ -26,6 +26,9 @@ func write_savegame() -> void:
 # Returns a dictionary with file_name as key and SaveGame res as value
 func load_savegames() -> Dictionary:
 	var savegames = {}
+	
+	ensure_savegame_dir()
+	
 	for file in list_savegame_files():
 		savegames[file] = ResourceLoader.load(SAVE_GAME_DIR + file)
 	return savegames
