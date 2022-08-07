@@ -9,6 +9,61 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Leaf",
+"class": &"ActionLeaf",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/leaves/action.gd"
+}, {
+"base": "Decorator",
+"class": &"AlwaysFailDecorator",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/decorators/failer.gd"
+}, {
+"base": "Decorator",
+"class": &"AlwaysSucceedDecorator",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/decorators/succeeder.gd"
+}, {
+"base": "BeehaveTree",
+"class": &"BeehaveNode",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/beehave_node.gd"
+}, {
+"base": "BeehaveTree",
+"class": &"BeehaveRoot",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/beehave_root.gd"
+}, {
+"base": "Node",
+"class": &"BeehaveTree",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/beehave_tree.gd"
+}, {
+"base": "BeehaveNode",
+"class": &"Composite",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/composites/composite.gd"
+}, {
+"base": "Leaf",
+"class": &"ConditionLeaf",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/leaves/condition.gd"
+}, {
+"base": "BeehaveNode",
+"class": &"Decorator",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/decorators/decorator.gd"
+}, {
+"base": "Decorator",
+"class": &"InverterDecorator",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/decorators/inverter.gd"
+}, {
+"base": "BeehaveNode",
+"class": &"Leaf",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/leaves/leaf.gd"
+}, {
 "base": "Node",
 "class": &"LevelLoader",
 "language": &"GDScript",
@@ -18,6 +73,11 @@ _global_script_classes=[{
 "class": &"LevelSwitcher",
 "language": &"GDScript",
 "path": "res://src/public/classes/level_loading/level_switcher.gd"
+}, {
+"base": "Decorator",
+"class": &"LimiterDecorator",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/decorators/limiter.gd"
 }, {
 "base": "CharacterBody2D",
 "class": &"Player",
@@ -34,6 +94,26 @@ _global_script_classes=[{
 "language": &"GDScript",
 "path": "res://src/resources/save_game.gd"
 }, {
+"base": "Composite",
+"class": &"SelectorComposite",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/composites/selector.gd"
+}, {
+"base": "Composite",
+"class": &"SelectorStarComposite",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/composites/selector_star.gd"
+}, {
+"base": "Composite",
+"class": &"SequenceComposite",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/composites/sequence.gd"
+}, {
+"base": "Composite",
+"class": &"SequenceStarComposite",
+"language": &"GDScript",
+"path": "res://addons/beehave/nodes/composites/sequence_star.gd"
+}, {
 "base": "Node",
 "class": &"State",
 "language": &"GDScript",
@@ -45,11 +125,27 @@ _global_script_classes=[{
 "path": "res://src/public/classes/state_machine/StateMachine.gd"
 }]
 _global_script_class_icons={
+"ActionLeaf": "res://addons/beehave/icons/action.svg",
+"AlwaysFailDecorator": "res://addons/beehave/icons/fail.svg",
+"AlwaysSucceedDecorator": "res://addons/beehave/icons/succeed.svg",
+"BeehaveNode": "res://addons/beehave/icons/action.svg",
+"BeehaveRoot": "res://addons/beehave/icons/tree.svg",
+"BeehaveTree": "",
+"Composite": "res://addons/beehave/icons/category_composite.svg",
+"ConditionLeaf": "res://addons/beehave/icons/condition.svg",
+"Decorator": "res://addons/beehave/icons/category_decorator.svg",
+"InverterDecorator": "res://addons/beehave/icons/inverter.svg",
+"Leaf": "res://addons/beehave/icons/action.svg",
 "LevelLoader": "",
 "LevelSwitcher": "",
+"LimiterDecorator": "res://addons/beehave/icons/limiter.svg",
 "Player": "",
 "PlayerState": "",
 "SaveGame": "",
+"SelectorComposite": "res://addons/beehave/icons/selector.svg",
+"SelectorStarComposite": "res://addons/beehave/icons/selector.svg",
+"SequenceComposite": "res://addons/beehave/icons/sequencer.svg",
+"SequenceStarComposite": "res://addons/beehave/icons/sequencer.svg",
 "State": "",
 "StateMachine": ""
 }
@@ -80,10 +176,11 @@ window/size/viewport_height=1080
 window/size/window_width_override=960
 window/size/window_height_override=540
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_height"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/beehave/plugin.cfg")
 
 [input]
 
