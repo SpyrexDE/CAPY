@@ -12,6 +12,8 @@ signal player_score_changed
 @export var player_score : int:
 	set(value):
 		player_score = value
-		emit_signal("player_score_changed")
+		emit_signal("player_score_changed", player_score)
+
+@export var collected_seeds := []
 
 @export var current_level : String

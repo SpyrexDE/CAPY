@@ -53,3 +53,7 @@ func get_viewports() -> Array:
 				if c is SubViewport:
 					viewports.append(c)
 	return viewports
+
+func update_viewport_sizes() -> void:
+	for vp in get_viewports():
+		vp.size = Vector2(ProjectSettings.get("display/window/size/viewport_width"), ProjectSettings.get("display/window/size/viewport_height"))	# Workaround to set size to fullscreen

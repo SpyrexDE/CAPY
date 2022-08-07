@@ -5,54 +5,32 @@
 [ext_resource type="Shader" path="res://src/postprocessing/shaders/ChromaticAberration.gdshader" id="2_1q35y"]
 [ext_resource type="Texture2D" uid="uid://cmy6hnlvjjqua" path="res://src/postprocessing/shaders/assets/ChromaticAbberationOffset.png" id="4_ykgy1"]
 [ext_resource type="Shader" path="res://src/postprocessing/shaders/ChromaticAberration2.gdshader" id="5_b2qlq"]
+[ext_resource type="Shader" path="res://src/postprocessing/shaders/Vignette.gdshader" id="6_lgd2u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kaxe8"]
 shader = ExtResource("1_2w72p")
-shader_param/color1 = Color(1, 0.603922, 0.196078, 1)
-shader_param/color2 = Color(0.180392, 0.847059, 0.317647, 1)
-shader_param/direction = Vector2(1, 1)
-shader_param/linearColorSpace = false
-shader_param/mode = 5
-shader_param/opacity = 0.2
+color1 = Color(1, 0.603922, 0.196078, 1)
+color2 = Color(0.180392, 0.847059, 0.317647, 1)
+direction = Vector2(1, 1)
+linearColorSpace = false
+mode = 5
+opacity = 0.2
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1p8r6"]
 shader = ExtResource("2_1q35y")
-shader_param/offset_image = ExtResource("4_ykgy1")
-shader_param/strength = 0.05
+offset_image = ExtResource("4_ykgy1")
+strength = 0.05
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jih3n"]
 shader = ExtResource("5_b2qlq")
-shader_param/levels = 200
-shader_param/spread = 0.003
-
-[sub_resource type="Shader" id="Shader_gq6ep"]
-code = "shader_type canvas_item;
-
-uniform float vignette_intensity = 0.4;
-uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
-uniform vec4 vignette_rgb = vec4(0.0, 0.0, 0.0, 1.0);
-
-float vignette(vec2 uv){
-	uv *= 1.0 - uv.xy;
-	float vignette = uv.x * uv.y * 15.0;
-	return pow(vignette, vignette_intensity * vignette_opacity);
-}
-
-void fragment(){
-	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
-	vec4 text = texture(TEXTURE, UV);
-	
-	text.rgba *= (vignette_rgb.rgba);
-	text.rgba *= (1.0 - vignette(UV));
-	
-	COLOR = vec4((text.rgb)*color.rgb,text.a);
-}"
+levels = 200
+spread = 0.003
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h4m4r"]
-shader = SubResource("Shader_gq6ep")
-shader_param/vignette_intensity = 0.4
-shader_param/vignette_opacity = 0.2
-shader_param/vignette_rgb = null
+shader = ExtResource("6_lgd2u")
+vignette_intensity = 0.4
+vignette_opacity = 0.2
+vignette_rgb = null
 
 [node name="PostProcessing" type="CanvasLayer"]
 

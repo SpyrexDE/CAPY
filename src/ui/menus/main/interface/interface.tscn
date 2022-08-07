@@ -70,6 +70,10 @@ func _process(delta: float) -> void:
 				child.focus_mode = FOCUS_NONE
 			else:
 				child.focus_mode = FOCUS_ALL
+
+
+func _on_b_reddit_pressed():
+	pass
 "
 
 [sub_resource type="InputEventAction" id="InputEventAction_425kk"]
@@ -671,4 +675,5 @@ libraries = {
 
 [connection signal="pressed" from="bPlay" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="bExit" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="bReddit" to="." method="_on_b_reddit_pressed"]
 [connection signal="pressed" from="bBack" to="." method="_on_b_back_pressed"]

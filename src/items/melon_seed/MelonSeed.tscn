@@ -10,12 +10,17 @@ script/source = "extends Node2D
 @onready var animationPlayer = $AnimationPlayer
 
 func _ready():
+	var collected_seeds = Game.save_game.collected_seeds as Array
+	if collected_seeds.has(self.get_path()):
+		self.queue_free()
+	
 	animationPlayer.play(\"idle\")
-	print(animationPlayer.current_animation)
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.name == \"Player\":
 		animationPlayer.play(\"collected\")
+		Game.save_game.player_score += 1
+		Game.save_game.collected_seeds.append(self.get_path())
 "
 
 [sub_resource type="CircleShape2D" id="1"]
