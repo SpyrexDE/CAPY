@@ -4,18 +4,41 @@
 [ext_resource type="PackedScene" uid="uid://deu7cyxnp2na0" path="res://src/ui/components/vignette_background.tscn" id="1_o4m7h"]
 
 [sub_resource type="GDScript" id="GDScript_resde"]
-script/source = "@tool
-extends Control
-
-@onready
-var initial_alpha : float = $VignetteBackground.rgb.a
+script/source = "extends Control
 
 @export
-var opacity := 1.0:
-	set(val):
-		opacity = val
-		modulate.a = val
-		$VignetteBackground.rgb.a = val / initial_alpha
+var bg : ColorRect
+
+var bg_intensity : float
+var bg_opacity : float
+var bg_rgb : Color
+
+
+func _ready() -> void:
+	bg_intensity = bg.intensity
+	bg_opacity = bg.opacity
+	bg_rgb = bg.rgb
+	
+	bg.rgb.a = 0.0
+	visible = true
+
+func show() -> void:
+	var t = create_tween()
+	
+	t.set_parallel(true)
+	
+	t.tween_property(bg, \"rgb:a\", bg_rgb.a, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	t.tween_property(self, \"modulate:a\", 1.0, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+
+
+func hide() -> void:
+	var t = create_tween()
+	
+	t.set_parallel(true)
+	
+	t.tween_property(bg, \"rgb:a\", 0.0, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	t.tween_property(self, \"modulate:a\", 0.0, 1.0).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jcx45"]
@@ -25,11 +48,12 @@ vignette_intensity = 4.307
 vignette_opacity = 0.7
 vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="GlyphsHints" type="Control"]
+[node name="GlyphsHints" type="Control" node_paths=PackedStringArray("bg")]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = SubResource("GDScript_resde")
+bg = NodePath("VignetteBackground")
 
 [node name="VignetteBackground" parent="." instance=ExtResource("1_o4m7h")]
 material = SubResource("ShaderMaterial_jcx45")
