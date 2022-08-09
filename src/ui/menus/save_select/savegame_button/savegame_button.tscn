@@ -11,15 +11,35 @@ var params : Dictionary
 
 func _on_save_game_button_pressed() -> void:
 	emit_signal(\"pressed_ref\", self)
+
+func _on_save_game_button_button_down():
+	var t = create_tween()
+	t.set_parallel(true)
+	t.tween_property(self, \"scale\", Vector2(0.9, 0.9), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+
+
+func _on_save_game_button_button_up():
+	var t = create_tween()
+	t.set_parallel(true)
+	t.tween_property(self, \"scale\", Vector2.ONE, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+
+
+func _on_save_game_button_resized():
+	# Center pivot
+	self.pivot_offset = size / 2
 "
 
 [node name="SaveGameButton" type="Button"]
 custom_minimum_size = Vector2(0, 150)
-offset_right = 1840.0
+offset_right = 800.0
 offset_bottom = 150.0
+pivot_offset = Vector2(400, 75)
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
 theme = ExtResource("1_d0m6k")
 script = SubResource("GDScript_jy4cd")
 
+[connection signal="button_down" from="." to="." method="_on_save_game_button_button_down"]
+[connection signal="button_up" from="." to="." method="_on_save_game_button_button_up"]
 [connection signal="pressed" from="." to="." method="_on_save_game_button_pressed"]
+[connection signal="resized" from="." to="." method="_on_save_game_button_resized"]
