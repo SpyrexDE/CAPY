@@ -36,6 +36,17 @@ func _on_button_focus_entered() -> void:
 func _on_button_focus_exited() -> void:
 	var t = create_tween()
 	t.tween_property($Panel, \"scale\", Vector2.ONE, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+
+
+func _on_button_button_down():
+	var t = create_tween()
+	t.tween_property(self, \"scale\", Vector2(0.9, 0.9), 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+
+
+
+func _on_button_button_up():
+	var t = create_tween()
+	t.tween_property(self, \"scale\", Vector2.ONE, 0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 "
 
 [node name="Button" type="Button"]
@@ -56,6 +67,8 @@ mouse_filter = 2
 theme = ExtResource("1_i5380")
 metadata/_edit_layout_mode = 1
 
+[connection signal="button_down" from="." to="." method="_on_button_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_button_up"]
 [connection signal="focus_entered" from="." to="." method="_on_button_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_button_focus_exited"]
 [connection signal="mouse_entered" from="." to="." method="_on_button_mouse_entered"]

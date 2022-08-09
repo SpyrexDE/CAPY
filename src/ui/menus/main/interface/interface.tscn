@@ -409,7 +409,7 @@ tracks/12/path = NodePath("GlyphsHints:opacity")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
-"times": PackedFloat32Array(0, 0.75),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [0.0, 1.0]
@@ -640,7 +640,7 @@ anchor_bottom = 1.0
 offset_left = -99.0
 offset_top = -98.0
 offset_right = -23.0
-offset_bottom = -22.0005
+offset_bottom = -22.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(38, 39)
@@ -657,7 +657,7 @@ anchor_bottom = 1.0
 offset_left = -211.0
 offset_top = -97.0
 offset_right = -135.0
-offset_bottom = -21.0002
+offset_bottom = -21.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(37, 37)
@@ -681,10 +681,14 @@ metadata/_edit_layout_mode = 1
 
 [node name="save_select" parent="." instance=ExtResource("5_awtbf")]
 visible = false
-offset_left = 661.0
-offset_top = 239.0
-offset_right = 660.36
-offset_bottom = 239.16
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -299.0
+offset_top = -301.0
+offset_right = 261.0
+offset_bottom = 399.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(286, 355)
