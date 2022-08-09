@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://deu7cyxnp2na0"]
+
+[ext_resource type="Shader" path="res://src/postprocessing/shaders/InvertedVeniette.gdshader" id="1_3et1w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xdxe"]
+shader = ExtResource("1_3et1w")
+vignette_intensity = 0.1
+vignette_opacity = 0.1
+vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_awokf"]
+script/source = "@tool
+extends ColorRect
+
+@export
+var intensity := 0.1:
+	set(val):
+		intensity = val
+		material.vignette_intensity = val
+
+@export
+var opacity := 0.1:
+	set(val):
+		opacity = val
+		material.vignette_opacity = val
+
+@export
+var rgb := Color.BLACK:
+	set(val):
+		rgb = val
+		material.vignette_rgb = val
+"
+
+[node name="VignetteBackground" type="ColorRect"]
+material = SubResource("ShaderMaterial_5xdxe")
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = SubResource("GDScript_awokf")

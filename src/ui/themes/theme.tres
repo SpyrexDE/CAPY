@@ -1,34 +1,34 @@
 [gd_resource type="Theme" load_steps=7 format=3 uid="uid://cpyc8wefit0i6"]
 
-[ext_resource type="FontFile" uid="uid://b1yh1xmlcicq0" path="res://src/fonts/ttf/Signika-SemiBold.ttf" id="1_gwo2t"]
+[ext_resource type="FontFile" uid="uid://b1yh1xmlcicq0" path="res://src/fonts/ttf/Signika-SemiBold.ttf" id="1_7qs2a"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egtuw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vk1s"]
 bg_color = Color(1, 1, 1, 0)
 border_width_left = 12
 border_width_top = 12
 border_width_right = 12
 border_width_bottom = 12
-border_color = Color(0.482353, 0.345098, 0.196078, 1)
+border_color = Color(0.756863, 0.756863, 0.756863, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uunu3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8anpx"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(0.482353, 0.345098, 0.196078, 1)
+border_color = Color(0.756863, 0.756863, 0.756863, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m316b"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3n7e"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
@@ -36,20 +36,20 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbk1b"]
-bg_color = Color(0.282353, 0.282353, 0.282353, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ebum"]
+bg_color = Color(1, 1, 1, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(0.482353, 0.345098, 0.196078, 1)
+border_color = Color(0.756863, 0.756863, 0.756863, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8rib"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_611p3"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
@@ -57,19 +57,19 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [resource]
-default_font = ExtResource("1_gwo2t")
+default_font = ExtResource("1_7qs2a")
 default_font_size = 64
 Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
-Button/colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
-Button/colors/font_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
-Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_egtuw")
-Button/styles/hover = SubResource("StyleBoxFlat_uunu3")
-Button/styles/normal = SubResource("StyleBoxFlat_m316b")
-Button/styles/pressed = SubResource("StyleBoxFlat_pbk1b")
+Button/colors/font_focus_color = Color(0.176471, 0.176471, 0.176471, 1)
+Button/colors/font_hover_color = Color(0.176471, 0.176471, 0.176471, 1)
+Button/colors/font_pressed_color = Color(0.176471, 0.176471, 0.176471, 1)
+Button/styles/focus = SubResource("StyleBoxFlat_3vk1s")
+Button/styles/hover = SubResource("StyleBoxFlat_8anpx")
+Button/styles/normal = SubResource("StyleBoxFlat_d3n7e")
+Button/styles/pressed = SubResource("StyleBoxFlat_1ebum")
 MarginContainer/constants/margin_bottom = 40
 MarginContainer/constants/margin_left = 40
 MarginContainer/constants/margin_right = 40
 MarginContainer/constants/margin_top = 40
-Panel/styles/panel = SubResource("StyleBoxFlat_v8rib")
+Panel/styles/panel = SubResource("StyleBoxFlat_611p3")
 VBoxContainer/constants/separation = 22

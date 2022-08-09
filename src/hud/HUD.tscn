@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bt1rjr1xcnwi6"]
+[gd_scene load_steps=7 format=3 uid="uid://bt1rjr1xcnwi6"]
 
 [ext_resource type="Texture2D" uid="uid://dg6sedgc7grdc" path="res://src/items/melon_seed/melon_seed.png" id="1_083jk"]
+[ext_resource type="PackedScene" uid="uid://deu7cyxnp2na0" path="res://src/ui/components/vignette_background.tscn" id="1_o4m7h"]
+[ext_resource type="Shader" path="res://src/postprocessing/shaders/InvertedVeniette.gdshader" id="1_wmk8e"]
 [ext_resource type="FontFile" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="2_a4c2q"]
 
 [sub_resource type="GDScript" id="GDScript_6e1xw"]
@@ -52,34 +54,11 @@ func _on_player_score_changed(val : int) -> void:
 	score_tween.tween_property(labels[1], \"modulate\", Color.TRANSPARENT, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 "
 
-[sub_resource type="Shader" id="Shader_ylq04"]
-code = "shader_type canvas_item;
-
-uniform float vignette_intensity = 0.4;
-uniform float vignette_opacity : hint_range(0.0, 1.0) = 0.5;
-uniform vec4 vignette_rgb : source_color = vec4(0.0, 0.0, 0.0, 1.0);
-
-float vignette(vec2 uv){
-	uv *= 1.0 - uv.xy;
-	float vignette = uv.x * uv.y * 15.0;
-	return pow(vignette, vignette_intensity * vignette_opacity);
-}
-
-void fragment(){
-	vec4 color = texture(SCREEN_TEXTURE, SCREEN_UV);
-	vec4 text = texture(TEXTURE, UV);
-	
-	text.rgba *= (vignette_rgb.rgba);
-	text.rgba *= (vignette(UV));
-	
-	COLOR = vec4((text.rgb)*color.rgb,text.a);
-}"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yqy81"]
-shader = SubResource("Shader_ylq04")
-vignette_intensity = 6.358
-vignette_opacity = 0.542
-vignette_rgb = Color(0, 0, 0, 0.584314)
+shader = ExtResource("1_wmk8e")
+vignette_intensity = 2.7
+vignette_opacity = 1.0
+vignette_rgb = Color(0, 0, 0, 0.588235)
 
 [node name="HUD" type="Control" node_paths=PackedStringArray("score_label_container", "score_label_background")]
 anchor_right = 1.0
@@ -129,12 +108,15 @@ offset_bottom = 254.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/Control/HBoxContainer/HBoxContainer2/ColorRect"]
+[node name="ColorRect" parent="MarginContainer/Control/HBoxContainer/HBoxContainer2/ColorRect" instance=ExtResource("1_o4m7h")]
 material = SubResource("ShaderMaterial_yqy81")
 offset_left = -34.0
 offset_top = -266.0
 offset_right = 328.0
 offset_bottom = -96.0
+intensity = 2.7
+opacity = 1.0
+rgb = Color(0, 0, 0, 0.588235)
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Control/HBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(150, 150)

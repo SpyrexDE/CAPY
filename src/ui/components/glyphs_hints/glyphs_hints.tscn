@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://36dqyaig570n"]
+
+[ext_resource type="Shader" path="res://src/postprocessing/shaders/InvertedVeniette.gdshader" id="1_8rwff"]
+[ext_resource type="PackedScene" uid="uid://deu7cyxnp2na0" path="res://src/ui/components/vignette_background.tscn" id="1_o4m7h"]
+
+[sub_resource type="GDScript" id="GDScript_resde"]
+script/source = "@tool
+extends Control
+
+@onready
+var initial_alpha : float = $VignetteBackground.rgb.a
+
+@export
+var opacity := 1.0:
+	set(val):
+		opacity = val
+		modulate.a = val
+		$VignetteBackground.rgb.a = val / initial_alpha
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4f0ys"]
+shader = ExtResource("1_8rwff")
+vignette_intensity = 4.307
+vignette_opacity = 0.7
+vignette_rgb = Color(0, 0, 0, 0.415686)
+
+[node name="GlyphsHints" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = SubResource("GDScript_resde")
+
+[node name="VignetteBackground" parent="." instance=ExtResource("1_o4m7h")]
+material = SubResource("ShaderMaterial_4f0ys")
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -476.0
+offset_top = -164.0
+offset_right = 82.0
+grow_horizontal = 0
+grow_vertical = 0
+intensity = 4.307
+opacity = 0.7
+rgb = Color(0, 0, 0, 0.415686)
+metadata/_edit_layout_mode = 1

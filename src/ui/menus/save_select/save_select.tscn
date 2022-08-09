@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://btock2i8bih26"]
+[gd_scene load_steps=17 format=3 uid="uid://btock2i8bih26"]
 
 [ext_resource type="Script" path="res://src/ui/menus/save_select/save_select.gd" id="1_4s36d"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyda8"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uijx"]
 bg_color = Color(1, 1, 1, 0)
 border_width_left = 12
 border_width_top = 12
@@ -15,7 +15,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04f2k"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qh202"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 10
 border_width_top = 10
@@ -28,7 +28,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqbra"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fskx4"]
 bg_color = Color(0.980392, 0.980392, 0.980392, 1)
 border_width_left = 5
 border_width_top = 5
@@ -40,7 +40,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c3d7r"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_daxsf"]
 bg_color = Color(0.282353, 0.282353, 0.282353, 1)
 border_width_left = 10
 border_width_top = 10
@@ -53,7 +53,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1if0"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxjy1"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
@@ -66,17 +66,17 @@ Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
 Button/colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
 Button/colors/font_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_uyda8")
-Button/styles/hover = SubResource("StyleBoxFlat_04f2k")
-Button/styles/normal = SubResource("StyleBoxFlat_gqbra")
-Button/styles/pressed = SubResource("StyleBoxFlat_c3d7r")
+Button/styles/focus = SubResource("StyleBoxFlat_4uijx")
+Button/styles/hover = SubResource("StyleBoxFlat_qh202")
+Button/styles/normal = SubResource("StyleBoxFlat_fskx4")
+Button/styles/pressed = SubResource("StyleBoxFlat_daxsf")
 MarginContainer/constants/margin_bottom = 40
 MarginContainer/constants/margin_left = 40
 MarginContainer/constants/margin_right = 40
 MarginContainer/constants/margin_top = 40
-Panel/styles/panel = SubResource("StyleBoxFlat_u1if0")
+Panel/styles/panel = SubResource("StyleBoxFlat_kxjy1")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_egtuw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18klw"]
 bg_color = Color(1, 1, 1, 0)
 border_width_left = 12
 border_width_top = 12
@@ -89,7 +89,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uunu3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oegm6"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 10
 border_width_top = 10
@@ -102,7 +102,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m316b"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxxue"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
@@ -110,7 +110,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pbk1b"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b7lq8"]
 bg_color = Color(0.282353, 0.282353, 0.282353, 1)
 border_width_left = 10
 border_width_top = 10
@@ -123,7 +123,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 anti_aliasing_size = 1.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8rib"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yclyd"]
 bg_color = Color(1, 1, 1, 1)
 corner_radius_top_left = 40
 corner_radius_top_right = 40
@@ -136,21 +136,36 @@ Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
 Button/colors/font_focus_color = Color(0.105882, 0.105882, 0.105882, 1)
 Button/colors/font_hover_color = Color(0.105882, 0.105882, 0.105882, 1)
 Button/colors/font_pressed_color = Color(1, 1, 1, 1)
-Button/styles/focus = SubResource("StyleBoxFlat_egtuw")
-Button/styles/hover = SubResource("StyleBoxFlat_uunu3")
-Button/styles/normal = SubResource("StyleBoxFlat_m316b")
-Button/styles/pressed = SubResource("StyleBoxFlat_pbk1b")
+Button/styles/focus = SubResource("StyleBoxFlat_18klw")
+Button/styles/hover = SubResource("StyleBoxFlat_oegm6")
+Button/styles/normal = SubResource("StyleBoxFlat_qxxue")
+Button/styles/pressed = SubResource("StyleBoxFlat_b7lq8")
 MarginContainer/constants/margin_bottom = 40
 MarginContainer/constants/margin_left = 40
 MarginContainer/constants/margin_right = 40
 MarginContainer/constants/margin_top = 40
-Panel/styles/panel = SubResource("StyleBoxFlat_v8rib")
+Panel/styles/panel = SubResource("StyleBoxFlat_yclyd")
 VBoxContainer/constants/separation = 22
 
+[sub_resource type="Animation" id="Animation_thbnx"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_58g6m"]
+resource_name = "select"
+length = 0.5
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ya20"]
+_data = {
+"RESET": SubResource("Animation_thbnx"),
+"select": SubResource("Animation_58g6m")
+}
+
 [node name="save_select" type="Control" node_paths=PackedStringArray("button_root")]
-anchor_right = 1.0
-anchor_bottom = 1.0
-pivot_offset = Vector2(963, 529)
+anchor_right = 0.292
+anchor_bottom = 0.648
+offset_right = -0.640076
+offset_bottom = 0.159851
+pivot_offset = Vector2(257, 357)
 script = ExtResource("1_4s36d")
 button_root = NodePath("Panel/MarginContainer/VBoxContainer")
 
@@ -159,7 +174,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(968, 522)
+pivot_offset = Vector2(283, 348)
 theme = SubResource("Theme_4ecqr")
 metadata/_edit_layout_mode = 1
 
@@ -171,6 +186,11 @@ theme = SubResource("Theme_4ecqr")
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
 offset_left = 40.0
 offset_top = 40.0
-offset_right = 1880.0
-offset_bottom = 1040.0
+offset_right = 519.0
+offset_bottom = 659.0
 theme = SubResource("Theme_8tmf6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8ya20")
+}
