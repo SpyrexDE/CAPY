@@ -30,10 +30,10 @@ func _input(event: InputEvent) -> void:
 			tween.tween_property(cCamera, "zoom", cCamera.zoom - Vector2(0.2, 0.2), 0.4).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 
 func _process(delta) -> void:
-	#cCollisionShape.shape.size = get_viewport().get_visible_rect().size * (Vector2.ONE - cCamera.zoom)
+	cCollisionShape.shape.size = get_viewport().get_visible_rect().size # * (Vector2.ONE - cCamera.zoom)
 	
 	var dif = cPlayer.global_position - global_position
-	print(dif)
+	
 	if dif.length() < 1:
 		velocity = Vector2.ZERO
 	else:
