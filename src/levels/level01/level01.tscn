@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqn312cnuup6d"]
+[gd_scene load_steps=17 format=3 uid="uid://cqn312cnuup6d"]
 
 [ext_resource type="PackedScene" uid="uid://clfbtf2axswjt" path="res://src/characters/player/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dv7itpsiu72vg" path="res://src/props/sd_platform/SDPlatform.tscn" id="3"]
@@ -630,6 +630,9 @@ seed = 5.0
 speed = 1.0
 spread = 0.902
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1glcm"]
+size = Vector2(167, 1756)
+
 [node name="level01" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1")]
@@ -794,5 +797,34 @@ offset_left = 61.0
 offset_top = -1149.0
 offset_right = 1372.0
 offset_bottom = 918.0
+
+[node name="levelborders" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="levelborders"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelborders/StaticBody2D"]
+position = Vector2(-241, 828)
+shape = SubResource("RectangleShape2D_1glcm")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="levelborders"]
+position = Vector2(8567, -71)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelborders/StaticBody2D2"]
+position = Vector2(-241, 828)
+shape = SubResource("RectangleShape2D_1glcm")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="levelborders"]
+position = Vector2(6543, 514)
+rotation = -1.5751
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelborders/StaticBody2D3"]
+position = Vector2(-241, 828)
+shape = SubResource("RectangleShape2D_1glcm")
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_area_2d_body_entered"]
