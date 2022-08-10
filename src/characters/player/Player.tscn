@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://clfbtf2axswjt"]
+[gd_scene load_steps=41 format=3 uid="uid://clfbtf2axswjt"]
 
 [ext_resource type="Script" path="res://src/characters/player/Player.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bt1rjr1xcnwi6" path="res://src/hud/HUD.tscn" id="2_wo5ic"]
@@ -13,8 +13,8 @@
 [ext_resource type="Script" path="res://src/characters/player/states/Air.gd" id="11_n75n3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1lbb"]
-radius = 29.73
-height = 66.84
+radius = 25.05
+height = 67.78
 
 [sub_resource type="GDScript" id="6"]
 script/source = "extends Camera2D
@@ -279,13 +279,13 @@ region = Rect2(0, 0, 500, 500)
 atlas = ExtResource("3_tvo4g")
 region = Rect2(500, 0, 500, 500)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_45nio"]
-atlas = ExtResource("5_n57sj")
-region = Rect2(0, 0, 551, 594)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixyau"]
 atlas = ExtResource("5_n57sj")
 region = Rect2(551, 0, 551, 594)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45nio"]
+atlas = ExtResource("5_n57sj")
+region = Rect2(0, 0, 551, 594)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vawrw"]
 atlas = ExtResource("5_n57sj")
@@ -315,11 +315,27 @@ animations = [{
 "name": &"jump",
 "speed": 5.0
 }, {
-"frames": [SubResource("AtlasTexture_45nio"), SubResource("AtlasTexture_ixyau"), SubResource("AtlasTexture_vawrw"), SubResource("AtlasTexture_mgngq"), SubResource("AtlasTexture_tubwq"), SubResource("AtlasTexture_a8h83")],
+"frames": [SubResource("AtlasTexture_ixyau"), SubResource("AtlasTexture_45nio"), SubResource("AtlasTexture_vawrw"), SubResource("AtlasTexture_mgngq"), SubResource("AtlasTexture_tubwq"), SubResource("AtlasTexture_a8h83")],
 "loop": true,
 "name": &"run",
 "speed": 5.0
 }]
+
+[sub_resource type="Gradient" id="Gradient_gbjbb"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o0ael"]
+gradient = SubResource("Gradient_gbjbb")
+
+[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_aucmy"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(3, 3, 3, 1)
+color_ramp = SubResource("GradientTexture1D_o0ael")
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cJumpTimer", "cEarlyJumpTimer", "cAnimationTree", "cCamera2D")]
 script = ExtResource("2")
@@ -387,6 +403,14 @@ script = ExtResource("10_0a1w8")
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("11_n75n3")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+local_coords = false
+process_material = SubResource("ParticlesMaterial_aucmy")
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="EarlyJumpTimer" to="." method="_on_early_jump_timer_timeout"]

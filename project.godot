@@ -162,7 +162,8 @@ config/icon="res://src/items/melon_seed/melon_seed.png"
 
 Game="*res://src/public/autoload/game.gd"
 Utils="*res://src/public/autoload/utils.gd"
-InputHandler="*res://src/public/autoload/inputhandler.gd"
+InputHandler="*res://src/public/autoload/input_handler.gd"
+GlyphManager="*res://src/public/autoload/glyph_manager.gd"
 
 [debug]
 

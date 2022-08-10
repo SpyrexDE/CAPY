@@ -102,6 +102,11 @@ func jump() -> void:
 	t.tween_property($Sprite, "scale:y", 0.25, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 	t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 
+func dash() -> void:
+	print($Sprite.animation, $Sprite.get_frame())
+	$GPUParticles2D.texture = $Sprite.frames.get_frame($Sprite.animation, $Sprite.get_frame())
+	$GPUParticles2D.emitting = true
+
 ###########
 # GETTERS #
 ###########

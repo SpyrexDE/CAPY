@@ -41,6 +41,10 @@ func transition_to(node : Node) -> void:
 	t.tween_property(node, "modulate", Color.WHITE, 0.5).from(Color.TRANSPARENT).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	t.tween_property(current, "modulate", Color.TRANSPARENT, 0.5).from(Color.WHITE).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	
+
+	current.set_process_input(false)
+	new.set_process_input(true)
+
 	await t.finished
 	current.queue_free()
 	current = new
