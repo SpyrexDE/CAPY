@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cpyc8wefit0i6"]
+[gd_resource type="Theme" load_steps=18 format=3 uid="uid://cpyc8wefit0i6"]
 
 [ext_resource type="FontFile" uid="uid://b1yh1xmlcicq0" path="res://src/fonts/ttf/Signika-SemiBold.ttf" id="1_7qs2a"]
 
@@ -56,6 +56,73 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="Texture2D" id="Texture2D_43svf"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="Texture2D" id="Texture2D_asc1k"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="Texture2D" id="Texture2D_txt85"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="Texture2D" id="Texture2D_dvf0u"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="Texture2D" id="Texture2D_d41by"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="Texture2D" id="Texture2D_ebw5m"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="Texture2D" id="Texture2D_g01yt"]
+resource_local_to_scene = false
+resource_name = ""
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vh38j"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wvxdj"]
+content_margin_left = 15.0
+content_margin_top = 5.0
+content_margin_right = 15.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+expand_margin_left = 8.0
+expand_margin_bottom = 102.0
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h77xv"]
+content_margin_left = 25.0
+content_margin_top = 5.0
+content_margin_right = 25.0
+bg_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+expand_margin_left = 8.0
+anti_aliasing_size = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6gb7"]
+content_margin_left = 25.0
+content_margin_top = 5.0
+content_margin_right = 25.0
+bg_color = Color(0.917647, 0.917647, 0.917647, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+expand_margin_left = 8.0
+anti_aliasing_size = 1.0
+
 [resource]
 default_font = ExtResource("1_7qs2a")
 default_font_size = 64
@@ -72,4 +139,18 @@ MarginContainer/constants/margin_left = 40
 MarginContainer/constants/margin_right = 40
 MarginContainer/constants/margin_top = 40
 Panel/styles/panel = SubResource("StyleBoxFlat_611p3")
+TabContainer/colors/font_disabled_color = Color(0.235294, 0.235294, 0.235294, 0.501961)
+TabContainer/colors/font_selected_color = Color(0.160784, 0.160784, 0.160784, 1)
+TabContainer/colors/font_unselected_color = Color(0.231373, 0.231373, 0.231373, 1)
+TabContainer/icons/decrement = SubResource("Texture2D_43svf")
+TabContainer/icons/decrement_highlight = SubResource("Texture2D_asc1k")
+TabContainer/icons/drop_mark = SubResource("Texture2D_txt85")
+TabContainer/icons/increment = SubResource("Texture2D_dvf0u")
+TabContainer/icons/increment_highlight = SubResource("Texture2D_d41by")
+TabContainer/icons/menu = SubResource("Texture2D_ebw5m")
+TabContainer/icons/menu_highlight = SubResource("Texture2D_g01yt")
+TabContainer/styles/panel = SubResource("StyleBoxFlat_vh38j")
+TabContainer/styles/tab_disabled = SubResource("StyleBoxFlat_wvxdj")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_h77xv")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_w6gb7")
 VBoxContainer/constants/separation = 22

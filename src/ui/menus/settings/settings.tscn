@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://vijlg022mjr6"]
+
+[ext_resource type="Theme" uid="uid://cpyc8wefit0i6" path="res://src/ui/themes/theme.tres" id="1_vnvqc"]
+
+[node name="SettingsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource("1_vnvqc")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+offset_left = 340.0
+offset_top = 120.0
+offset_right = 1580.0
+offset_bottom = 960.0
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="TabContainer" type="TabContainer" parent="CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(1200, 800)
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 1220.0
+offset_bottom = 820.0
+use_hidden_tabs_for_min_size = true
+
+[node name="Control" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 85.0
+
+[node name="Control2" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 85.0
+
+[node name="Control3" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 85.0
+
+[node name="Control4" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 85.0
+
+[node name="Control5" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 85.0
