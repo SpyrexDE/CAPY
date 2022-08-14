@@ -1,11 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://vijlg022mjr6"]
+[gd_scene load_steps=3 format=3 uid="uid://vijlg022mjr6"]
 
 [ext_resource type="Theme" uid="uid://cpyc8wefit0i6" path="res://src/ui/themes/theme.tres" id="1_vnvqc"]
+[ext_resource type="Script" path="res://src/ui/menus/settings/settings.gd" id="2_4ocod"]
 
-[node name="SettingsMenu" type="Control"]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("tab_container")]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource("1_vnvqc")
+script = ExtResource("2_4ocod")
+tab_container = NodePath("CenterContainer/MarginContainer/TabContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -29,32 +32,3 @@ offset_top = 20.0
 offset_right = 1220.0
 offset_bottom = 820.0
 use_hidden_tabs_for_min_size = true
-
-[node name="Control" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 85.0
-
-[node name="Control2" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 85.0
-
-[node name="Control3" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 85.0
-
-[node name="Control4" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 85.0
-
-[node name="Control5" type="Control" parent="CenterContainer/MarginContainer/TabContainer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 85.0
