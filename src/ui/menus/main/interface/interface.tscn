@@ -78,7 +78,6 @@ func _process(delta: float) -> void:
 			else:
 				child.focus_mode = FOCUS_ALL
 
-
 func _on_b_reddit_pressed():
 	pass
 "

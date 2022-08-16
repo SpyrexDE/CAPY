@@ -159,6 +159,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CAPY"
+config/description="Jump and run game featuring a capybara as main character"
 run/main_scene="res://src/scene_wrapper/scene_wrapper.tscn"
 config/features=PackedStringArray("4.0")
 boot_splash/bg_color=Color(0.027451, 0.0470588, 0.12549, 1)

@@ -3,6 +3,8 @@ class_name GlyphsMap
 
 const GLYPHS_DIR := "res://src/icons/"
 
+const CONTROLLER_DEVICES := ["xbox", "playstation", "generic"]
+
 const DEVICE_NAMES := {
 	"keyboard": "Keyboard & Mouse/Dark",
 	"xbox": "Xbox Series",

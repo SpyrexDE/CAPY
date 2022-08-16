@@ -96,7 +96,9 @@ func is_valid_key(key: String) -> bool:
 
 func get_action_key(action: String) -> String:
 	for event in InputMap.action_get_events(action):
-		if event is InputEventKey:
+		if event is InputEventKey and device == DEVICE_KEYBOARD:
+			return event.as_text()
+		elif event is InputEventJoypadButton and device != DEVICE_KEYBOARD:
 			return event.as_text()
 	return ""
 

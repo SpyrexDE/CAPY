@@ -17,7 +17,7 @@ func apply_savegame(_save_game : SaveGame, file_name : String) -> void:
 func write_savegame() -> void:
 	# Prepare SaveGame resource
 	save_game.datetime = Time.get_date_string_from_system()
-	Game.save_game.current_level = first_level
+	save_game.current_level = first_level
 	
 	ensure_savegame_dir()
 	

@@ -28,6 +28,8 @@ var container_base_size : Vector2 = $VBoxContainer.size
 @onready
 var container_base_position : Vector2 = $VBoxContainer.position + $VBoxContainer.size / 2
 
+var _data
+
 func _ready() -> void:
 	bg_intensity = bg.intensity
 	bg_opacity = bg.opacity
@@ -36,6 +38,13 @@ func _ready() -> void:
 	bg.rgb.a = 0.0
 	modulate.a = 0.0
 	visible = true
+	
+	InputHelper.device_changed.connect(_on_device_changed)
+
+func _on_device_changed(_device, _device_index) -> void:
+	print(\"changed\")
+	if _data:
+		set_glyphes(_data)
 
 func show() -> void:
 	var t = create_tween()
@@ -54,6 +63,7 @@ func hide() -> void:
 	t.tween_property(self, \"modulate:a\", 0.0, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 
 func set_glyphes(data : Dictionary):
+	_data = data
 	clear()
 	
 	for key in data.keys():
