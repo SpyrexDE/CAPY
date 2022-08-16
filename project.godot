@@ -57,7 +57,7 @@ _global_script_classes=[{
 "base": "Resource",
 "class": &"GlyphsMap",
 "language": &"GDScript",
-"path": "res://src/public/classes/glyphs_map/glyphs_map.gd"
+"path": "res://src/global/classes/glyphs_map/glyphs_map.gd"
 }, {
 "base": "Decorator",
 "class": &"InverterDecorator",
@@ -72,12 +72,12 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"LevelLoader",
 "language": &"GDScript",
-"path": "res://src/public/classes/level_loading/level_loader.gd"
+"path": "res://src/global/classes/level_loading/level_loader.gd"
 }, {
 "base": "Node",
 "class": &"LevelSwitcher",
 "language": &"GDScript",
-"path": "res://src/public/classes/level_loading/level_switcher.gd"
+"path": "res://src/global/classes/level_loading/level_switcher.gd"
 }, {
 "base": "Decorator",
 "class": &"LimiterDecorator",
@@ -92,7 +92,7 @@ _global_script_classes=[{
 "base": "State",
 "class": &"PlayerState",
 "language": &"GDScript",
-"path": "res://src/public/classes/state_machine/PlayerState.gd"
+"path": "res://src/global/classes/state_machine/PlayerState.gd"
 }, {
 "base": "Resource",
 "class": &"SaveGame",
@@ -122,12 +122,12 @@ _global_script_classes=[{
 "base": "Node",
 "class": &"State",
 "language": &"GDScript",
-"path": "res://src/public/classes/state_machine/State.gd"
+"path": "res://src/global/classes/state_machine/State.gd"
 }, {
 "base": "Node",
 "class": &"StateMachine",
 "language": &"GDScript",
-"path": "res://src/public/classes/state_machine/StateMachine.gd"
+"path": "res://src/global/classes/state_machine/StateMachine.gd"
 }]
 _global_script_class_icons={
 "ActionLeaf": "res://addons/beehave/icons/action.svg",
@@ -166,10 +166,10 @@ config/icon="res://src/items/melon_seed/melon_seed.png"
 
 [autoload]
 
-Game="*res://src/public/autoload/game.gd"
-Utils="*res://src/public/autoload/utils.gd"
-InputHandler="*res://src/public/autoload/input_handler.gd"
-GlyphManager="*res://src/public/autoload/glyph_manager.gd"
+Game="*res://src/global/autoload/game.gd"
+Utils="*res://src/global/autoload/utils.gd"
+InputHandler="*res://src/global/autoload/input_handler.gd"
+GlyphManager="*res://src/global/autoload/glyph_manager.gd"
 InputHelper="*res://addons/input_helper/input_helper.gd"
 
 [debug]
