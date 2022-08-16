@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://cm6rpjw0ry0cl"]
+[gd_scene load_steps=2 format=3 uid="uid://cm6rpjw0ry0cl"]
+
+[ext_resource type="Theme" uid="uid://oamxi4l7eet5" path="res://src/ui/themes/settings_toggle_switch.tres" id="1_5f3t1"]
 
 [node name="General" type="Control"]
 anchor_right = 1.0
@@ -17,3 +19,31 @@ offset_left = 30.0
 offset_top = 30.0
 offset_right = 1890.0
 offset_bottom = 1050.0
+theme_override_constants/separation = 28
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+offset_right = 1860.0
+offset_bottom = 120.0
+theme = ExtResource("1_5f3t1")
+text = "Test text"
+
+[node name="CheckButton2" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+offset_top = 148.0
+offset_right = 1860.0
+offset_bottom = 268.0
+theme = ExtResource("1_5f3t1")
+text = "Test text"
+
+[node name="CheckButton3" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+offset_top = 296.0
+offset_right = 1860.0
+offset_bottom = 416.0
+theme = ExtResource("1_5f3t1")
+text = "Test text"
+
+[node name="CheckButton4" type="CheckButton" parent="MarginContainer/VBoxContainer"]
+offset_top = 444.0
+offset_right = 1860.0
+offset_bottom = 564.0
+theme = ExtResource("1_5f3t1")
+text = "Test text"

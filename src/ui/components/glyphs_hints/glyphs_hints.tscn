@@ -61,7 +61,7 @@ func set_glyphes(data : Dictionary):
 		$VBoxContainer.add_child(i)
 		
 		i.text = key
-		i.icon = load(data[key])
+		i.icon = GlyphManager.get_input_icon(data[key])
 	
 	adjust_sizing()
 

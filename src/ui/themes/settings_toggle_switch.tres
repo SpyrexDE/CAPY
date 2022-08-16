@@ -1,6 +1,6 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://y5ev1fhfqnbu"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://oamxi4l7eet5"]
 
-[ext_resource type="FontFile" uid="uid://b1yh1xmlcicq0" path="res://src/fonts/ttf/Signika-SemiBold.ttf" id="1_0nnk3"]
+[ext_resource type="FontFile" uid="uid://b1yh1xmlcicq0" path="res://src/fonts/ttf/Signika-SemiBold.ttf" id="1_ekce1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ppnhs"]
 bg_color = Color(0.980392, 0.980392, 0.980392, 1)
@@ -13,8 +13,7 @@ corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
-corner_detail = 15
-anti_aliasing_size = 1.0
+anti_aliasing_size = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w6h41"]
 bg_color = Color(0.980392, 0.980392, 0.980392, 1)
@@ -27,14 +26,14 @@ corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
-anti_aliasing_size = 1.0
+anti_aliasing_size = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqbra"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
 bg_color = Color(0.980392, 0.980392, 0.980392, 1)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
 corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
@@ -51,7 +50,7 @@ corner_radius_top_left = 40
 corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
-anti_aliasing_size = 1.0
+anti_aliasing_size = 5.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1if0"]
 bg_color = Color(1, 1, 1, 1)
@@ -61,7 +60,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [resource]
-default_font = ExtResource("1_0nnk3")
+default_font = ExtResource("1_ekce1")
 default_font_size = 64
 Button/colors/font_color = Color(0.521569, 0.521569, 0.521569, 1)
 Button/colors/font_focus_color = Color(0.513726, 0.717647, 0.701961, 1)
@@ -73,6 +72,8 @@ Button/styles/focus = SubResource("StyleBoxFlat_ppnhs")
 Button/styles/hover = SubResource("StyleBoxFlat_w6h41")
 Button/styles/normal = SubResource("StyleBoxFlat_gqbra")
 Button/styles/pressed = SubResource("StyleBoxFlat_45o13")
+CheckButton/icons/off = null
+CheckButton/icons/on = null
 MarginContainer/constants/margin_bottom = 40
 MarginContainer/constants/margin_left = 40
 MarginContainer/constants/margin_right = 40

@@ -10,8 +10,6 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion or event is InputEventKey:
 		if last_focused_element != null:
 			last_focused_element.grab_focus()
-	
-	
 
 func _on_focus_changed(control : Control) -> void:
 	if control != null:
