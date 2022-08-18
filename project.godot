@@ -188,7 +188,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/beehave/plugin.cfg", "res://addons/input_helper/plugin.cfg", "res://addons/embed_external_editor/plugin.cfg")
+enabled=PackedStringArray("res://addons/ColorPreview/plugin.cfg", "res://addons/beehave/plugin.cfg", "res://addons/input_helper/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg")
 
 [input]
 

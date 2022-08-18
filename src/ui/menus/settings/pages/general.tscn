@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cm6rpjw0ry0cl"]
+[gd_scene load_steps=3 format=3 uid="uid://cm6rpjw0ry0cl"]
 
-[ext_resource type="Theme" uid="uid://oamxi4l7eet5" path="res://src/ui/themes/settings_toggle_switch.tres" id="1_5f3t1"]
+[ext_resource type="PackedScene" uid="uid://b10m30uuvl6nk" path="res://src/ui/components/checkbutton/CheckButton.tscn" id="1_8pejt"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_yw5d7"]
 
 [node name="General" type="Control"]
 anchor_right = 1.0
@@ -14,36 +15,100 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="MarginContainer"]
 offset_left = 30.0
 offset_top = 30.0
 offset_right = 1890.0
 offset_bottom = 1050.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_yw5d7")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/SmoothScrollContainer"]
+offset_right = 1852.0
+offset_bottom = 1661.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 28
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer"]
-offset_right = 1860.0
-offset_bottom = 120.0
-theme = ExtResource("1_5f3t1")
-text = "Test text"
+[node name="CheckButton" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_right = 1852.0
+offset_bottom = 245.0
+text = "Test text
+sadasdsad
+asda
+sdasda
+sdasdasdasdadasd"
 
-[node name="CheckButton2" type="CheckButton" parent="MarginContainer/VBoxContainer"]
-offset_top = 148.0
-offset_right = 1860.0
-offset_bottom = 268.0
-theme = ExtResource("1_5f3t1")
-text = "Test text"
+[node name="CheckButton2" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 273.0
+offset_right = 1852.0
+offset_bottom = 363.0
 
-[node name="CheckButton3" type="CheckButton" parent="MarginContainer/VBoxContainer"]
-offset_top = 296.0
-offset_right = 1860.0
-offset_bottom = 416.0
-theme = ExtResource("1_5f3t1")
-text = "Test text"
+[node name="CheckButton3" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 391.0
+offset_right = 1852.0
+offset_bottom = 481.0
 
-[node name="CheckButton4" type="CheckButton" parent="MarginContainer/VBoxContainer"]
-offset_top = 444.0
-offset_right = 1860.0
-offset_bottom = 564.0
-theme = ExtResource("1_5f3t1")
-text = "Test text"
+[node name="CheckButton4" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 509.0
+offset_right = 1852.0
+offset_bottom = 599.0
+
+[node name="CheckButton5" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 627.0
+offset_right = 1852.0
+offset_bottom = 717.0
+
+[node name="CheckButton6" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 745.0
+offset_right = 1852.0
+offset_bottom = 835.0
+
+[node name="CheckButton7" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 863.0
+offset_right = 1852.0
+offset_bottom = 953.0
+
+[node name="CheckButton8" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 981.0
+offset_right = 1852.0
+offset_bottom = 1071.0
+
+[node name="CheckButton9" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 1099.0
+offset_right = 1852.0
+offset_bottom = 1189.0
+
+[node name="CheckButton10" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 1217.0
+offset_right = 1852.0
+offset_bottom = 1307.0
+
+[node name="CheckButton11" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 1335.0
+offset_right = 1852.0
+offset_bottom = 1425.0
+
+[node name="CheckButton12" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 1453.0
+offset_right = 1852.0
+offset_bottom = 1543.0
+
+[node name="CheckButton13" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("1_8pejt")]
+anchor_right = 0.0
+offset_top = 1571.0
+offset_right = 1852.0
+offset_bottom = 1661.0

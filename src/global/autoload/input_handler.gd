@@ -1,11 +1,12 @@
 extends Node
 
+signal global_focus_changed(control: Control)
+
 var last_focused_element : Control
 var focused_element : Control
 
 
 func _input(event: InputEvent) -> void:
-	print("normal input")
 	if event is InputEventMouseMotion:	# Mouse input not working?!?!?!??!?!?!?!?!?!
 		
 		# Simulate Keyboard input to set device to Keyboard & Mouse
@@ -25,6 +26,7 @@ func _input(event: InputEvent) -> void:
 		InputHelper.emit_signal("device_changed", null, null)
 
 func _on_focus_changed(control : Control) -> void:
+	emit_signal("global_focus_changed", control)
 	if control != null:
 		last_focused_element = control
 	focused_element = control
