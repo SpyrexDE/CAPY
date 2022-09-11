@@ -21,7 +21,7 @@ func write_savegame() -> void:
 	
 	ensure_savegame_dir()
 	
-	ResourceSaver.save(SAVE_GAME_DIR + save_game_file_name, save_game)
+	ResourceSaver.save(save_game, SAVE_GAME_DIR + save_game_file_name)
 
 # Returns a dictionary with file_name as key and SaveGame res as value
 func load_savegames() -> Dictionary:
