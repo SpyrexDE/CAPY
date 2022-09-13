@@ -4,22 +4,34 @@
 [ext_resource type="Script" path="res://src/ui/menus/settings/settings.gd" id="2_4ocod"]
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("tab_container")]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_vnvqc")
 script = ExtResource("2_4ocod")
 tab_container = NodePath("CenterContainer/MarginContainer/TabContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
 offset_left = 340.0
 offset_top = 120.0
 offset_right = 1580.0
 offset_bottom = 960.0
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -27,8 +39,10 @@ theme_override_constants/margin_bottom = 20
 
 [node name="TabContainer" type="TabContainer" parent="CenterContainer/MarginContainer"]
 custom_minimum_size = Vector2(1200, 800)
+layout_mode = 2
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 1220.0
 offset_bottom = 820.0
+mouse_filter = 2
 use_hidden_tabs_for_min_size = true

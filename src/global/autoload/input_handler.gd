@@ -7,7 +7,7 @@ var focused_element : Control
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:	# Mouse input not working?!?!?!??!?!?!?!?!?!
+	if event is InputEventMouse:	# Mouse input not working?!?!?!??!?!?!?!?!?!
 		
 		# Simulate Keyboard input to set device to Keyboard & Mouse
 		var a = InputEventKey.new()

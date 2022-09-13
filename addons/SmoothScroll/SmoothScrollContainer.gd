@@ -6,10 +6,18 @@ extends ScrollContainer
 
 # Drag impact for one scroll input
 @export_range(10, 1)
-var speed = 8
+var speed := 8
 # Softness of damping when "overdragging"
 @export_range(0, 1)
-var damping = 0.5
+var damping := 0.5
+# Follows the focus smoothly
+@export
+var follow_focus_ := true
+
+@export_range(0, 1)
+var friction_scroll := 0.9
+@export_range(0, 1)
+var friction_drag := 0.97
 
 # Current velocity of the `content_node`
 var velocity := Vector2(0,0)
@@ -25,13 +33,15 @@ var content_node : Control
 var pos := Vector2(0, 0)
 # When true, `content_node`'s position is only set by dragging the scroll bar
 var scrolling := false
+# Current friction
+var friction := 0.9
 
 
 func _ready() -> void:
-	theme = load("res://src/ui/themes/theme.tres")
 	get_v_scroll_bar().connect("scrolling", _on_VScrollBar_scrolling)
+	get_viewport().connect("gui_focus_changed", _on_focus_changed)
 	for c in get_children():
-		content_node = c
+		if not c is ScrollBar: content_node = c
 
 
 func _process(delta: float) -> void:
@@ -58,7 +68,7 @@ func _process(delta: float) -> void:
 		over_drag_multiplicator_top = 1
 	
 	# Simulate friction
-	velocity *= 0.9
+	velocity *= friction
 	
 	# If velocity is too low, just set it to 0
 	if velocity.length() <= just_stop_under:
@@ -89,13 +99,51 @@ func _gui_input(event: InputEvent) -> void:
 		if not event.pressed:
 			scrolling = false
 		
+		var scrolled = true
+		
 		match event.button_index:
 			MOUSE_BUTTON_WHEEL_DOWN:  velocity.y -= speed
 			MOUSE_BUTTON_WHEEL_UP:    velocity.y += speed
+			_:                  scrolled = false
+			
+		if scrolled: friction = friction_scroll
+			
+	elif event is InputEventScreenDrag:
+		friction = friction_drag
+		if scroll_horizontal: velocity.x = event.relative.x
+		if scroll_vertical:   velocity.y = event.relative.y
+
+# Scroll to new focused element
+func _on_focus_changed(control: Control) -> void:
+	var is_child := false
+	for child in content_node.get_children():
+		if child == control:
+			is_child = true
+	if not is_child:
+		return
+	if not follow_focus_:
+		return
+	
+	var focus_size = control.size.y
+	var focus_top = control.position.y
+	
+	var scroll_size = size.y
+	var scroll_top = get_v_scroll()
+	var scroll_bottom = scroll_top + scroll_size - focus_size
+	
+	if focus_top < scroll_top:
+		scroll_to(focus_top)
+	
+	if focus_top > scroll_bottom:
+		var scroll_offset = scroll_top + focus_top - scroll_bottom
+		scroll_to(scroll_offset)
 
 func _on_VScrollBar_scrolling() -> void:
 	scrolling = true
 
+# Scrolls to specific position
+func scroll_to(y_pos: float) -> void:
+	velocity.y = -(y_pos + content_node.position.y) / 8
 
 # Scrolls up a page
 func scroll_page_up() -> void:

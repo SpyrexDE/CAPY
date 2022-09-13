@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://db0uvd8r3ss6j" path="res://src/icons/Xbox Series/XboxSeriesX_A.png" id="2_p3jcc"]
 
 [node name="GlyphsHint" type="Control" node_paths=PackedStringArray("label", "texture_rect")]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 269.0
 offset_bottom = 80.0
 size_flags_vertical = 3
@@ -14,14 +16,17 @@ label = NodePath("CenterContainer/HBoxContainer/Label")
 texture_rect = NodePath("CenterContainer/HBoxContainer/TextureRect")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
-offset_left = 68.0
+offset_left = 67.0
 offset_top = 13.0
-offset_right = 200.0
+offset_right = 202.0
 offset_bottom = 66.0
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/HBoxContainer"]
 custom_minimum_size = Vector2(40, 40)
@@ -29,6 +34,7 @@ offset_top = 6.0
 offset_right = 40.0
 offset_bottom = 46.0
 size_flags_vertical = 4
+mouse_filter = 2
 texture = ExtResource("2_p3jcc")
 ignore_texture_size = true
 stretch_mode = 4
@@ -39,10 +45,11 @@ custom_minimum_size = Vector2(10, 0)
 offset_left = 44.0
 offset_right = 54.0
 offset_bottom = 53.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="CenterContainer/HBoxContainer"]
 offset_left = 58.0
-offset_right = 132.0
+offset_right = 135.0
 offset_bottom = 53.0
 theme = ExtResource("1_s0ktg")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
