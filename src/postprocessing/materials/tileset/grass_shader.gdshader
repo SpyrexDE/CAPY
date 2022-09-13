@@ -1,7 +1,7 @@
 shader_type canvas_item;
 
 uniform float v = 1.0;
-uniform float strength = 2.0;
+uniform float strength = 4.0;
 uniform float speed = 2.0;
 
 float circle(vec2 position, float radius, float feather)

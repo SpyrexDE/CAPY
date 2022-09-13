@@ -1,9 +1,3 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://drso5nq0fejpd"]
-
-[ext_resource type="Shader" path="res://src/postprocessing/materials/tileset/grass_shader.gdshader" id="1_0kfon"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://drso5nq0fejpd"]
 
 [resource]
-shader = ExtResource("1_0kfon")
-speed = 2.0
-strength = 4.0
-v = 0.0
