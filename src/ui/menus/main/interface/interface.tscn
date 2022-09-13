@@ -592,6 +592,8 @@ _data = {
 }
 
 [node name="interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 pivot_offset = Vector2(943, 572)
@@ -599,6 +601,8 @@ script = SubResource("GDScript_83pib")
 
 [node name="loading_screen" parent="." instance=ExtResource("7_j4pde")]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 
 [node name="TextureRect" type="TextureRect" parent="." groups=["startup_pop_anim"]]
 offset_left = 107.0
@@ -615,12 +619,13 @@ metadata/_edit_layout_mode = 1
 metadata/_edit_use_custom_anchors = true
 
 [node name="bPlay" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 211.0
-offset_top = 506.0
+offset_top = -574.0
 offset_right = 605.0
-offset_bottom = 649.0
+offset_bottom = -431.0
 grow_vertical = 0
 pivot_offset = Vector2(201, 70)
 mouse_default_cursor_shape = 2
@@ -628,12 +633,13 @@ text = "PLAY"
 metadata/_edit_layout_mode = 1
 
 [node name="bSettings" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 211.0
-offset_top = 687.0
+offset_top = -393.0
 offset_right = 604.999
-offset_bottom = 830.0
+offset_bottom = -250.0
 grow_vertical = 0
 pivot_offset = Vector2(194, 69)
 mouse_default_cursor_shape = 2
@@ -641,12 +647,13 @@ text = "SETTINGS"
 metadata/_edit_layout_mode = 1
 
 [node name="bExit" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 211.0
-offset_top = 864.0
+offset_top = -216.0
 offset_right = 605.0
-offset_bottom = 1007.0
+offset_bottom = -73.0
 grow_vertical = 0
 pivot_offset = Vector2(194, 66)
 mouse_default_cursor_shape = 2
@@ -654,14 +661,15 @@ text = "EXIT"
 metadata/_edit_layout_mode = 1
 
 [node name="bReddit" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1821.0
-offset_top = 982.0
-offset_right = 1897.0
-offset_bottom = 1058.0
+offset_left = -99.0
+offset_top = -98.0
+offset_right = -23.0
+offset_bottom = -22.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(38, 39)
@@ -671,14 +679,15 @@ icon_alignment = 1
 metadata/_edit_layout_mode = 1
 
 [node name="bDiscord" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1709.0
-offset_top = 983.0
-offset_right = 1785.0
-offset_bottom = 1059.0
+offset_left = -211.0
+offset_top = -97.0
+offset_right = -135.0
+offset_bottom = -21.0
 grow_horizontal = 0
 grow_vertical = 0
 pivot_offset = Vector2(37, 37)
@@ -702,14 +711,16 @@ metadata/_edit_layout_mode = 1
 
 [node name="save_select" parent="." groups=["startup_pop_anim"] instance=ExtResource("5_awtbf")]
 visible = false
+layout_mode = 3
+anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 661.0
-offset_top = 239.0
-offset_right = 1221.0
-offset_bottom = 939.0
+offset_left = -299.0
+offset_top = -301.0
+offset_right = 261.0
+offset_bottom = 399.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(286, 355)
@@ -717,6 +728,8 @@ metadata/_edit_layout_mode = 1
 
 [node name="GlyphsHints" parent="." instance=ExtResource("8_bf2nu")]
 visible = false
+layout_mode = 3
+anchors_preset = 15
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

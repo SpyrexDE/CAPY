@@ -1,7 +1,8 @@
-[gd_resource type="Theme" load_steps=30 format=3 uid="uid://cpyc8wefit0i6"]
+[gd_resource type="Theme" load_steps=31 format=3 uid="uid://cpyc8wefit0i6"]
 
 [ext_resource type="Texture2D" uid="uid://dek4ngewk1kpv" path="res://src/ui/components/checkbutton/checkbox_unticked.png" id="1_po4ux"]
 [ext_resource type="Texture2D" uid="uid://cfl5frvmyfmyt" path="res://src/ui/components/checkbutton/checkbox_ticked.png" id="2_orrd3"]
+[ext_resource type="FontFile" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="3_b8wrt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vk1s"]
 bg_color = Color(1, 1, 1, 0)
@@ -240,6 +241,7 @@ bg_color = Color(0.596078, 0.686275, 1, 1)
 bg_color = Color(0.596078, 0.686275, 1, 1)
 
 [resource]
+default_font = ExtResource("3_b8wrt")
 default_font_size = 64
 Button/colors/font_color = Color(0.176471, 0.176471, 0.176471, 1)
 Button/colors/font_focus_color = Color(0.176471, 0.176471, 0.176471, 1)

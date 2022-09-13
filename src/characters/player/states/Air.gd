@@ -4,7 +4,7 @@ func physics_update(delta:float)->void:
 	# X-Acceleration
 	player.velocity.x += player.x_input * player.ACCELERATION * delta * player.TARGET_FPS
 	if player.air_dashing:
-		player.velocity.x = lerp(player.velocity.x, 0, player.AIR_FRICTION * delta)
+		player.velocity.x = lerp(player.velocity.x, 0.0, player.AIR_FRICTION * delta)
 	else:
 		player.velocity.x = clamp(player.velocity.x, -player.MAX_SPEED, player.MAX_SPEED)
 	
@@ -16,11 +16,11 @@ func physics_update(delta:float)->void:
 		# floor
 		player.air_dashing = false
 		if !player.is_moving() && player.is_on_floor():
-			player.velocity.x = lerp(player.velocity.x, 0, player.FRICTION * delta)
+			player.velocity.x = lerp(player.velocity.x, 0.0, player.FRICTION * delta)
 	else:
 		# air
 		if !player.is_moving():
-			player.velocity.x = lerp(player.velocity.x, 0, player.AIR_RESISTANCE * delta)
+			player.velocity.x = lerp(player.velocity.x, 0.0, player.AIR_RESISTANCE * delta)
 	
 	# Jumping
 	if player.jump_pressed or player.early_jumptimer_active:

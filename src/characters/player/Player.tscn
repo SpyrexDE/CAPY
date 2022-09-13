@@ -203,8 +203,8 @@ _data = {
 
 [sub_resource type="AnimationNodeOneShot" id="12"]
 
-[sub_resource type="AnimationNodeTransition" id="17"]
-input_count = 3
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ncc00"]
+enabled_inputs = 3
 input_0/name = "idle"
 input_0/auto_advance = false
 input_1/name = "jump"
@@ -225,21 +225,21 @@ animation = &"jump"
 animation = &"run"
 
 [sub_resource type="AnimationNodeBlendTree" id="10"]
-graph_offset = Vector2(-998.915, 249.504)
+graph_offset = Vector2(-1001.22, 55.6228)
 nodes/OneShot/node = SubResource("12")
 nodes/OneShot/position = Vector2(288, 144)
-nodes/State/node = SubResource("17")
-nodes/State/position = Vector2(-128, 144)
+nodes/Transition/node = SubResource("AnimationNodeTransition_ncc00")
+nodes/Transition/position = Vector2(-256, 144)
 nodes/hit/node = SubResource("13")
-nodes/hit/position = Vector2(80, 240)
+nodes/hit/position = Vector2(112, 272)
 nodes/idle/node = SubResource("9")
 nodes/idle/position = Vector2(-528, 128)
 nodes/jump/node = SubResource("16")
 nodes/jump/position = Vector2(-528, 240)
-nodes/null/node = SubResource("AnimationNodeAnimation_lcy3m")
-nodes/null/position = Vector2(-528, 368)
 nodes/output/position = Vector2(512, 144)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"State", &"OneShot", 1, &"hit", &"State", 0, &"idle", &"State", 1, &"jump", &"State", 2, &"null"]
+nodes/run/node = SubResource("AnimationNodeAnimation_lcy3m")
+nodes/run/position = Vector2(-528, 368)
+node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Transition", &"OneShot", 1, &"hit", &"Transition", 0, &"idle", &"Transition", 1, &"jump", &"Transition", 2, &"run"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5lfs"]
 atlas = ExtResource("2_yhrxj")
@@ -305,13 +305,15 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_o0ael"]
 gradient = SubResource("Gradient_gbjbb")
 
-[sub_resource type="ParticlesMaterial" id="ParticlesMaterial_aucmy"]
+[sub_resource type="ParticleProcessMaterial" id="ParticlesMaterial_aucmy"]
 particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
+scale_min = 0.2
+scale_max = 0.2
 color = Color(3, 3, 3, 1)
 color_ramp = SubResource("GradientTexture1D_o0ael")
 
@@ -347,13 +349,23 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("10")
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/OneShot/active = false
-parameters/State/current = 0
+parameters/Transition/current = 0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
 frames = SubResource("SpriteFrames_82q65")
-animation = &"run"
+animation = &"idle"
+frame = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite"]
+scale = Vector2(5, 5)
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticlesMaterial_aucmy")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("8_hr48v")
@@ -367,14 +379,6 @@ script = ExtResource("10_0a1w8")
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("11_n75n3")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 20
-lifetime = 0.5
-one_shot = true
-local_coords = false
-process_material = SubResource("ParticlesMaterial_aucmy")
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="EarlyJumpTimer" to="." method="_on_early_jump_timer_timeout"]

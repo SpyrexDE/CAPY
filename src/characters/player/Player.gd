@@ -74,13 +74,13 @@ func handleCollission() -> void:
 func handleAnimation() -> void:
 	if is_moving():
 		if is_on_floor():
-			cAnimationTree.set("parameters/State/current", 2)
+			cAnimationTree.set("parameters/Transition/current", 2)
 	else:
 		if is_on_floor():
-			cAnimationTree.set("parameters/State/current", 0)
+			cAnimationTree.set("parameters/Transition/current", 0)
 	
 	if !is_on_floor() && !is_on_wall():
-		cAnimationTree.set("parameters/State/current", 1)
+		cAnimationTree.set("parameters/Transition/current", 1)
 
 func flipH(flip: bool):
 	# Workaround function for Godot issue #12335
@@ -104,8 +104,8 @@ func jump() -> void:
 
 func dash() -> void:
 	print($Sprite.animation, $Sprite.get_frame())
-	$GPUParticles2D.texture = $Sprite.frames.get_frame($Sprite.animation, $Sprite.get_frame())
-	$GPUParticles2D.emitting = true
+	$Sprite/GPUParticles2D.texture = $Sprite.frames.get_frame($Sprite.animation, $Sprite.get_frame())
+	$Sprite/GPUParticles2D.emitting = true
 
 ###########
 # GETTERS #

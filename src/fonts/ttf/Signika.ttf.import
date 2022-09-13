@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Signika.ttf-ca8f482a00a2127d1f36bae160f041c4.
 [params]
 
 Rendering=null
-antialiased=true
+antialiasing=1
 generate_mipmaps=false
 multichannel_signed_distance_field=false
 msdf_pixel_range=8

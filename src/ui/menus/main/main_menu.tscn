@@ -14,6 +14,8 @@ func _process(delta: float) -> void:
 "
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("interface")]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource("GDScript_mwwnu")
@@ -24,3 +26,5 @@ interface = NodePath("CanvasLayer/interface")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="interface" parent="CanvasLayer" instance=ExtResource("2_2b1lw")]
+layout_mode = 3
+anchors_preset = 15
