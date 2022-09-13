@@ -640,7 +640,7 @@ size = Vector2(167, 1756)
 [node name="level01" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1")]
-position = Vector2(1373, 681)
+position = Vector2(595, 524)
 
 [node name="SDPlatform2" parent="." instance=ExtResource("3")]
 position = Vector2(4160, 535)
