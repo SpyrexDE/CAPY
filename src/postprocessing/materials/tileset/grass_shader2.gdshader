@@ -5,6 +5,7 @@ shader_type canvas_item;
 uniform vec2 offset = vec2(0);
 uniform float scale = 1.0;
 uniform float size = 0.5;
+uniform float speed = 0.3;
 
 #ifdef GL_ES
 precision mediump float;
@@ -86,7 +87,7 @@ void fragment() {
 	vec2 st = (2.*(FRAGCOORD.xy + 1.31*offset) - (i_resolution).xy) / i_resolution.y;
 
 	st *= 10.;
-	vec2 F = cellular2x2x2(vec3(st*(2.0 - scale * 5.0),TIME/3.0));
+	vec2 F = cellular2x2x2(vec3(st*(2.0 - scale * 5.0),TIME * speed));
 	float n = smoothstep(size, 1.0, F.x);
 	if(n == 0.0)
 		COLOR *= vec4(1.0-n, 1.0-n, 1.0-n, 1.0) + vec4(0.1 + FRAGCOORD.y / 10000.,  + FRAGCOORD.y / 10000.,  + FRAGCOORD.y / 10000., 0.0);

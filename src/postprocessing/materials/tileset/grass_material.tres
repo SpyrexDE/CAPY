@@ -7,3 +7,4 @@ shader = ExtResource("1_mc4lo")
 offset = Vector2(0, 0)
 scale = 1.087
 size = 0.415
+speed = 0.1
