@@ -41,3 +41,6 @@ func _process(delta) -> void:
 		
 	
 	move_and_slide()
+	
+func _physics_process(delta: float) -> void:
+	load("res://src/postprocessing/materials/tileset/grass_material.tres").set('offset', cCamera.global_position)
