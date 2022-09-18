@@ -360,6 +360,7 @@ animation = &"idle"
 frame = 1
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite"]
+show_behind_parent = true
 scale = Vector2(5, 5)
 emitting = false
 amount = 20

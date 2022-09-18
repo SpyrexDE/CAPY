@@ -172,6 +172,7 @@ Utils="*res://src/global/autoload/utils.gd"
 InputHandler="*res://src/global/autoload/input_handler.gd"
 GlyphManager="*res://src/global/autoload/glyph_manager.gd"
 InputHelper="*res://addons/input_helper/input_helper.gd"
+SettingsManager="*res://src/global/autoload/settings_manager.gd"
 
 [debug]
 
@@ -188,7 +189,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/input_helper/plugin.cfg")
+enabled=PackedStringArray("res://addons/beehave/plugin.cfg", "res://addons/input_helper/plugin.cfg", "res://addons/Todo_Manager/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg")
 
 [input]
 
