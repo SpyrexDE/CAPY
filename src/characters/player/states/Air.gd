@@ -22,6 +22,10 @@ func physics_update(delta:float)->void:
 		if !player.is_moving():
 			player.velocity.x = lerp(player.velocity.x, 0.0, player.AIR_RESISTANCE * delta)
 	
+	# Remove Air Dashing
+	if player.velocity.length() < player.AIR_DASH_SPEED / 2:
+		player.air_dashing = false
+	
 	# Jumping
 	if player.jump_pressed or player.early_jumptimer_active:
 		if player.can_jump:

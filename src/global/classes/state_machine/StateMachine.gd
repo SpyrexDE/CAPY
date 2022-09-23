@@ -19,7 +19,7 @@ signal transitioned(state_name)
 @onready var state: State = get_node(initial_state)
 
 
-func _ready()->void:
+func _ready() -> void:
 	await owner.ready
 	for child in get_children():
 		child.state_machine = self
@@ -29,13 +29,13 @@ func _ready()->void:
 # CALLBACK DELEGATION #
 #######################
 
-func _unhandled_input(event)->void:
+func _unhandled_input(event) -> void:
 	state.handle_input(event)
 
-func _process(delta)->void:
+func _process(delta) -> void:
 	state.update(delta)
 
-func _physics_process(delta)->void:
+func _physics_process(delta) -> void:
 	state.physics_update(delta)
 
 
@@ -45,7 +45,7 @@ func _physics_process(delta)->void:
 
 #Function calls current state's exit function, then transitions to the new state and calls its enter function
 #It can take a '_msg' dict for arguments if your state requires one for its enter function.
-func transition_to(target_state_name: String, msg: Dictionary = {})->void:
+func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	if not has_node(target_state_name):
 		return
 	
