@@ -1,8 +1,9 @@
-[gd_scene load_steps=38 format=3 uid="uid://c2foohcg7psea"]
+[gd_scene load_steps=46 format=3 uid="uid://c2foohcg7psea"]
 
 [ext_resource type="Script" path="res://src/characters/player/Player.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://80grkalw7e3l" path="res://src/characters/player/camera/player_camera.tscn" id="2_07o4u"]
 [ext_resource type="Texture2D" uid="uid://qqpheka7woxq" path="res://src/characters/player/animations/idle/idle.png" id="2_yhrxj"]
+[ext_resource type="Texture2D" uid="uid://nutjai4bpkiu" path="res://src/characters/player/animations/dash/dash.png" id="3_idkcu"]
 [ext_resource type="Texture2D" uid="uid://o05eaongwf6q" path="res://src/characters/player/animations/jump/jump.png" id="3_tvo4g"]
 [ext_resource type="Texture2D" uid="uid://6s68hpgxhnxt" path="res://src/characters/player/animations/run/run.png" id="5_n57sj"]
 [ext_resource type="Script" path="res://src/global/classes/state_machine/StateMachine.gd" id="8_hr48v"]
@@ -192,16 +193,44 @@ tracks/1/keys = {
 "values": [&"run"]
 }
 
+[sub_resource type="Animation" id="Animation_3itty"]
+resource_name = "dash"
+length = 0.3
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"dash"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kod1h"]
 _data = {
 "RESET": SubResource("8"),
+"dash": SubResource("Animation_3itty"),
 "hit": SubResource("11"),
 "idle": SubResource("7"),
 "jump": SubResource("14"),
 "run": SubResource("Animation_4bpj0")
 }
-
-[sub_resource type="AnimationNodeOneShot" id="12"]
 
 [sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_ncc00"]
 enabled_inputs = 3
@@ -211,6 +240,9 @@ input_1/name = "jump"
 input_1/auto_advance = false
 input_2/name = "run"
 input_2/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dsfnm"]
+animation = &"dash"
 
 [sub_resource type="AnimationNodeAnimation" id="13"]
 animation = &"hit"
@@ -224,22 +256,58 @@ animation = &"jump"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lcy3m"]
 animation = &"run"
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_2ourm"]
+
+[sub_resource type="AnimationNodeOneShot" id="12"]
+
 [sub_resource type="AnimationNodeBlendTree" id="10"]
-graph_offset = Vector2(-1001.22, 55.6228)
-nodes/OneShot/node = SubResource("12")
-nodes/OneShot/position = Vector2(288, 144)
+graph_offset = Vector2(-424.571, 160.165)
 nodes/Transition/node = SubResource("AnimationNodeTransition_ncc00")
 nodes/Transition/position = Vector2(-256, 144)
-nodes/hit/node = SubResource("13")
-nodes/hit/position = Vector2(112, 272)
-nodes/idle/node = SubResource("9")
-nodes/idle/position = Vector2(-528, 128)
-nodes/jump/node = SubResource("16")
-nodes/jump/position = Vector2(-528, 240)
-nodes/output/position = Vector2(512, 144)
-nodes/run/node = SubResource("AnimationNodeAnimation_lcy3m")
-nodes/run/position = Vector2(-528, 368)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"Transition", &"OneShot", 1, &"hit", &"Transition", 0, &"idle", &"Transition", 1, &"jump", &"Transition", 2, &"run"]
+nodes/anim_dash/node = SubResource("AnimationNodeAnimation_dsfnm")
+nodes/anim_dash/position = Vector2(528, 320)
+nodes/anim_hit/node = SubResource("13")
+nodes/anim_hit/position = Vector2(288, 320)
+nodes/anim_idle/node = SubResource("9")
+nodes/anim_idle/position = Vector2(-528, 128)
+nodes/anim_jump/node = SubResource("16")
+nodes/anim_jump/position = Vector2(-528, 240)
+nodes/anim_run/node = SubResource("AnimationNodeAnimation_lcy3m")
+nodes/anim_run/position = Vector2(-528, 368)
+nodes/dash/node = SubResource("AnimationNodeOneShot_2ourm")
+nodes/dash/position = Vector2(512, 144)
+nodes/hit/node = SubResource("12")
+nodes/hit/position = Vector2(288, 144)
+nodes/output/position = Vector2(768, 144)
+node_connections = [&"output", 0, &"dash", &"Transition", 0, &"anim_idle", &"Transition", 1, &"anim_jump", &"Transition", 2, &"anim_run", &"hit", 0, &"Transition", &"hit", 1, &"anim_hit", &"dash", 0, &"hit", &"dash", 1, &"anim_dash"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kn2lx"]
+atlas = ExtResource("3_idkcu")
+region = Rect2(0, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2rav"]
+atlas = ExtResource("3_idkcu")
+region = Rect2(500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4at77"]
+atlas = ExtResource("3_idkcu")
+region = Rect2(1000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kvqg"]
+atlas = ExtResource("3_idkcu")
+region = Rect2(1500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ubfv"]
+atlas = ExtResource("3_idkcu")
+region = Rect2(2000, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jpmw"]
+atlas = ExtResource("3_idkcu")
+region = Rect2(2500, 0, 500, 500)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwj2a"]
+atlas = ExtResource("3_idkcu")
+region = Rect2(3000, 0, 500, 500)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y5lfs"]
 atlas = ExtResource("2_yhrxj")
@@ -283,6 +351,11 @@ region = Rect2(2755, 0, 551, 594)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_82q65"]
 animations = [{
+"frames": [SubResource("AtlasTexture_kn2lx"), SubResource("AtlasTexture_d2rav"), SubResource("AtlasTexture_4at77"), SubResource("AtlasTexture_8kvqg"), SubResource("AtlasTexture_7ubfv"), SubResource("AtlasTexture_2jpmw"), SubResource("AtlasTexture_uwj2a")],
+"loop": true,
+"name": &"dash",
+"speed": 5.0
+}, {
 "frames": [SubResource("AtlasTexture_y5lfs"), SubResource("AtlasTexture_ba7b3")],
 "loop": true,
 "name": &"idle",
@@ -299,30 +372,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_gbjbb"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_o0ael"]
-gradient = SubResource("Gradient_gbjbb")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticlesMaterial_aucmy"]
-particle_flag_disable_z = true
-direction = Vector3(0, 0, 0)
-spread = 0.0
-gravity = Vector3(0, 0, 0)
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-scale_min = 0.2
-scale_max = 0.2
-color = Color(3, 3, 3, 1)
-color_ramp = SubResource("GradientTexture1D_o0ael")
-
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cJumpTimer", "cEarlyJumpTimer", "cAnimationTree", "cCamera2D")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cJumpTimer", "cEarlyJumpTimer", "cAnimationTree", "cSprite")]
 script = ExtResource("2")
 cJumpTimer = NodePath("JumpTimer")
 cEarlyJumpTimer = NodePath("EarlyJumpTimer")
 cAnimationTree = NodePath("AnimationTree")
-cCamera2D = NodePath("")
+cSprite = NodePath("Sprite")
 
 [node name="JumpTimer" type="Timer" parent="."]
 one_shot = true
@@ -350,23 +405,15 @@ libraries = {
 tree_root = SubResource("10")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/OneShot/active = false
 parameters/Transition/current = 0
+parameters/dash/active = false
+parameters/hit/active = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.2, 0.2)
+z_index = 10
 frames = SubResource("SpriteFrames_82q65")
 animation = &"idle"
-frame = 1
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite"]
-show_behind_parent = true
-scale = Vector2(5, 5)
-emitting = false
-amount = 20
-lifetime = 0.5
-one_shot = true
-process_material = SubResource("ParticlesMaterial_aucmy")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("8_hr48v")
@@ -383,3 +430,4 @@ script = ExtResource("11_n75n3")
 
 [connection signal="timeout" from="JumpTimer" to="." method="_on_JumpTimer_timeout"]
 [connection signal="timeout" from="EarlyJumpTimer" to="." method="_on_early_jump_timer_timeout"]
+[connection signal="frame_changed" from="Sprite" to="." method="_on_sprite_frame_changed"]

@@ -51,7 +51,7 @@ func physics_update(delta:float)->void:
 	if !player.is_on_floor() && Input.is_action_just_pressed("roll") && !player.air_dashing:
 		player.air_dashing = true
 		var y_strength = Input.get_action_strength("face_down") - Input.get_action_strength("face_up")
-		player.velocity = Vector2(player.x_input, y_strength - player.AIR_DASH_OFFSET * abs(player.x_input) + player.GRAVITY * 0.01) * player.AIR_DASH_SPEED
+		player.velocity = Vector2(player.x_input, y_strength - player.AIR_DASH_OFFSET * abs(player.x_input) + player.GRAVITY * 0.01).normalized() * player.AIR_DASH_SPEED
 		player.dash()
 		
 	# Apply velocity and rotation

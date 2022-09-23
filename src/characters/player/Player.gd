@@ -2,6 +2,11 @@ class_name Player
 extends CharacterBody2D
 
 #############
+# PreLoads #
+#############
+const GHOST_TRAIL = preload("res://src/vfx/ghost_trail/ghost_trail.tscn")
+
+#############
 # Variables #
 #############
 
@@ -23,6 +28,13 @@ extends CharacterBody2D
 # Physics
 @onready var aimed_scale = self.scale
 
+# Animation
+enum ANIMATIONS {
+	IDLE,
+	JUMP,
+	WALK
+}
+
 # Input
 var x_input := 0.0
 var y_input := 0.0
@@ -41,7 +53,7 @@ var air_dashing := false
 @export var cJumpTimer : Timer
 @export var cEarlyJumpTimer : Timer
 @export var cAnimationTree : AnimationTree
-@export var cCamera2D : Camera2D
+@export var cSprite : AnimatedSprite2D
 
 func _ready() -> void:
 	cAnimationTree.active = true
@@ -74,13 +86,20 @@ func handleCollission() -> void:
 func handleAnimation() -> void:
 	if is_moving():
 		if is_on_floor():
-			cAnimationTree.set("parameters/Transition/current", 2)
+			cAnimationTree.set("parameters/Transition/current", ANIMATIONS.WALK)
 	else:
 		if is_on_floor():
-			cAnimationTree.set("parameters/Transition/current", 0)
+			cAnimationTree.set("parameters/Transition/current", ANIMATIONS.IDLE)
 	
 	if !is_on_floor() && !is_on_wall():
-		cAnimationTree.set("parameters/Transition/current", 1)
+		cAnimationTree.set("parameters/Transition/current", ANIMATIONS.JUMP)
+	
+	if air_dashing:
+			var gt = GHOST_TRAIL.instantiate()
+			get_parent().add_child(gt)
+			gt.global_position = global_position
+			gt.scale = cSprite.scale
+			gt.texture = $Sprite.frames.get_frame($Sprite.animation, $Sprite.get_frame())
 
 func flipH(flip: bool):
 	# Workaround function for Godot issue #12335
@@ -103,9 +122,7 @@ func jump() -> void:
 	t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 
 func dash() -> void:
-	print($Sprite.animation, $Sprite.get_frame())
-	$Sprite/GPUParticles2D.texture = $Sprite.frames.get_frame($Sprite.animation, $Sprite.get_frame())
-	$Sprite/GPUParticles2D.emitting = true
+	cAnimationTree.set("parameters/dash/active", true)
 
 ###########
 # GETTERS #
@@ -132,3 +149,7 @@ func _on_JumpTimer_timeout() -> void:
 
 func _on_early_jump_timer_timeout() -> void:
 	early_jumptimer_active = false
+
+
+func _on_sprite_frame_changed() -> void:
+	pass
