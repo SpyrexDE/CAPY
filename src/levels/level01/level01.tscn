@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://b1ijuhrmuak2d"]
+[gd_scene load_steps=14 format=3 uid="uid://b1ijuhrmuak2d"]
 
 [ext_resource type="PackedScene" uid="uid://c2foohcg7psea" path="res://src/characters/player/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dv7itpsiu72vg" path="res://src/props/sd_platform/SDPlatform.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://k2yepueoprnw" path="res://src/props/moving_platform/PlatformMover.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dhh1kqclqlqxi" path="res://src/items/melon_seed/MelonSeed.tscn" id="5"]
 [ext_resource type="PackedScene" uid="uid://7reym7j4d8vh" path="res://src/props/spike/spike.tscn" id="5_mc1tl"]
-[ext_resource type="Script" path="res://src/global/classes/level_loading/level_switcher.gd" id="7_2k86t"]
 [ext_resource type="Texture2D" uid="uid://bwhiq2f4ga74d" path="res://src/tilesets/area01/GroundGrass.png" id="8_kcrji"]
 
 [sub_resource type="GDScript" id="GDScript_lleje"]
@@ -492,20 +491,6 @@ sources/0 = SubResource("TileSetAtlasSource_ycmyg")
 sources/1 = SubResource("TileSetScenesCollectionSource_vcjwg")
 script = SubResource("GDScript_lleje")
 
-[sub_resource type="GDScript" id="GDScript_qb1cc"]
-script/source = "extends Area2D
-
-@export
-var level_switcher : Node
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	level_switcher.call_deferred(\"change_scene\")
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_viwps"]
-size = Vector2(169.5, 81.5)
-
 [sub_resource type="Shader" id="Shader_meate"]
 code = "/*
 Shader from Godot Shaders - the free shader library.
@@ -617,19 +602,19 @@ void fragment()
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cdlp1"]
 shader = SubResource("Shader_meate")
-angle = 0.237
-color = Color(1, 0.901961, 0.65098, 0.854902)
-cutoff = 0.269
-edge_fade = 0.232
-falloff = 0.355
-hdr = false
-position = 0.039
-ray1_density = 10.826
-ray2_density = 30.543
-ray2_intensity = 0.3
-seed = 5.0
-speed = 1.0
-spread = 0.902
+shader_parameter/angle = 0.237
+shader_parameter/color = Color(1, 0.901961, 0.65098, 0.854902)
+shader_parameter/cutoff = 0.269
+shader_parameter/edge_fade = 0.232
+shader_parameter/falloff = 0.355
+shader_parameter/hdr = false
+shader_parameter/position = 0.039
+shader_parameter/ray1_density = 10.826
+shader_parameter/ray2_density = 30.543
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/seed = 5.0
+shader_parameter/speed = 1.0
+shader_parameter/spread = 0.902
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1glcm"]
 size = Vector2(167, 1756)
@@ -776,19 +761,6 @@ position = Vector2(6690, 75)
 [node name="MelonSeed27" parent="MelonSeeds" instance=ExtResource("5")]
 position = Vector2(5596, 119)
 
-[node name="Area2D" type="Area2D" parent="." node_paths=PackedStringArray("level_switcher")]
-visible = false
-script = SubResource("GDScript_qb1cc")
-level_switcher = NodePath("LevelSwitcher")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1240, 152)
-shape = SubResource("RectangleShape2D_viwps")
-
-[node name="LevelSwitcher" type="Node2D" parent="Area2D"]
-script = ExtResource("7_2k86t")
-scene_path = "res://src/levels/level02/level02.tscn"
-
 [node name="GodRay" type="Node2D" parent="."]
 position = Vector2(7159, -137)
 
@@ -827,5 +799,3 @@ collision_mask = 256
 [node name="CollisionShape2D" type="CollisionShape2D" parent="levelborders/StaticBody2D3"]
 position = Vector2(-241, 828)
 shape = SubResource("RectangleShape2D_1glcm")
-
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_area_2d_body_entered"]

@@ -87,24 +87,27 @@ func clear() -> void:
 		$VBoxContainer.remove_child(child)
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_myk8c"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pgfd"]
 resource_local_to_scene = true
 shader = ExtResource("1_8rwff")
-vignette_intensity = 4.307
-vignette_opacity = 0.7
-vignette_rgb = Color(0, 0, 0, 0.498039)
+shader_parameter/vignette_intensity = 4.307
+shader_parameter/vignette_opacity = 0.7
+shader_parameter/vignette_rgb = Color(0, 0, 0, 0.498039)
 
 [node name="GlyphsHints" type="Control" node_paths=PackedStringArray("bg")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 script = SubResource("GDScript_resde")
 bg = NodePath("VignetteBackground")
 
 [node name="VignetteBackground" parent="." instance=ExtResource("1_o4m7h")]
-material = SubResource("ShaderMaterial_myk8c")
+material = SubResource("ShaderMaterial_6pgfd")
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -122,6 +125,7 @@ rgb = Color(0, 0, 0, 0.498039)
 metadata/_edit_layout_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

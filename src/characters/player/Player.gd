@@ -126,6 +126,7 @@ func jump() -> void:
 		$Sprite/AirJumpSmoke.emitting = true
 
 func dash() -> void:
+	print("asd")
 	cAnimationTree.set("parameters/dash/active", true)
 
 ###########

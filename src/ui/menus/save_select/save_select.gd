@@ -35,7 +35,7 @@ func _load_game_pressed(btn) -> void:
 	add_child(ll)
 	ll.start_load(Game.save_game.current_level)
 	await ll.load_done
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5).timeout	# Buffer so you actually get to see the loading screen
 	ll.change_scene()
 
 func _new_game_pressed() -> void:
@@ -45,5 +45,5 @@ func _new_game_pressed() -> void:
 	add_child(ll)
 	ll.start_load(Game.first_level)
 	await ll.load_done
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5).timeout	# Buffer so you actually get to see the loading screen
 	ll.change_scene()
