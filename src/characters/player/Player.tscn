@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://c2foohcg7psea"]
+[gd_scene load_steps=53 format=3 uid="uid://c2foohcg7psea"]
 
 [ext_resource type="Script" path="res://src/characters/player/Player.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://80grkalw7e3l" path="res://src/characters/player/camera/player_camera.tscn" id="2_07o4u"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://o05eaongwf6q" path="res://src/characters/player/animations/jump/jump.png" id="3_tvo4g"]
 [ext_resource type="Texture2D" uid="uid://6s68hpgxhnxt" path="res://src/characters/player/animations/run/run.png" id="5_n57sj"]
 [ext_resource type="PackedScene" uid="uid://bky4fc3donmi4" path="res://src/vfx/air_jump_smoke/AirJumpSmoke.tscn" id="7_2kmdh"]
+[ext_resource type="Texture2D" uid="uid://dyeuvc23ditcl" path="res://addons/kenney_particle_pack/star_05.png" id="8_ciwyd"]
 [ext_resource type="Script" path="res://src/global/classes/state_machine/StateMachine.gd" id="8_hr48v"]
 [ext_resource type="Script" path="res://src/characters/player/states/Idle.gd" id="9_one56"]
 [ext_resource type="Script" path="res://src/characters/player/states/Run.gd" id="10_0a1w8"]
@@ -381,6 +382,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_mi8os"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.327402, 1)
+colors = PackedColorArray(0.501961, 0.352941, 0.215686, 1, 0.647031, 0.455181, 0.277859, 0.712623, 0.913725, 0.643137, 0.392157, 0.184314)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1v6jj"]
+gradient = SubResource("Gradient_mi8os")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x5bfa"]
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(1000, 0, 0)
+gravity = Vector3(0, 40, 0)
+initial_velocity_min = -216.75
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -90.0
+angle_max = 90.0
+scale_min = 0.05
+scale_max = 0.1
+color = Color(0.501961, 0.352941, 0.215686, 1)
+color_ramp = SubResource("GradientTexture1D_1v6jj")
+collision_mode = 1
+collision_friction = 0.05
+collision_bounce = 0.5
+collision_use_scale = true
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("cJumpTimer", "cEarlyJumpTimer", "cAnimationTree", "cSprite")]
 script = ExtResource("2")
 cJumpTimer = NodePath("JumpTimer")
@@ -414,7 +443,7 @@ libraries = {
 tree_root = SubResource("10")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Transition/current = 0
+parameters/Transition/current = 2
 parameters/dash/active = false
 parameters/hit/active = false
 
@@ -422,11 +451,19 @@ parameters/hit/active = false
 scale = Vector2(0.2, 0.2)
 z_index = 10
 frames = SubResource("SpriteFrames_82q65")
-animation = &"idle"
-frame = 1
+animation = &"run"
+frame = 2
 
 [node name="AirJumpSmoke" parent="Sprite" instance=ExtResource("7_2kmdh")]
 position = Vector2(-35, 100)
+
+[node name="WalkParticles" parent="Sprite" instance=ExtResource("7_2kmdh")]
+position = Vector2(-35, 100)
+emitting = true
+one_shot = false
+explosiveness = 0.0
+process_material = SubResource("ParticleProcessMaterial_x5bfa")
+texture = ExtResource("8_ciwyd")
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("8_hr48v")

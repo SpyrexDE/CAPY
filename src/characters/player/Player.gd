@@ -84,8 +84,10 @@ func handleCollission() -> void:
 		cJumpTimer.start(FORGIVE_TIME)
 
 func handleAnimation() -> void:
+	walk(false)
 	if is_moving():
 		if is_on_floor():
+			walk(true)
 			cAnimationTree.set("parameters/Transition/current", ANIMATIONS.WALK)
 	else:
 		if is_on_floor():
@@ -126,8 +128,13 @@ func jump() -> void:
 		$Sprite/AirJumpSmoke.emitting = true
 
 func dash() -> void:
-	print("asd")
 	cAnimationTree.set("parameters/dash/active", true)
+
+func walk(value : bool) -> void:
+	if value:
+		$Sprite/WalkParticles.emitting = true
+	else:
+		$Sprite/WalkParticles.emitting = false
 
 ###########
 # GETTERS #

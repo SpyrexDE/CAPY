@@ -16,7 +16,7 @@ func start_load(scene_path: String) -> void:
 		printerr("LevelLoader has to be added to the tree to it can access _process()")
 	
 	_scene_path = scene_path
-	var state = ResourceLoader.load_threaded_request(_scene_path, "", true)
+	var state = ResourceLoader.load_threaded_request(_scene_path)
 	if state == OK:
 		set_process(true)
 	else:
@@ -37,6 +37,7 @@ func _process(_delta: float) -> void:
 			loaded = true
 			emit_signal("progress_changed", 100.00)
 			emit_signal("load_done")
+			set_process(false)
 
 # If loaded, change to scene
 func change_scene() -> void:

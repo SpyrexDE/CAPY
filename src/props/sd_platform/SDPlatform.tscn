@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://clek4t8v6lqg3"]
+[gd_scene load_steps=18 format=3 uid="uid://clek4t8v6lqg3"]
 
 [ext_resource type="Texture2D" uid="uid://bkakx2j58mbrc" path="res://src/props/sd_platform/animations/sd_platform.png" id="1_modal"]
 [ext_resource type="Texture2D" uid="uid://dce88b6hc6xqx" path="res://addons/kenney_particle_pack/smoke_03.png" id="2_2bvq8"]
@@ -215,6 +215,9 @@ scale_max = 0.1
 color = Color(1, 0.807843, 0.658824, 1)
 color_ramp = SubResource("GradientTexture1D_7a1km")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_12nqy"]
+polygon = PackedVector2Array(-69, -24, 89, -23, 89, 6, -71, 6)
+
 [node name="SDPlatform" type="CharacterBody2D"]
 script = SubResource("2")
 
@@ -244,5 +247,8 @@ one_shot = true
 explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_d0mkr")
 texture = ExtResource("2_2bvq8")
+
+[node name="LightOccluder2d" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_12nqy")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

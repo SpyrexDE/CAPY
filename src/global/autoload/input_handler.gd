@@ -21,7 +21,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadButton or event is InputEventJoypadMotion or event is InputEventKey:
 		if last_focused_element != null:
 			last_focused_element.grab_focus()
-	if Input.is_action_just_pressed("roll"):
+	if Input.is_action_just_pressed("dash"):
 		InputHelper.device = InputHelper.DEVICE_XBOX_CONTROLLER
 		InputHelper.emit_signal("device_changed", null, null)
 
