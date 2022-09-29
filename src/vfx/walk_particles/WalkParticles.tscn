@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd114ec0aj7rc"]
+
+[ext_resource type="Texture2D" uid="uid://chuuman1vbjif" path="res://src/vfx/walk_particles/walk_particle.png" id="1_iilvf"]
+[ext_resource type="Texture2D" uid="uid://bh3ufwsxlc75c" path="res://src/vfx/walk_particles/walk_particle_grass.png" id="2_w6b8b"]
+
+[sub_resource type="Gradient" id="Gradient_6b85b"]
+offsets = PackedFloat32Array(0, 0.593525, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.967626, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2aleo"]
+gradient = SubResource("Gradient_6b85b")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_71h62"]
+emission_shape = 3
+emission_box_extents = Vector3(100, 0, 1)
+particle_flag_disable_z = true
+direction = Vector3(-5, 0, 0)
+gravity = Vector3(0, 100, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -90.0
+angle_max = 90.0
+scale_min = 0.05
+scale_max = 0.1
+color_ramp = SubResource("GradientTexture1D_2aleo")
+collision_mode = 1
+collision_friction = 0.05
+collision_bounce = 0.5
+collision_use_scale = true
+
+[node name="WalkParticles" type="GPUParticles2D"]
+show_behind_parent = true
+amount = 4
+sub_emitter = NodePath("GrassParticles")
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_71h62")
+texture = ExtResource("1_iilvf")
+
+[node name="GrassParticles" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+emitting = false
+amount = 6
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_71h62")
+texture = ExtResource("2_w6b8b")
