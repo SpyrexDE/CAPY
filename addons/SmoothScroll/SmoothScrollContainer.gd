@@ -19,6 +19,15 @@ var friction_scroll := 0.9
 @export_range(0, 1)
 var friction_drag := 0.97
 
+@export
+var scroll_sound := preload("res://addons/SmoothScroll/example_scroll_sound.wav")
+@export
+var sound_start_pos := 0.95
+
+
+@onready
+var audio_player := AudioStreamPlayer.new()
+
 # Current velocity of the `content_node`
 var velocity := Vector2(0,0)
 # Below this value, velocity is set to `0`
@@ -34,7 +43,7 @@ var pos := Vector2(0, 0)
 # When true, `content_node`'s position is only set by dragging the scroll bar
 var scrolling := false
 # Current friction
-var friction := 0.9
+var friction := 0.7
 
 
 func _ready() -> void:
@@ -42,6 +51,9 @@ func _ready() -> void:
 	get_viewport().connect("gui_focus_changed", _on_focus_changed)
 	for c in get_children():
 		if not c is ScrollBar: content_node = c
+	
+	add_child(audio_player)
+	audio_player.stream = scroll_sound
 
 
 func _process(delta: float) -> void:
@@ -106,8 +118,10 @@ func _gui_input(event: InputEvent) -> void:
 			MOUSE_BUTTON_WHEEL_UP:    velocity.y += speed
 			_:                  scrolled = false
 			
-		if scrolled: friction = friction_scroll
-			
+		if scrolled:
+			friction = friction_scroll
+			audio_player.play(sound_start_pos)
+		
 	elif event is InputEventScreenDrag:
 		friction = friction_drag
 		if scroll_horizontal: velocity.x = event.relative.x
@@ -144,20 +158,24 @@ func _on_VScrollBar_scrolling() -> void:
 # Scrolls to specific position
 func scroll_to(y_pos: float) -> void:
 	velocity.y = -(y_pos + content_node.position.y) / 8
+	audio_player.play(sound_start_pos)
 
 # Scrolls up a page
 func scroll_page_up() -> void:
 	velocity.y += self.size.y / 10
+	audio_player.play(sound_start_pos)
 
 
 # Scrolls down a page
 func scroll_page_down() -> void:
 	velocity.y -= self.size.y / 10
+	audio_player.play(sound_start_pos)
 
 
 # Adds velocity to the vertical scroll
 func scroll_vertical(amount: float) -> void:
 	velocity.y -= amount
+	audio_player.play(sound_start_pos)
 
 # Scrolls to top
 func scroll_to_top() -> void:
@@ -168,6 +186,8 @@ func scroll_to_top() -> void:
 	content_node.position = pos
 	# Update vertical scroll bar
 	set_v_scroll(-pos.y)
+	
+	audio_player.play(sound_start_pos)
 
 
 # Scrolls to bottom
@@ -179,3 +199,5 @@ func scroll_to_bottom() -> void:
 	content_node.position = pos
 	# Update vertical scroll bar
 	set_v_scroll(-pos.y)
+	
+	audio_player.play(sound_start_pos)
