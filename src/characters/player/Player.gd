@@ -122,10 +122,10 @@ func checkPush() -> void:
 			collision.get_collider().apply_central_impulse(-collision.normal * PUSH)
 
 func jump() -> void:
-	var t = create_tween()
-	t.set_parallel(false)
-	t.tween_property($Sprite, "scale:y", 0.25, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
-	t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	#var t = create_tween()
+	#t.set_parallel(false)
+	#t.tween_property($Sprite, "scale:y", 0.25, 0.5).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
+	#t.tween_property($Sprite, "scale:y", 0.2, 0.3).set_trans(Tween.TRANS_QUINT).set_ease(Tween.EASE_IN_OUT)
 	
 	if not is_on_floor():
 		$Sprite/AirJumpSmoke.restart()
