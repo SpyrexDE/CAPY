@@ -173,7 +173,6 @@ script = ExtResource("1_4s36d")
 button_root = NodePath("Panel/MarginContainer/SmoothScrollContainer/VBoxContainer")
 
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -184,7 +183,6 @@ theme = SubResource("Theme_4ecqr")
 metadata/_edit_layout_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="Panel"]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -193,7 +191,6 @@ grow_vertical = 2
 theme = SubResource("Theme_4ecqr")
 
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer"]
-layout_mode = 2
 offset_left = 40.0
 offset_top = 40.0
 offset_right = 519.0
@@ -202,7 +199,6 @@ theme = ExtResource("2_andcc")
 script = ExtResource("2_420kk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/SmoothScrollContainer"]
-layout_mode = 2
 offset_right = 479.0
 offset_bottom = 619.0
 size_flags_horizontal = 3

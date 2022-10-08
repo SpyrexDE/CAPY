@@ -31,7 +31,8 @@ const GHOST_TRAIL = preload("res://src/vfx/ghost_trail/ghost_trail.tscn")
 # Animation
 enum ANIMATIONS {
 	IDLE,
-	JUMP,
+	JUMP_UP,
+	JUMP_DOWN,
 	WALK
 }
 
@@ -94,7 +95,10 @@ func handleAnimation() -> void:
 			cAnimationTree.set("parameters/Transition/current", ANIMATIONS.IDLE)
 	
 	if !is_on_floor() && !is_on_wall():
-		cAnimationTree.set("parameters/Transition/current", ANIMATIONS.JUMP)
+		if velocity.y < 0:
+			cAnimationTree.set("parameters/Transition/current", ANIMATIONS.JUMP_UP)
+		else:
+			cAnimationTree.set("parameters/Transition/current", ANIMATIONS.JUMP_DOWN)
 	
 	if air_dashing:
 			var gt = GHOST_TRAIL.instantiate()
