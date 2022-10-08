@@ -20,8 +20,5 @@ current = true
 script = SubResource("GDScript_j22wn")
 
 [node name="ParallaxBackground" parent="Camera2D" instance=ExtResource("1_2ebcd")]
-scale = Vector2(1, 1)
-transform = Transform2D(1, 0, 0, 1, 0, 0)
-scroll_base_offset = Vector2(2491, 0)
 
 [node name="PostProcessing" parent="Camera2D" instance=ExtResource("2_4r0xu")]

@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cfy6q67cvvsgf" path="res://src/levels/level01/background/layers/layer04.png" id="4_0hppf"]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
+offset = Vector2(0, 180)
+transform = Transform2D(1, 0, 0, 1, 0, 180)
 scroll_ignore_camera_zoom = true
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]

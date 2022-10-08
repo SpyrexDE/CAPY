@@ -14,8 +14,7 @@ static func calc_outline_scale(size: Vector2, scale: float, absoulte := false) -
 
 static func list_files_in_directory(path) -> PackedStringArray:
 		var files = PackedStringArray([])
-		var dir = Directory.new()
-		dir.open(path)
+		var dir = DirAccess.open(path)
 		dir.list_dir_begin()
 	
 		while true:

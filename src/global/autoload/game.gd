@@ -41,9 +41,8 @@ func new_save_game() -> void:
 	self.save_game_file_name = Utils.gen_unique_string(10) + ".tres"
 
 func ensure_savegame_dir() -> void:
-	var dir = Directory.new()
-	if not dir.dir_exists(SAVE_GAME_DIR):
-		dir.make_dir(SAVE_GAME_DIR)
+	if not DirAccess.dir_exists_absolute(SAVE_GAME_DIR):
+		DirAccess.make_dir_absolute(SAVE_GAME_DIR)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("save_game"):

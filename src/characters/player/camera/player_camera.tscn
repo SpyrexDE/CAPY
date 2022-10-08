@@ -31,6 +31,10 @@ editor_draw_screen = false
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
 [node name="HUD" parent="Camera2D/CanvasLayer" instance=ExtResource("3_k65ob")]
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(79, 0)
