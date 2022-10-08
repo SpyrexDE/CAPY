@@ -19,10 +19,8 @@ cCollisionShape = NodePath("CollisionShape2D")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(80, 0)
 current = true
-zoom = Vector2(1.3, 1.3)
 limit_smoothed = true
 smoothing_speed = 6.0
-editor_draw_screen = false
 
 [node name="ParallaxBackground" parent="Camera2D" instance=ExtResource("1_iodmm")]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1ijuhrmuak2d"]
+[gd_scene load_steps=16 format=3 uid="uid://bajhy2m2v5m3q"]
 
 [ext_resource type="PackedScene" uid="uid://c2foohcg7psea" path="res://src/characters/player/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://clek4t8v6lqg3" path="res://src/props/sd_platform/SDPlatform.tscn" id="3"]
@@ -619,6 +619,12 @@ shader_parameter/spread = 0.902
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1glcm"]
 size = Vector2(167, 1756)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x01g3"]
+size = Vector2(167, 1756)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0r6jp"]
+size = Vector2(8481.76, 84.4699)
+
 [node name="level01" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1")]
@@ -798,4 +804,12 @@ collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="levelborders/StaticBody2D3"]
 position = Vector2(-241, 828)
-shape = SubResource("RectangleShape2D_1glcm")
+shape = SubResource("RectangleShape2D_x01g3")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="levelborders"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelborders/StaticBody2D4"]
+position = Vector2(4055, 992)
+shape = SubResource("RectangleShape2D_0r6jp")
