@@ -25,6 +25,8 @@ const GHOST_TRAIL = preload("res://src/vfx/ghost_trail/ghost_trail.tscn")
 @export var AIR_DASH_OFFSET := 0.4
 @export var AIR_FRICTION := 4
 
+@export var DIE_VELOCITY := Vector2(100, -100)
+
 # Physics
 @onready var aimed_scale = self.scale
 
@@ -54,7 +56,12 @@ var air_dashing := false
 @export var cJumpTimer : Timer
 @export var cEarlyJumpTimer : Timer
 @export var cAnimationTree : AnimationTree
+@export var cPlayerCamera : CharacterBody2D
 @export var cSprite : AnimatedSprite2D
+@export var cCollisionShape : CollisionShape2D
+@export var cAudioPlayers : Node
+@export var cDebugLabel : Label
+@export var cStateMachine : Node
 
 func _ready() -> void:
 	cAnimationTree.active = true
@@ -139,6 +146,10 @@ func walk(value : bool) -> void:
 		$Sprite/WalkParticles.emitting = true
 	else:
 		$Sprite/WalkParticles.emitting = false
+
+func die() -> void:
+	cStateMachine.transition_to("Die")
+	
 
 ###########
 # GETTERS #

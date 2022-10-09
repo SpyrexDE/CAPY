@@ -17,6 +17,9 @@ var cCamera : Camera2D
 var cCollisionShape : CollisionShape2D
 
 
+var follow_player = true
+
+
 func _ready() -> void:
 	global_position = cPlayer.global_position
 
@@ -32,13 +35,14 @@ func _input(event: InputEvent) -> void:
 func _process(delta) -> void:
 	cCollisionShape.shape.size = get_viewport().get_visible_rect().size # * (Vector2.ONE - cCamera.zoom)
 	
-	var dif = cPlayer.global_position - global_position
-	
-	if dif.length() < 1:
-		velocity = Vector2.ZERO
+	if follow_player:
+		var dif = cPlayer.global_position - global_position
+		if dif.length() < 1:
+			velocity = Vector2.ZERO
+		else:
+			velocity = dif * SPEED
 	else:
-		velocity = dif * SPEED
-		
+		velocity /= 1.1
 	
 	move_and_slide()
 	

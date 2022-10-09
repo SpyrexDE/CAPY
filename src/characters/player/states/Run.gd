@@ -18,7 +18,7 @@ func physics_update(delta:float)->void:
 	
 	# X Friction
 	if !player.is_moving():
-		player.velocity.x = lerp(player.velocity.x, 0, player.FRICTION * delta)
+		player.velocity.x = lerp(player.velocity.x, 0.0, player.FRICTION * delta)
 	
 	player.move_and_slide()
 	

@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=3 uid="uid://bajhy2m2v5m3q"]
 
-[ext_resource type="PackedScene" uid="uid://c2foohcg7psea" path="res://src/characters/player/Player.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://bektwtedytmlb" path="res://src/characters/player/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://clek4t8v6lqg3" path="res://src/props/sd_platform/SDPlatform.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://k2yepueoprnw" path="res://src/props/moving_platform/PlatformMover.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dhh1kqclqlqxi" path="res://src/items/melon_seed/MelonSeed.tscn" id="5"]

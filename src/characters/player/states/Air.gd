@@ -17,6 +17,8 @@ func physics_update(delta:float)->void:
 		player.air_dashing = false
 		if !player.is_moving() && player.is_on_floor():
 			player.velocity.x = lerp(player.velocity.x, 0.0, player.FRICTION * delta)
+		
+		# state_machine.transition_to("Run") TODO: FIX STATE MACHINE
 	else:
 		# air
 		if !player.is_moving():
@@ -63,3 +65,6 @@ func physics_update(delta:float)->void:
 	
 	if player.x_input != 0:
 		player.flipH(true if player.x_input < 0 else false)
+
+func exit() -> void:
+	player.cAudioPlayers.get_node("Fall").play()

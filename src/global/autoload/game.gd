@@ -15,6 +15,9 @@ func apply_savegame(_save_game : SaveGame, file_name : String) -> void:
 	self.save_game_file_name = file_name
 
 func write_savegame() -> void:
+	if not save_game:
+		return
+	
 	# Prepare SaveGame resource
 	save_game.datetime = Time.get_date_string_from_system()
 	save_game.current_level = first_level

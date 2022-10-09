@@ -49,8 +49,8 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	if not has_node(target_state_name):
 		return
 	
+	get_parent().cDebugLabel.text = target_state_name	# TODO: Move this to a Player node, instead within class script
 	state.exit()
 	state=get_node(target_state_name)
-	print("enter " + target_state_name + "asd")
 	state.enter(msg)
 	emit_signal("transitioned", state.name)
