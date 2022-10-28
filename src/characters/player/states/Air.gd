@@ -1,6 +1,10 @@
 extends PlayerState
 
 func physics_update(delta:float)->void:
+	if player.is_on_floor():
+		state_machine.transition_to("Run")
+		return
+	
 	# X-Acceleration
 	player.velocity.x += player.x_input * player.ACCELERATION * delta * player.TARGET_FPS
 	if player.air_dashing:
