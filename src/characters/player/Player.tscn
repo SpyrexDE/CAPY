@@ -485,6 +485,7 @@ script = ExtResource("11_n75n3")
 script = ExtResource("14_cgxmf")
 
 [node name="DebugLabel" type="Label" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -51.0
 offset_right = 20.0

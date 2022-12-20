@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cm6rpjw0ry0cl"]
+[gd_scene load_steps=6 format=3 uid="uid://cm6rpjw0ry0cl"]
 
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_uub5d"]
-[ext_resource type="Texture2D" uid="uid://l3hfqd2b16hj" path="res://src/icons/Xbox Series/XboxSeriesX_Diagram.png" id="2_fi8ti"]
+[ext_resource type="Texture2D" uid="uid://dgoo0nc2a3hqg" path="res://src/ui/manual/xbox.png" id="2_ge1ju"]
+[ext_resource type="Texture2D" uid="uid://bwqcp60xcxy6g" path="res://src/ui/manual/ps.png" id="3_0bmfx"]
+[ext_resource type="Texture2D" uid="uid://baieklovluedr" path="res://src/ui/manual/keyboard.png" id="4_7cpwr"]
 
 [sub_resource type="GDScript" id="GDScript_xon6u"]
 script/source = "extends Control
@@ -25,6 +27,7 @@ grow_vertical = 2
 script = SubResource("GDScript_xon6u")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -36,6 +39,7 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
 offset_left = 30.0
 offset_top = 30.0
 offset_right = 1890.0
@@ -45,30 +49,40 @@ size_flags_vertical = 3
 script = ExtResource("1_uub5d")
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/SmoothScrollContainer"]
-offset_right = 1860.0
-offset_bottom = 1020.0
+layout_mode = 2
+offset_right = 1852.0
+offset_bottom = 1508.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/SmoothScrollContainer/CenterContainer"]
-offset_left = 530.0
-offset_top = 8.0
-offset_right = 1330.0
-offset_bottom = 1012.0
+layout_mode = 2
+offset_left = 526.0
+offset_right = 1326.0
+offset_bottom = 1508.0
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/SmoothScrollContainer/CenterContainer/VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2i(800, 500)
+layout_mode = 2
 offset_right = 800.0
 offset_bottom = 500.0
-texture = ExtResource("2_fi8ti")
+texture = ExtResource("2_ge1ju")
 ignore_texture_size = true
 
 [node name="TextureRect2" type="TextureRect" parent="MarginContainer/SmoothScrollContainer/CenterContainer/VBoxContainer"]
-modulate = Color(0, 0, 0, 1)
 custom_minimum_size = Vector2i(800, 500)
+layout_mode = 2
 offset_top = 504.0
 offset_right = 800.0
 offset_bottom = 1004.0
-texture = ExtResource("2_fi8ti")
+texture = ExtResource("3_0bmfx")
+ignore_texture_size = true
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/SmoothScrollContainer/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2i(800, 500)
+layout_mode = 2
+offset_top = 1008.0
+offset_right = 800.0
+offset_bottom = 1508.0
+texture = ExtResource("4_7cpwr")
 ignore_texture_size = true
