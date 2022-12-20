@@ -87,7 +87,7 @@ func clear() -> void:
 		$VBoxContainer.remove_child(child)
 "
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gnxi4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3r71c"]
 resource_local_to_scene = true
 shader = ExtResource("1_8rwff")
 shader_parameter/vignette_intensity = 4.307
@@ -106,7 +106,7 @@ script = SubResource("GDScript_resde")
 bg = NodePath("VignetteBackground")
 
 [node name="VignetteBackground" parent="." instance=ExtResource("1_o4m7h")]
-material = SubResource("ShaderMaterial_gnxi4")
+material = SubResource("ShaderMaterial_3r71c")
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

@@ -459,6 +459,7 @@ scale = Vector2(0.2, 0.2)
 z_index = 10
 frames = SubResource("SpriteFrames_82q65")
 animation = &"idle"
+frame = 1
 
 [node name="AirJumpSmoke" parent="Sprite" instance=ExtResource("7_2kmdh")]
 position = Vector2(-35, 100)

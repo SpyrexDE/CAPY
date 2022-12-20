@@ -1,0 +1,431 @@
+[gd_scene load_steps=18 format=3 uid="uid://xe5j2rc2gruj"]
+
+[ext_resource type="PackedScene" uid="uid://ckehtsn10s7h4" path="res://src/ui/components/button/button.tscn" id="1_hoggt"]
+[ext_resource type="PackedScene" uid="uid://deu7cyxnp2na0" path="res://src/ui/components/vignette_background.tscn" id="1_igkeq"]
+[ext_resource type="Texture2D" uid="uid://08l2mrtjjd02" path="res://src/characters/player/animations/idle/idle.png" id="1_lamav"]
+[ext_resource type="Shader" path="res://src/postprocessing/shaders/InvertedVeniette.gdshader" id="2_rj020"]
+[ext_resource type="FontFile" uid="uid://do6o3p2fgjyln" path="res://src/fonts/ttf/Signika-Bold.ttf" id="3_sdtgw"]
+
+[sub_resource type="GDScript" id="GDScript_sf1dn"]
+script/source = "extends Control
+
+var toggled := false
+
+
+#func _on_button_mouse_entered():
+#	$AnimationPlayer.play(\"Hover\")
+#
+#
+#func _on_button_mouse_exited():
+#	if !toggled:
+#		$AnimationPlayer.play_backwards(\"Hover\")
+
+
+func _on_button_pressed():
+	$AnimationPlayer.play_backwards(\"Hover\")
+	if toggled:
+		$AnimationPlayer.playback_speed = 3.0
+		$AnimationPlayer2.playback_speed = 3.0
+		$AnimationPlayer2.play_backwards(\"popout\")
+		$AnimationPlayer.play_backwards(\"Hover\")
+		toggled = false
+	else:
+		$AnimationPlayer.playback_speed = 1.0
+		$AnimationPlayer2.playback_speed = 1.0
+		$AnimationPlayer2.play(\"popout\")
+		$AnimationPlayer.play(\"Hover\")
+		toggled = true
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x381i"]
+resource_local_to_scene = true
+shader = ExtResource("2_rj020")
+shader_parameter/vignette_intensity = 11.863
+shader_parameter/vignette_opacity = 20.0
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l05sl"]
+atlas = ExtResource("1_lamav")
+region = Rect2(0, 0, 561, 594)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tn4l"]
+atlas = ExtResource("1_lamav")
+region = Rect2(561, 0, 561, 594)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kd0jc"]
+animations = [{
+"frames": [SubResource("AtlasTexture_l05sl"), SubResource("AtlasTexture_5tn4l")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_wxrqb"]
+resource_name = "Hover"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2d:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(123, 32), Vector2(123, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2d:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [0.0676892, -0.174533]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2d:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(0.28, 0.28)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2d:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_alxu1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2d:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(103, 25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2d:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.162181]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2d:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.302651, 0.302875)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimatedSprite2d:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_njc1c"]
+_data = {
+"Hover": SubResource("Animation_wxrqb"),
+"RESET": SubResource("Animation_alxu1")
+}
+
+[sub_resource type="FontVariation" id="FontVariation_i5emj"]
+base_font = ExtResource("3_sdtgw")
+
+[sub_resource type="Animation" id="Animation_xt3o0"]
+resource_name = "popout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-51, 0), Vector2(-51, -300)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-131, -10), Vector2(-131, -155)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(0.6, 0.6), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VignetteBackground:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [20.0, 0.25]
+}
+
+[sub_resource type="Animation" id="Animation_qdh44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-131, -10)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6, 0.6)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("VignetteBackground:opacity")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [20.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0jl7y"]
+_data = {
+"RESET": SubResource("Animation_qdh44"),
+"popout": SubResource("Animation_xt3o0")
+}
+
+[node name="CreditsButton" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = SubResource("GDScript_sf1dn")
+
+[node name="VignetteBackground" parent="." instance=ExtResource("1_igkeq")]
+material = SubResource("ShaderMaterial_x381i")
+offset_left = -201.0
+offset_top = -491.0
+offset_right = 425.0
+offset_bottom = 176.0
+intensity = 11.863
+opacity = 20.0
+
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(103, 25)
+rotation = -0.162181
+scale = Vector2(0.302651, 0.302875)
+frames = SubResource("SpriteFrames_kd0jc")
+playing = true
+
+[node name="Button" parent="." instance=ExtResource("1_hoggt")]
+offset_right = 222.0
+pivot_offset = Vector2(111, 40)
+mouse_default_cursor_shape = 2
+text = "About"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_njc1c")
+}
+
+[node name="Label" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -51.0
+offset_right = 258.0
+offset_bottom = 152.0
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(154, 66)
+mouse_filter = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_i5emj")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/italics_font_size = 32
+bbcode_enabled = true
+text = "[center]Art by
+[i]Sophia Pichler[/i][/center]"
+
+[node name="Label2" type="RichTextLabel" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -131.0
+offset_top = -10.0
+offset_right = 338.0
+offset_bottom = 181.0
+scale = Vector2(0.6, 0.6)
+pivot_offset = Vector2(235, 65)
+mouse_filter = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_i5emj")
+theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
+theme_override_font_sizes/italics_font_size = 32
+bbcode_enabled = true
+text = "[center]Programming by
+[i]Fabian Keßler[/i][/center]"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0jl7y")
+}
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

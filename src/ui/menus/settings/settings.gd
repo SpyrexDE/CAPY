@@ -10,7 +10,6 @@ func _ready() -> void:
 	var page_name = ""
 	var p : Control = PAGE.instantiate()
 	tab_container.add_child(p)
-	pass
 
 func get_focus() -> void:
 	pass#	tab_container.get_children()[0].get_focus()

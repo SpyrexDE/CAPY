@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dcgr1gw36h1go"]
+[gd_scene load_steps=20 format=3 uid="uid://dcgr1gw36h1go"]
 
 [ext_resource type="Texture2D" uid="uid://l35aepe18wls" path="res://src/ui/menus/main/interface/TitleGraficafdesign.png" id="1_indfa"]
 [ext_resource type="Texture2D" uid="uid://cpc530rwfaj2k" path="res://src/ui/menus/main/icons/reddit-logo.svg" id="3_mipbg"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://36dqyaig570n" path="res://src/ui/components/glyphs_hints/glyphs_hints.tscn" id="8_bf2nu"]
 [ext_resource type="PackedScene" uid="uid://ckehtsn10s7h4" path="res://src/ui/components/button/button.tscn" id="8_da0ks"]
 [ext_resource type="PackedScene" uid="uid://vijlg022mjr6" path="res://src/ui/menus/settings/settings.tscn" id="9_jldw5"]
+[ext_resource type="PackedScene" uid="uid://xe5j2rc2gruj" path="res://src/ui/components/credits_button/credits_button.tscn" id="10_c1wv2"]
 
 [sub_resource type="GDScript" id="GDScript_83pib"]
 script/source = "extends Control
@@ -49,7 +50,11 @@ func _on_button_3_pressed() -> void:
 
 
 func _on_b_back_pressed() -> void:
-	$AnimationPlayer.play(\"play_pressed_back\")
+	print($AnimationPlayer.assigned_animation)
+	if $AnimationPlayer.assigned_animation == \"play_pressed\":
+		$AnimationPlayer.play(\"play_pressed_back\")
+	else:
+		$AnimationPlayer.play(\"settings_pressed_back\")
 	$bPlay.focus_mode = FOCUS_ALL
 	$bPlay.grab_focus()
 
@@ -281,6 +286,18 @@ tracks/14/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("CreditsButton:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1444, 982)]
+}
 
 [sub_resource type="Animation" id="Animation_vqvfc"]
 resource_name = "play_pressed"
@@ -443,10 +460,21 @@ tracks/12/keys = {
 "method": &"show"
 }]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CreditsButton:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.99683),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1444, 982), Vector2(1444, 1100)]
+}
 
 [sub_resource type="Animation" id="Animation_iyfjd"]
 resource_name = "play_pressed_back"
-step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -605,6 +633,18 @@ tracks/12/keys = {
 "method": &"hide"
 }]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CreditsButton:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1444, 1100), Vector2(1444, 982)]
+}
 
 [sub_resource type="Animation" id="Animation_fdwm1"]
 resource_name = "settings_pressed"
@@ -755,13 +795,187 @@ tracks/11/keys = {
 "method": &"show"
 }]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CreditsButton:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1444, 982), Vector2(1444, 1100)]
+}
+
+[sub_resource type="Animation" id="Animation_i36fn"]
+resource_name = "settings_pressed_back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bDiscord:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1709, 1100), Vector2(1709, 983)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bPlay:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-446, 506), Vector2(211, 506)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bExit:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-446, 864), Vector2(211, 864)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bSettings:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("bSettings:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("bReddit:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1821, 1100), Vector2(1821, 982)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TextureRect:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-1.7411, -1.7411),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SettingsMenu:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1000)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SettingsMenu:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(0.1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("bSettings:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(-442, 687), Vector2(211, 687)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("bBack:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.64),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(20, 30), Vector2(-100, 25)]
+}
+tracks/11/type = "method"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("GlyphsHints")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CreditsButton:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.1, 0.1),
+"update": 0,
+"values": [Vector2(1444, 1100), Vector2(1444, 982)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_feeql"]
 _data = {
 "RESET": SubResource("Animation_gll0l"),
 "play_pressed": SubResource("Animation_vqvfc"),
 "play_pressed_back": SubResource("Animation_iyfjd"),
-"settings_pressed": SubResource("Animation_fdwm1")
+"settings_pressed": SubResource("Animation_fdwm1"),
+"settings_pressed_back": SubResource("Animation_i36fn")
 }
 
 [node name="interface" type="Control"]
@@ -776,16 +990,17 @@ script = SubResource("GDScript_83pib")
 
 [node name="loading_screen" parent="." instance=ExtResource("7_j4pde")]
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="." groups=["startup_pop_anim"]]
-modulate = Color(1, 1, 1, 0.993846)
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 107.0
 offset_top = 33.0
-offset_right = 838.998
+offset_right = 838.999
 offset_bottom = 464.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -797,6 +1012,7 @@ metadata/_edit_layout_mode = 1
 metadata/_edit_use_custom_anchors = true
 
 [node name="bPlay" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -811,6 +1027,8 @@ text = "PLAY"
 metadata/_edit_layout_mode = 1
 
 [node name="bSettings" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -819,12 +1037,14 @@ offset_top = -393.0
 offset_right = 605.0
 offset_bottom = -250.0
 grow_vertical = 0
+scale = Vector2(0.9, 0.9)
 pivot_offset = Vector2(194, 69)
 mouse_default_cursor_shape = 2
 text = "CONTROLS"
 metadata/_edit_layout_mode = 1
 
 [node name="bExit" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -839,6 +1059,7 @@ text = "EXIT"
 metadata/_edit_layout_mode = 1
 
 [node name="bReddit" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -857,6 +1078,7 @@ icon_alignment = 1
 metadata/_edit_layout_mode = 1
 
 [node name="bDiscord" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -875,6 +1097,7 @@ icon_alignment = 1
 metadata/_edit_layout_mode = 1
 
 [node name="bBack" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 0
 offset_left = -95.0
 offset_top = 23.0
 offset_right = -11.0
@@ -889,6 +1112,7 @@ metadata/_edit_layout_mode = 1
 
 [node name="save_select" parent="." groups=["startup_pop_anim"] instance=ExtResource("5_awtbf")]
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -905,16 +1129,24 @@ metadata/_edit_layout_mode = 1
 
 [node name="GlyphsHints" parent="." instance=ExtResource("8_bf2nu")]
 visible = false
+layout_mode = 1
 
 [node name="SettingsMenu" parent="." instance=ExtResource("9_jldw5")]
 visible = false
-offset_top = 1000.0
-offset_bottom = 1000.0
+layout_mode = 1
+offset_bottom = -0.00585938
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_feeql")
 }
+
+[node name="CreditsButton" parent="." instance=ExtResource("10_c1wv2")]
+layout_mode = 1
+offset_left = 1444.0
+offset_top = 982.0
+offset_right = 1444.0
+offset_bottom = 982.0
 
 [connection signal="pressed" from="bPlay" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="bSettings" to="." method="_on_b_settings_pressed"]
