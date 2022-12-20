@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bajhy2m2v5m3q"]
+[gd_scene load_steps=17 format=3 uid="uid://bajhy2m2v5m3q"]
 
 [ext_resource type="PackedScene" uid="uid://bektwtedytmlb" path="res://src/characters/player/Player.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://clek4t8v6lqg3" path="res://src/props/sd_platform/SDPlatform.tscn" id="3"]
@@ -625,6 +625,17 @@ size = Vector2(167, 1756)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0r6jp"]
 size = Vector2(8481.76, 84.4699)
 
+[sub_resource type="GDScript" id="GDScript_3m1el"]
+script/source = "extends Area2D
+
+
+
+
+func _on_body_entered(body):
+	if body.name == \"Player\":
+		body.global_position = $Spawnpoint.global_position
+"
+
 [node name="level01" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1")]
@@ -806,10 +817,22 @@ collision_mask = 256
 position = Vector2(-241, 828)
 shape = SubResource("RectangleShape2D_x01g3")
 
-[node name="StaticBody2D4" type="StaticBody2D" parent="levelborders"]
+[node name="Void" type="StaticBody2D" parent="levelborders"]
 collision_layer = 256
 collision_mask = 256
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="levelborders/StaticBody2D4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelborders/Void"]
 position = Vector2(4055, 992)
 shape = SubResource("RectangleShape2D_0r6jp")
+
+[node name="DeathZone" type="Area2D" parent="levelborders/Void"]
+script = SubResource("GDScript_3m1el")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="levelborders/Void/DeathZone"]
+position = Vector2(4055, 985)
+shape = SubResource("RectangleShape2D_0r6jp")
+
+[node name="Spawnpoint" type="Marker2D" parent="levelborders/Void/DeathZone"]
+position = Vector2(595, 525)
+
+[connection signal="body_entered" from="levelborders/Void/DeathZone" to="levelborders/Void/DeathZone" method="_on_body_entered"]

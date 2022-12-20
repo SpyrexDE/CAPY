@@ -69,6 +69,3 @@ func physics_update(delta:float)->void:
 	
 	if player.x_input != 0:
 		player.flipH(true if player.x_input < 0 else false)
-
-func exit() -> void:
-	player.cAudioPlayers.get_node("Fall").play()

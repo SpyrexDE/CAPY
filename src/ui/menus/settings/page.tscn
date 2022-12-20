@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm6rpjw0ry0cl"]
 
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="1_uub5d"]
-[ext_resource type="PackedScene" uid="uid://b10m30uuvl6nk" path="res://src/ui/components/checkbutton/CheckButton.tscn" id="2_5cswq"]
+[ext_resource type="Texture2D" uid="uid://l3hfqd2b16hj" path="res://src/icons/Xbox Series/XboxSeriesX_Diagram.png" id="2_fi8ti"]
 
-[sub_resource type="GDScript" id="GDScript_301wu"]
+[sub_resource type="GDScript" id="GDScript_xon6u"]
 script/source = "extends Control
 
 func _init(_name : String) -> void:
@@ -15,17 +15,16 @@ func get_focus() -> void:
 		InputHandler.last_focused_element = $MarginContainer/SmoothScrollContainer/VBoxContainer.get_children()[0]
 "
 
-[node name="Page" type="Control"]
+[node name="Controls" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = SubResource("GDScript_301wu")
+script = SubResource("GDScript_xon6u")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -37,7 +36,6 @@ theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
 [node name="SmoothScrollContainer" type="ScrollContainer" parent="MarginContainer"]
-layout_mode = 2
 offset_left = 30.0
 offset_top = 30.0
 offset_right = 1890.0
@@ -46,131 +44,31 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_uub5d")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/SmoothScrollContainer"]
-layout_mode = 2
-offset_right = 1852.0
-offset_bottom = 1661.0
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/SmoothScrollContainer"]
+offset_right = 1860.0
+offset_bottom = 1020.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/separation = 28
 
-[node name="CheckButton" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_right = 1852.0
-offset_bottom = 245.0
-grow_horizontal = 2
-text = "Test text
-sadasdsad
-asda
-sdasda
-sdasdasdasdadasd"
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/SmoothScrollContainer/CenterContainer"]
+offset_left = 530.0
+offset_top = 8.0
+offset_right = 1330.0
+offset_bottom = 1012.0
 
-[node name="CheckButton2" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 273.0
-offset_right = 1852.0
-offset_bottom = 363.0
-grow_horizontal = 2
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/SmoothScrollContainer/CenterContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2i(800, 500)
+offset_right = 800.0
+offset_bottom = 500.0
+texture = ExtResource("2_fi8ti")
+ignore_texture_size = true
 
-[node name="CheckButton3" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 391.0
-offset_right = 1852.0
-offset_bottom = 481.0
-grow_horizontal = 2
-
-[node name="CheckButton4" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 509.0
-offset_right = 1852.0
-offset_bottom = 599.0
-grow_horizontal = 2
-
-[node name="CheckButton5" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 627.0
-offset_right = 1852.0
-offset_bottom = 717.0
-grow_horizontal = 2
-
-[node name="CheckButton6" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 745.0
-offset_right = 1852.0
-offset_bottom = 835.0
-grow_horizontal = 2
-
-[node name="CheckButton7" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 863.0
-offset_right = 1852.0
-offset_bottom = 953.0
-grow_horizontal = 2
-
-[node name="CheckButton8" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 981.0
-offset_right = 1852.0
-offset_bottom = 1071.0
-grow_horizontal = 2
-
-[node name="CheckButton9" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 1099.0
-offset_right = 1852.0
-offset_bottom = 1189.0
-grow_horizontal = 2
-
-[node name="CheckButton10" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 1217.0
-offset_right = 1852.0
-offset_bottom = 1307.0
-grow_horizontal = 2
-
-[node name="CheckButton11" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 1335.0
-offset_right = 1852.0
-offset_bottom = 1425.0
-grow_horizontal = 2
-
-[node name="CheckButton12" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 1453.0
-offset_right = 1852.0
-offset_bottom = 1543.0
-grow_horizontal = 2
-
-[node name="CheckButton13" parent="MarginContainer/SmoothScrollContainer/VBoxContainer" instance=ExtResource("2_5cswq")]
-layout_mode = 2
-anchors_preset = 0
-anchor_right = 0.0
-offset_top = 1571.0
-offset_right = 1852.0
-offset_bottom = 1661.0
-grow_horizontal = 2
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/SmoothScrollContainer/CenterContainer/VBoxContainer"]
+modulate = Color(0, 0, 0, 1)
+custom_minimum_size = Vector2i(800, 500)
+offset_top = 504.0
+offset_right = 800.0
+offset_bottom = 1004.0
+texture = ExtResource("2_fi8ti")
+ignore_texture_size = true

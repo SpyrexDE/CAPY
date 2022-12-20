@@ -776,13 +776,14 @@ script = SubResource("GDScript_83pib")
 
 [node name="loading_screen" parent="." instance=ExtResource("7_j4pde")]
 visible = false
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="." groups=["startup_pop_anim"]]
 modulate = Color(1, 1, 1, 0.993846)
+layout_mode = 0
 offset_left = 107.0
 offset_top = 33.0
 offset_right = 838.998
@@ -797,6 +798,7 @@ metadata/_edit_layout_mode = 1
 metadata/_edit_use_custom_anchors = true
 
 [node name="bPlay" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -811,6 +813,7 @@ text = "PLAY"
 metadata/_edit_layout_mode = 1
 
 [node name="bSettings" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -821,10 +824,11 @@ offset_bottom = -250.0
 grow_vertical = 0
 pivot_offset = Vector2(194, 69)
 mouse_default_cursor_shape = 2
-text = "SETTINGS"
+text = "CONTROLS"
 metadata/_edit_layout_mode = 1
 
 [node name="bExit" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -839,6 +843,7 @@ text = "EXIT"
 metadata/_edit_layout_mode = 1
 
 [node name="bReddit" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -857,6 +862,7 @@ icon_alignment = 1
 metadata/_edit_layout_mode = 1
 
 [node name="bDiscord" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -875,6 +881,7 @@ icon_alignment = 1
 metadata/_edit_layout_mode = 1
 
 [node name="bBack" parent="." groups=["startup_pop_anim"] instance=ExtResource("8_da0ks")]
+layout_mode = 0
 offset_left = -95.0
 offset_top = 23.0
 offset_right = -11.0
@@ -889,6 +896,7 @@ metadata/_edit_layout_mode = 1
 
 [node name="save_select" parent="." groups=["startup_pop_anim"] instance=ExtResource("5_awtbf")]
 visible = false
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -905,11 +913,11 @@ metadata/_edit_layout_mode = 1
 
 [node name="GlyphsHints" parent="." instance=ExtResource("8_bf2nu")]
 visible = false
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 1
 
 [node name="SettingsMenu" parent="." instance=ExtResource("9_jldw5")]
 visible = false
+layout_mode = 1
 offset_top = 1000.0
 offset_bottom = 1000.0
 

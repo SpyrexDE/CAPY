@@ -16,7 +16,6 @@ script = ExtResource("2_4ocod")
 tab_container = NodePath("CenterContainer/MarginContainer/TabContainer")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,7 +24,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
-layout_mode = 2
 offset_left = 340.0
 offset_top = 70.0
 offset_right = 1580.0
@@ -38,8 +36,7 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
 [node name="TabContainer" type="TabContainer" parent="CenterContainer/MarginContainer"]
-custom_minimum_size = Vector2(1200, 900)
-layout_mode = 2
+custom_minimum_size = Vector2i(1200, 900)
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 1220.0
