@@ -1,7 +1,7 @@
 # CAPY (Archived WIP)
 A platformer game made with the Godot Game Engine where you play as a capybara, exploring the jungle and collecting golden seeds.
 
-This Game was developed in cooperation with a sperate artist. (S. Pichler)
+This Game was developed in cooperation with a separate artist. (S. Pichler)
 
 ### Polished UI and scene transitioning
 
